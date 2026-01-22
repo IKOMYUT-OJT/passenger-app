@@ -2,7 +2,6 @@ import { Redirect, Route } from "react-router-dom";
 import {
   IonApp,
   IonIcon,
-  IonLabel,
   IonRouterOutlet,
   IonTabBar,
   IonTabButton,
@@ -24,6 +23,8 @@ import "@ionic/react/css/structure.css";
 import "@ionic/react/css/typography.css";
 import "@ionic/react/css/palettes/dark.system.css";
 import "./theme/variables.css";
+import Homepage from "./pages/Homepage";
+import Profilepage from "./pages/Profilepage";
 
 setupIonicReact();
 
@@ -35,15 +36,15 @@ const App: React.FC = () => {
       <IonReactRouter>
         <IonTabs>
           <IonRouterOutlet>
-            <Route exact path="/tab1" component={Tab1} />
-            <Route exact path="/tab3" component={Tab3} />
+            <Route exact path="/homepage" component={Homepage} />
+            <Route exact path="/profilepage" component={Profilepage} />
             <Route exact path="/">
-              <Redirect to="/tab1" />
+              <Redirect to="/homepage" />
             </Route>
           </IonRouterOutlet>
 
           <IonTabBar slot="bottom" className="custom-tab-bar">
-            <IonTabButton tab="tab1" href="/tab1">
+            <IonTabButton tab="homepage" href="/homepage">
               <IonIcon icon={homeSharp} size="large" />
             </IonTabButton>
 
@@ -60,7 +61,7 @@ const App: React.FC = () => {
               </div>
             </IonTabButton>
 
-            <IonTabButton tab="tab3" href="/tab3">
+            <IonTabButton tab="profilepage" href="/profilepage">
               <IonIcon icon={personSharp} className="custom-tab-bar" />
             </IonTabButton>
           </IonTabBar>
