@@ -15,8 +15,8 @@ import { IonReactRouter } from "@ionic/react-router";
 import { scanOutline, homeSharp, personSharp } from "ionicons/icons";
 import { useState } from "react";
 
-import Tab1 from "./pages/Tab1";
-import Tab3 from "./pages/Tab3";
+import Tab1 from "./pages/Homepage";
+import Tab3 from "./pages/Profilepage";
 
 import "@ionic/react/css/core.css";
 import "@ionic/react/css/normalize.css";
