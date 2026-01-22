@@ -1,5 +1,5 @@
 .custom-tab-bar {
-  height: 200px; /* increased height */
+  height: 150px; /* increased height */
   --background: transparent; /* transparent tab bar */
   --ion-tab-bar-border-width: 0;
   position: relative;
