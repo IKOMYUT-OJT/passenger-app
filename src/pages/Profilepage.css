@@ -1,35 +1,118 @@
-.profile-card {
-  margin: 24px 16px;
-  border-radius: 20px;
-  background: linear-gradient(135deg, #3d5871, #7794b1);
-  color: white;
+/* ===============================
+   PROFILE PAGE – MY PROFILE
+================================ */
+.ion-no-border{
+ transform: translateY(30px); /* MOVE ENTIRE HEADER DOWN */
+ 
+}
+.edit-profile-title {
+  margin-left: 150px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-size: 20px;
 }
 
-.profile-card-content {
+/* prevent Ionic auto-centering */
+ion-toolbar ion-title {
+  position: relative;
+  transform: none;
+}
+
+/* Header profile section */
+.profile-header {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 32px 16px;
+  padding: 28px 0 20px;
+  background: #ffffff;
+  
 }
 
+/* Avatar */
 .profile-avatar {
-  width: 96px;
-  height: 96px;
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
   margin-bottom: 12px;
-  border: 3px solid rgba(255, 255, 255, 0.6);
+  border: 4px solid #1e6fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
+/* Name */
 .profile-name {
-  margin: 8px 0 4px;
+  font-size: 18px;
   font-weight: 600;
+  margin: 0;
+  color: #000;
 }
 
-.profile-email {
-  margin-bottom: 16px;
+/* Mobile number / subtitle */
+.profile-number {
   font-size: 14px;
-  opacity: 0.85;
+  color: #8c8c8c;
+  margin-top: 4px;
 }
 
-.logout-item {
+/* ===============================
+   PROFILE LIST
+================================ */
+
+.profile-list {
+  margin-top: 10px;
+}
+
+/* Each list item */
+.profile-list ion-item {
+  --padding-start: 16px;
+  --inner-padding-end: 14px;
+  --min-height: 52px;
+  font-size: 15px;
+}
+
+/* Left icons */
+.profile-list ion-icon[slot="start"] {
+  font-size: 20px;
+  color: #444;
+}
+
+/* Right arrow */
+.profile-list ion-icon[slot="end"] {
+  font-size: 18px;
+  color: #bdbdbd;
+}
+
+/* Logout item spacing */
+.profile-list .logout-item {
   margin-top: 8px;
+}
+
+/* ===============================
+   LOGOUT MODAL
+================================ */
+
+.logout-modal {
+  padding: 24px;
+  text-align: center;
+}
+
+.logout-modal h2 {
+  margin-bottom: 8px;
+}
+
+.logout-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 24px;
+}
+
+/* ===============================
+   REMOVE DEFAULT CARD STYLE
+================================ */
+
+.profile-card,
+.profile-card-content,
+.profile-email {
+  display: none;
 }

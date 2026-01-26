@@ -14,11 +14,15 @@ import { IonReactRouter } from "@ionic/react-router";
 import { Route, Redirect } from "react-router-dom";
 import { scanOutline, homeSharp, personSharp } from "ionicons/icons";
 
+/* Pages */
 import Homepage from "./pages/Homepage";
 import Profilepage from "./pages/Profilepage";
+import EditProfile from "./pages/EditProfile";
+import SettingsPage from "./pages/SettingsPage";
 import LoginPage from "./pages/LoginPage";
 import SignUpPage from "./pages/SignUpPage";
 
+/* Ionic CSS */
 import "@ionic/react/css/core.css";
 import "@ionic/react/css/normalize.css";
 import "@ionic/react/css/structure.css";
@@ -28,7 +32,9 @@ import "./theme/variables.css";
 
 setupIonicReact();
 
-// Create context for login state
+/* ===============================
+   AUTH CONTEXT
+================================ */
 export const AuthContext = createContext({
   isLoggedIn: false,
   setIsLoggedIn: (val: boolean) => {},
@@ -38,7 +44,7 @@ const App: React.FC = () => {
   const [showQR, setShowQR] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  // Load login state from localStorage
+  /* Load login state */
   useEffect(() => {
     const loggedIn = localStorage.getItem("isLoggedIn") === "true";
     setIsLoggedIn(loggedIn);
@@ -50,33 +56,43 @@ const App: React.FC = () => {
         <IonReactRouter>
           <IonRouterOutlet>
 
-            {/* Login Page */}
+            {/* ================= LOGIN ================= */}
             <Route
               exact
               path="/"
-              render={(props) =>
-                isLoggedIn ? (
-                  <Redirect to="/tabs/homepage" />
-                ) : (
-                  <LoginPage {...props} />
-                )
+              render={() =>
+                isLoggedIn ? <Redirect to="/tabs/homepage" /> : <LoginPage />
               }
             />
 
-            {/* SignUp Page */}
+            {/* ================= SIGN UP ================= */}
             <Route
               exact
               path="/signup"
-              render={(props) =>
-                isLoggedIn ? (
-                  <Redirect to="/tabs/homepage" />
-                ) : (
-                  <SignUpPage {...props} />
-                )
+              render={() =>
+                isLoggedIn ? <Redirect to="/tabs/homepage" /> : <SignUpPage />
               }
             />
 
-            {/* Tabs (Protected) */}
+            {/* ================= EDIT PROFILE ================= */}
+            <Route
+              exact
+              path="/edit-profile"
+              render={() =>
+                isLoggedIn ? <EditProfile /> : <Redirect to="/" />
+              }
+            />
+
+            {/* ================= SETTINGS PAGE ================= */}
+            <Route
+              exact
+              path="/settings"
+              render={() =>
+                isLoggedIn ? <SettingsPage /> : <Redirect to="/" />
+              }
+            />
+
+            {/* ================= TABS (PROTECTED) ================= */}
             <Route
               path="/tabs"
               render={() =>
@@ -84,12 +100,17 @@ const App: React.FC = () => {
                   <IonTabs>
                     <IonRouterOutlet>
                       <Route exact path="/tabs/homepage" component={Homepage} />
-                      <Route exact path="/tabs/profilepage" component={Profilepage} />
+                      <Route
+                        exact
+                        path="/tabs/profilepage"
+                        component={Profilepage}
+                      />
                       <Redirect exact from="/tabs" to="/tabs/homepage" />
                     </IonRouterOutlet>
 
+                    {/* Bottom Navigation */}
                     <IonTabBar slot="bottom">
-                      <IonTabButton tab="homepage" href="/tabs/homepage">
+                      <IonTabButton tab="home" href="/tabs/homepage">
                         <IonIcon icon={homeSharp} />
                       </IonTabButton>
 
@@ -97,7 +118,7 @@ const App: React.FC = () => {
                         <IonIcon icon={scanOutline} />
                       </IonTabButton>
 
-                      <IonTabButton tab="profilepage" href="/tabs/profilepage">
+                      <IonTabButton tab="profile" href="/tabs/profilepage">
                         <IonIcon icon={personSharp} />
                       </IonTabButton>
                     </IonTabBar>
@@ -109,11 +130,13 @@ const App: React.FC = () => {
             />
           </IonRouterOutlet>
 
-          {/* QR Modal */}
+          {/* ================= QR MODAL ================= */}
           <IonModal isOpen={showQR} onDidDismiss={() => setShowQR(false)}>
-            <div style={{ padding: 20 }}>
+            <div style={{ padding: 20, textAlign: "center" }}>
               <h2>Scan QR Code</h2>
-              <IonButton onClick={() => setShowQR(false)}>Close</IonButton>
+              <IonButton expand="block" onClick={() => setShowQR(false)}>
+                Close
+              </IonButton>
             </div>
           </IonModal>
         </IonReactRouter>

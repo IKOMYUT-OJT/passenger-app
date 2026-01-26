@@ -95,13 +95,14 @@
 
 .password-box .toggle-password {
   position: absolute;
-  right: 12px;
+  margin-left: 110px;
   top: 50%;
   transform: translateY(-50%);
   font-size: 1.2rem;
   cursor: pointer;
   color: #666;
   z-index: 10;
+
 }
 
 

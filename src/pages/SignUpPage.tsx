@@ -12,11 +12,13 @@ import {
   IonCol
 } from '@ionic/react';
 import { person, mail, callOutline, home, lockClosed, eye, eyeOff } from 'ionicons/icons';
-import { RouteComponentProps } from 'react-router-dom';
 import { useState } from 'react';
+import { useIonRouter } from '@ionic/react';
 import './SignUpPage.css';
 
-const SignUpPage: React.FC<RouteComponentProps> = ({ history }) => {
+const SignUpPage: React.FC = () => {
+  const ionRouter = useIonRouter(); // <-- Use Ionic router
+
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [mobileNumber, setMobileNumber] = useState('');
@@ -30,7 +32,7 @@ const SignUpPage: React.FC<RouteComponentProps> = ({ history }) => {
   const [showAlert, setShowAlert] = useState(false);
   const [agreed, setAgreed] = useState(false);
 
-  // Generate a suggested username based on Full Name
+  // Generate a suggested username
   const generateUsername = (name: string) => {
     if (!name.trim()) {
       setSuggestedUsername('');
@@ -67,16 +69,11 @@ const SignUpPage: React.FC<RouteComponentProps> = ({ history }) => {
 
   const handleAlertDismiss = () => {
     setShowAlert(false);
-    history.push('/'); // Go to login page after signup
+    ionRouter.push('/'); // <-- Navigate using Ionic router
   };
 
-  const openTerms = () => {
-    window.open('/terms', '_blank');
-  };
-
-  const openPrivacy = () => {
-    window.open('/privacy', '_blank');
-  };
+  const openTerms = () => window.open('/terms', '_blank');
+  const openPrivacy = () => window.open('/privacy', '_blank');
 
   return (
     <IonPage>
@@ -112,17 +109,6 @@ const SignUpPage: React.FC<RouteComponentProps> = ({ history }) => {
                   </IonText>
                 )}
 
-                {/* Email */}
-                <IonItem lines="none" className="signup-item">
-                  <IonIcon icon={mail} slot="start" />
-                  <IonInput
-                    placeholder="Email"
-                    type="email"
-                    value={email}
-                    onIonChange={(e) => setEmail(e.detail.value!)}
-                  />
-                </IonItem>
-
                 {/* Mobile Number */}
                 <IonItem lines="none" className="signup-item">
                   <IonIcon icon={callOutline} slot="start" />
@@ -131,6 +117,17 @@ const SignUpPage: React.FC<RouteComponentProps> = ({ history }) => {
                     type="tel"
                     value={mobileNumber}
                     onIonChange={(e) => setMobileNumber(e.detail.value!)}
+                  />
+                </IonItem>
+
+                {/* Email */}
+                <IonItem lines="none" className="signup-item">
+                  <IonIcon icon={mail} slot="start" />
+                  <IonInput
+                    placeholder="Email"
+                    type="email"
+                    value={email}
+                    onIonChange={(e) => setEmail(e.detail.value!)}
                   />
                 </IonItem>
 
@@ -178,7 +175,7 @@ const SignUpPage: React.FC<RouteComponentProps> = ({ history }) => {
                   />
                 </IonItem>
 
-                {/* Terms with Checkbox */}
+                {/* Terms */}
                 <div className="terms-checkbox">
                   <input
                     type="checkbox"
@@ -187,8 +184,9 @@ const SignUpPage: React.FC<RouteComponentProps> = ({ history }) => {
                     onChange={(e) => setAgreed(e.target.checked)}
                   />
                   <label htmlFor="terms">
-                    <span className="link-text" onClick={openTerms}>I agree to the Terms of Service Privacy Policy</span>{' '}
-                    
+                    <span className="link-text" onClick={openTerms}>
+                      I agree to the Terms of Service & Privacy Policy
+                    </span>
                   </label>
                 </div>
 
@@ -203,7 +201,7 @@ const SignUpPage: React.FC<RouteComponentProps> = ({ history }) => {
 
               <div className="signin-text">
                 Already have an account?
-                <span className="signin-link" onClick={() => history.push('/')}>
+                <span className="signin-link" onClick={() => ionRouter.push('/')}>
                   {' '}SIGN IN
                 </span>
               </div>

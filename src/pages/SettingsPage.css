@@ -1,0 +1,99 @@
+/* Use Poppins everywhere on this page */
+.settings-header{
+    transform: translateY(30px); /* MOVE ENTIRE HEADER DOWN */
+
+}
+
+.settings-content {
+  --background: #ffffff;
+  font-family: "Poppins", sans-serif;
+}
+
+/* Header + toolbar */
+.settings-toolbar {
+  --background: #ffffff;
+}
+
+/* Left title like screenshot */
+.settings-title {
+  text-align: left;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-size: 20px;
+  padding-left: 6px; /* slight spacing from back arrow */
+}
+
+/* Stop Ionic from auto-centering title */
+ion-toolbar ion-title {
+  position: relative;
+  transform: none;
+}
+
+/* Top profile section */
+.profile-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 40px;
+  padding-bottom: 30px;
+
+}
+
+/* Blue ring */
+.avatar-ring {
+  width: 110px;
+  height: 110px;
+  border-radius: 999px;
+  border: 7px solid #1e6fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-avatar {
+  width: 90px;
+  height: 90px;
+}
+
+.profile-name {
+  margin: 12px 0 2px 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.profile-phone {
+  margin: 0;
+  font-size: 12px;
+  color: #8c8c8c;
+}
+
+/* List + items */
+.settings-list {
+  margin-top: 6px;
+}
+
+.settings-item {
+  --min-height: 54px;
+  --padding-start: 18px;
+  --inner-padding-end: 16px;
+  --border-color: #eaeaea;
+}
+
+/* Left icons */
+.settings-icon {
+  font-size: 20px;
+  color: #111;
+  margin-right: 6px;
+}
+
+.settings-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #111;
+}
+
+/* Chevron color like screenshot */
+ion-item::part(detail-icon) {
+  color: #c9c9c9;
+  font-size: 18px;
+}
