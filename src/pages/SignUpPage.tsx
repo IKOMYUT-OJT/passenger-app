@@ -14,7 +14,7 @@ import {
 import { person, mail, callOutline, home, lockClosed, eye, eyeOff } from 'ionicons/icons';
 import { useState } from 'react';
 import { useIonRouter } from '@ionic/react';
-import './SignUpPage.css';
+import '../styles/SignUpPage.css';
 
 const SignUpPage: React.FC = () => {
   const ionRouter = useIonRouter(); // <-- Use Ionic router

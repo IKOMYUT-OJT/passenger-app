@@ -2,18 +2,18 @@
 
 /* ===== HEADER ===== */
 .edit-profile-header {
-  transform: translateY(30px); /* MOVE ENTIRE HEADER DOWN */
+  transform: translateY(30px); 
 }
-  /* Left-align the title */
+  
 .edit-profile-title {
   text-align: left;
-  padding-left: 12px; /* space from back arrow */
+  padding-left: 12px; 
   font-family: "Poppins", sans-serif;
-  font-weight: 600; /* SEMIBOLD */
-  font-size: 20px; /* optional, adjust if you want */
+  font-weight: 600; 
+  font-size: 20px; 
 }
 
-/* Prevent Ionic auto-centering behavior */
+
 ion-toolbar ion-title {
   position: relative;
   transform: none;
@@ -21,7 +21,7 @@ ion-toolbar ion-title {
 
 /* ===== CONTENT ===== */
 .edit-profile-content {
-  --padding-top: 30px; /* must match header movement */
+  --padding-top: 30px; 
   overflow: hidden;
   
 }

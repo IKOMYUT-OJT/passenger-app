@@ -26,7 +26,7 @@ import {
 } from "ionicons/icons";
 import { useIonRouter } from "@ionic/react";
 import { AuthContext } from "../App";
-import "./Profilepage.css";
+import "../styles/Profilepage.css";
 
 const Profilepage: React.FC = () => {
   const [showLogoutModal, setShowLogoutModal] = useState(false);

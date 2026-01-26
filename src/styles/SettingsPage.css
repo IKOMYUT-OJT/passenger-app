@@ -1,6 +1,6 @@
-/* Use Poppins everywhere on this page */
+
 .settings-header{
-    transform: translateY(30px); /* MOVE ENTIRE HEADER DOWN */
+    transform: translateY(30px); 
 
 }
 
@@ -14,16 +14,16 @@
   --background: #ffffff;
 }
 
-/* Left title like screenshot */
+
 .settings-title {
   text-align: left;
   font-family: "Poppins", sans-serif;
   font-weight: 600;
   font-size: 20px;
-  padding-left: 6px; /* slight spacing from back arrow */
+  padding-left: 6px; 
 }
 
-/* Stop Ionic from auto-centering title */
+
 ion-toolbar ion-title {
   position: relative;
   transform: none;
@@ -92,7 +92,7 @@ ion-toolbar ion-title {
   color: #111;
 }
 
-/* Chevron color like screenshot */
+
 ion-item::part(detail-icon) {
   color: #c9c9c9;
   font-size: 18px;

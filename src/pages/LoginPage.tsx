@@ -11,7 +11,7 @@ import { lockClosed, eye, eyeOff, callOutline } from "ionicons/icons";
 import { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import { AuthContext } from "../App";
-import "./LoginPage.css";
+import "../styles/LoginPage.css";
 
 const LoginPage: React.FC = () => {
   const [mobileNumber, setMobileNumber] = useState("");

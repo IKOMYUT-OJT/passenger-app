@@ -24,7 +24,7 @@ import {
   informationCircleOutline,
 } from "ionicons/icons";
 
-import "./SettingsPage.css";
+import "../styles/SettingsPage.css";
 
 const SettingsPage: React.FC = () => {
   return (

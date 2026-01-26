@@ -17,7 +17,7 @@ import {
   IonCol,
 } from "@ionic/react";
 import { eyeOutline, eyeOffOutline, cameraOutline } from "ionicons/icons";
-import "./EditProfile.css";
+import "../styles/EditProfile.css";
 
 const EditProfile: React.FC = () => {
   const [showPassword, setShowPassword] = useState(false);
