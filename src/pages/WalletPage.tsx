@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
 import {
   IonPage,
   IonHeader,
@@ -43,14 +43,47 @@ type Tx = {
 type RechargeMethod = "gcash" | "maya";
 type WithdrawMethod = "gcash" | "maya";
 
+function formatDateNow() {
+  const d = new Date();
+  const day = String(d.getDate()).padStart(2, "0");
+  const months = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+  const mon = months[d.getMonth()];
+  const year = d.getFullYear();
+
+  let hours = d.getHours();
+  const minutes = String(d.getMinutes()).padStart(2, "0");
+  const ampm = hours >= 12 ? "PM" : "AM";
+  hours = hours % 12;
+  hours = hours ? hours : 12;
+  const hh = String(hours).padStart(2, "0");
+
+  return `${day} ${mon} ${year} ${hh}:${minutes} ${ampm}`;
+}
+
+function makeId() {
+  return `${Date.now()}-${Math.random().toString(16).slice(2)}`;
+}
+
 const WalletPage: React.FC = () => {
   const [tab, setTab] = useState<Tab>("all");
-  const balance = 100000;
 
-  const [showBalance, setShowBalance] = useState(false);
+  const [balance, setBalance] = useState<number>(100000);
+  const [showBalance, setShowBalance] = useState<boolean>(true);
 
-  // demo tx list (make IDs unique)
-  const transactions: Tx[] = [
+  const [transactions, setTransactions] = useState<Tx[]>([
     {
       id: "1",
       type: "recharge",
@@ -75,79 +108,9 @@ const WalletPage: React.FC = () => {
       status: "Completed",
       amount: -1000,
     },
-    {
-      id: "4",
-      type: "recharge",
-      title: "Recharge",
-      date: "27 Jan 2026 08:31 AM",
-      status: "Successful Recharge",
-      amount: 100000,
-    },
-    {
-      id: "5",
-      type: "withdrawal",
-      title: "Withdrawal",
-      date: "27 Jan 2026 08:31 AM",
-      status: "Pending Withdrawal",
-      amount: 100000,
-    },
-    {
-      id: "6",
-      type: "payment",
-      title: "Payment",
-      date: "27 Jan 2026 08:31 AM",
-      status: "Completed",
-      amount: -1000,
-    },
-    {
-      id: "7",
-      type: "recharge",
-      title: "Recharge",
-      date: "27 Jan 2026 08:31 AM",
-      status: "Successful Recharge",
-      amount: 100000,
-    },
-    {
-      id: "8",
-      type: "withdrawal",
-      title: "Withdrawal",
-      date: "27 Jan 2026 08:31 AM",
-      status: "Pending Withdrawal",
-      amount: 100000,
-    },
-    {
-      id: "9",
-      type: "payment",
-      title: "Payment",
-      date: "27 Jan 2026 08:31 AM",
-      status: "Completed",
-      amount: -1000,
-    },
-    {
-      id: "10",
-      type: "recharge",
-      title: "Recharge",
-      date: "27 Jan 2026 08:31 AM",
-      status: "Successful Recharge",
-      amount: 100000,
-    },
-    {
-      id: "11",
-      type: "withdrawal",
-      title: "Withdrawal",
-      date: "27 Jan 2026 08:31 AM",
-      status: "Pending Withdrawal",
-      amount: 100000,
-    },
-    {
-      id: "12",
-      type: "payment",
-      title: "Payment",
-      date: "27 Jan 2026 08:31 AM",
-      status: "Completed",
-      amount: -1000,
-    },
-  ];
+  ]);
+
+  const timeoutsRef = useRef<number[]>([]);
 
   const filtered = useMemo(() => {
     if (tab === "all") return transactions;
@@ -178,18 +141,37 @@ const WalletPage: React.FC = () => {
     setTimeout(() => resetRechargeForm(), 150);
   };
 
-  const onConfirmRecharge = () => {
-    const n = Number(rechargeAmount);
-    if (!Number.isFinite(n) || n < 100) return;
-
-    setRechargeOpen(false);
-    setTimeout(() => setRechargeSuccessOpen(true), 200);
-  };
-
   const rechargeConfirmDisabled = (() => {
     const n = Number(rechargeAmount);
     return !Number.isFinite(n) || n < 100;
   })();
+
+  const onConfirmRecharge = () => {
+    const n = Number(rechargeAmount);
+    if (!Number.isFinite(n) || n < 100) return;
+    setBalance((b) => b + n);
+    const txId = makeId();
+    const newTx: Tx = {
+      id: txId,
+      type: "recharge",
+      title: "Recharge",
+      date: formatDateNow(),
+      status: "Pending Recharge",
+      amount: n,
+    };
+    setTransactions((prev) => [newTx, ...prev]);
+    setRechargeOpen(false);
+    setTimeout(() => setRechargeSuccessOpen(true), 200);
+    const t = window.setTimeout(() => {
+      setTransactions((prev) =>
+        prev.map((x) =>
+          x.id === txId ? { ...x, status: "Successful Recharge" } : x
+        )
+      );
+    }, 3000);
+
+    timeoutsRef.current.push(t);
+  };
 
   const [withdrawOpen, setWithdrawOpen] = useState(false);
   const [withdrawSuccessOpen, setWithdrawSuccessOpen] = useState(false);
@@ -206,20 +188,41 @@ const WalletPage: React.FC = () => {
     setTimeout(() => resetWithdrawForm(), 150);
   };
 
-  const onConfirmWithdraw = () => {
-    const n = Number(withdrawAmount);
-    if (!Number.isFinite(n) || n < 100) return;
-
-    if (n > balance) return;
-
-    setWithdrawOpen(false);
-    setTimeout(() => setWithdrawSuccessOpen(true), 200);
-  };
-
   const withdrawConfirmDisabled = (() => {
     const n = Number(withdrawAmount);
     return !Number.isFinite(n) || n < 100 || n > balance;
   })();
+
+  const onConfirmWithdraw = () => {
+    const n = Number(withdrawAmount);
+    if (!Number.isFinite(n) || n < 100) return;
+    if (n > balance) return;
+    setBalance((b) => b - n);
+    const txId = makeId();
+    const newTx: Tx = {
+      id: txId,
+      type: "withdrawal",
+      title: "Withdrawal",
+      date: formatDateNow(),
+      status: "Pending Withdrawal",
+      amount: n,
+    };
+    setTransactions((prev) => [newTx, ...prev]);
+
+    setWithdrawOpen(false);
+    setTimeout(() => setWithdrawSuccessOpen(true), 200);
+
+    // after 3 seconds -> successful
+    const t = window.setTimeout(() => {
+      setTransactions((prev) =>
+        prev.map((x) =>
+          x.id === txId ? { ...x, status: "Successful Withdrawal" } : x
+        )
+      );
+    }, 3000);
+
+    timeoutsRef.current.push(t);
+  };
 
   return (
     <IonPage>
@@ -234,7 +237,7 @@ const WalletPage: React.FC = () => {
 
       <IonContent className="wallet-content">
         <div className="wallet-shell">
-          {/* ✅ New balance card design */}
+          {/* Balance Card */}
           <div className="balance-card-v2">
             <div className="balance-top">
               <div className="balance-top-left">
@@ -323,7 +326,6 @@ const WalletPage: React.FC = () => {
           </div>
         </div>
 
-  
         <IonModal
           isOpen={rechargeOpen}
           onDidDismiss={closeRecharge}
@@ -340,26 +342,34 @@ const WalletPage: React.FC = () => {
               <div className="recharge-title">Add Money</div>
             </div>
 
-            <div className="recharge-methods">
+            <div className="recharge-methods v2">
               <button
-                className={`method-pill ${rechargeMethod === "gcash" ? "active" : ""}`}
+                className={`method-pill-v2 gcash ${
+                  rechargeMethod === "gcash" ? "active" : ""
+                }`}
                 onClick={() => setRechargeMethod("gcash")}
               >
-                <span className="method-text">G-Cash</span>
+                <img src="/gcashlogo.png" alt="GCash" className="method-logo-v2" />
+                <span className="method-text-v2">G-Cash</span>
+
                 {rechargeMethod === "gcash" && (
-                  <span className="method-check">
+                  <span className="method-check-v2">
                     <IonIcon icon={checkmarkOutline} />
                   </span>
                 )}
               </button>
 
               <button
-                className={`method-pill ${rechargeMethod === "maya" ? "active" : ""}`}
+                className={`method-pill-v2 maya ${
+                  rechargeMethod === "maya" ? "active" : ""
+                }`}
                 onClick={() => setRechargeMethod("maya")}
               >
-                <span className="method-text">Maya</span>
+                <img src="/mayalogo.png" alt="Maya" className="method-logo-v2" />
+                <span className="method-text-v2">Maya</span>
+
                 {rechargeMethod === "maya" && (
-                  <span className="method-check">
+                  <span className="method-check-v2">
                     <IonIcon icon={checkmarkOutline} />
                   </span>
                 )}
@@ -411,8 +421,10 @@ const WalletPage: React.FC = () => {
             </div>
 
             <div className="success-text">
-              <div className="success-main">Recharge Successful</div>
-              <div className="success-sub">Your money will be applied.</div>
+              <div className="success-main">Recharge Submitted</div>
+              <div className="success-sub">
+                It will update to successful in a moment.
+              </div>
             </div>
 
             <IonButton
@@ -444,26 +456,34 @@ const WalletPage: React.FC = () => {
               <div className="recharge-title">Withdraw</div>
             </div>
 
-            <div className="recharge-methods">
+            <div className="recharge-methods v2">
               <button
-                className={`method-pill ${withdrawMethod === "gcash" ? "active" : ""}`}
+                className={`method-pill-v2 gcash ${
+                  withdrawMethod === "gcash" ? "active" : ""
+                }`}
                 onClick={() => setWithdrawMethod("gcash")}
               >
-                <span className="method-text">G-Cash</span>
+                <img src="/gcashlogo.png" alt="GCash" className="method-logo-v2" />
+                <span className="method-text-v2">G-Cash</span>
+
                 {withdrawMethod === "gcash" && (
-                  <span className="method-check">
+                  <span className="method-check-v2">
                     <IonIcon icon={checkmarkOutline} />
                   </span>
                 )}
               </button>
 
               <button
-                className={`method-pill ${withdrawMethod === "maya" ? "active" : ""}`}
+                className={`method-pill-v2 maya ${
+                  withdrawMethod === "maya" ? "active" : ""
+                }`}
                 onClick={() => setWithdrawMethod("maya")}
               >
-                <span className="method-text">Maya</span>
+                <img src="/mayalogo.png" alt="Maya" className="method-logo-v2" />
+                <span className="method-text-v2">Maya</span>
+
                 {withdrawMethod === "maya" && (
-                  <span className="method-check">
+                  <span className="method-check-v2">
                     <IonIcon icon={checkmarkOutline} />
                   </span>
                 )}
@@ -515,8 +535,10 @@ const WalletPage: React.FC = () => {
             </div>
 
             <div className="success-text">
-              <div className="success-main">Withdrawal Successful</div>
-              <div className="success-sub">Your request is being processed.</div>
+              <div className="success-main">Withdrawal Submitted</div>
+              <div className="success-sub">
+                It will update to successful in a moment.
+              </div>
             </div>
 
             <IonButton

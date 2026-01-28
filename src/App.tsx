@@ -58,17 +58,12 @@ export const AuthContext = createContext({
 });
 
 const openNearbyEvent = () => window.dispatchEvent(new Event("open-nearby"));
-
-/** ✅ Tabs wrapper so we can use useLocation() inside router */
 const TabsLayout: React.FC<{
   isLoggedIn: boolean;
   setOpenQRSheet: (v: boolean) => void;
 }> = ({ isLoggedIn, setOpenQRSheet }) => {
   const location = useLocation();
-
-  // ✅ HIDE bottom tab bar + QR button on Profile tab only
-  const hideBottomBar = location.pathname === "/tabs/profilepage";
-
+  const hideBottomBar = false;
   if (!isLoggedIn) return <Redirect to="/" />;
 
   return (
@@ -110,7 +105,11 @@ const App: React.FC = () => {
   useEffect(() => {
     setIsLoggedIn(localStorage.getItem("isLoggedIn") === "true");
   }, []);
-
+  useEffect(() => {
+  const savedDark = localStorage.getItem("darkMode") === "true";
+  document.body.classList.toggle("dark", savedDark);
+  document.documentElement.style.colorScheme = savedDark ? "dark" : "light";
+  }, []);
   useEffect(() => {
     const handler = () => setOpenNearbySheet(true);
     window.addEventListener("open-nearby", handler);
@@ -163,7 +162,6 @@ const App: React.FC = () => {
               }
             />
 
-            {/* ✅ SIGNUP FLOW */}
             <Route
               exact
               path="/signup"
@@ -190,7 +188,6 @@ const App: React.FC = () => {
               }
             />
 
-            {/* ✅ OTHER PAGES */}
             <Route
               exact
               path="/edit-profile"
@@ -219,7 +216,6 @@ const App: React.FC = () => {
               }
             />
 
-            {/* ✅ TABS */}
             <Route
               path="/tabs"
               render={() => (
@@ -231,7 +227,6 @@ const App: React.FC = () => {
             />
           </IonRouterOutlet>
 
-          {/* ✅ QR MODAL */}
           <IonModal
             isOpen={openQRSheet}
             onDidDismiss={() => {
@@ -279,7 +274,6 @@ const App: React.FC = () => {
             </IonContent>
           </IonModal>
 
-          {/* ✅ NEARBY MODAL */}
           <IonModal
             isOpen={openNearbySheet}
             onDidDismiss={() => setOpenNearbySheet(false)}

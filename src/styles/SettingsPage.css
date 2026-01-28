@@ -1,11 +1,5 @@
-.settings-header{
-    transform: translateY(30px); 
-
-}
-
-.settings-content {
-  --background: #ffffff;
-  font-family: "Poppins", sans-serif;
+.settings-header {
+  transform: translateY(30px);
 }
 
 .settings-toolbar {
@@ -13,11 +7,12 @@
 }
 
 .settings-title {
+  margin-left: 4px;
   text-align: left;
   font-family: "Poppins", sans-serif;
-  font-weight: 600;
+  font-weight: 550;
   font-size: 20px;
-  padding-left: 6px; 
+  padding-left: 6px;
 }
 
 ion-toolbar ion-title {
@@ -25,67 +20,84 @@ ion-toolbar ion-title {
   transform: none;
 }
 
-.profile-header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-top: 40px;
-  padding-bottom: 30px;
-
+.settings-content {
+  --padding-top: 30px;
+  --background: #ffffff;
 }
 
-.avatar-ring {
-  width: 110px;
-  height: 110px;
-  border-radius: 999px;
-  border: 7px solid #1e6fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.settings-profile-item {
+  margin: 18px 16px 8px;
+  border-radius: 14px;
+  margin-top: 30px;
+  margin-bottom: 20px;
+   --background: var(--ion-color-step-100, #EDEDED);
+  --padding-start: 16px;
+  --inner-padding-end: 14px;
+  --min-height: 64px;
+  
 }
 
-.profile-avatar {
-  width: 90px;
-  height: 90px;
+.settings-profile-avatar {
+  width: 42px;
+  height: 42px;
 }
 
-.profile-name {
-  margin: 12px 0 2px 0;
+.settings-profile-label {
+  margin-left: 6px;
+}
+
+.settings-profile-name {
+  font-family: "Poppins", sans-serif;
   font-size: 16px;
   font-weight: 600;
+  color: #000;
 }
 
-.profile-phone {
-  margin: 0;
-  font-size: 12px;
+.settings-profile-phone {
+  margin-top: 2px;
+  font-family: "Poppins", sans-serif;
+  font-size: 11px;
   color: #8c8c8c;
 }
 
+.settings-section {
+  margin: 8px 16px 6px;
+  font-family: "Poppins", sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  color: #8c8c8c;
+}
 
 .settings-list {
-  margin-top: 6px;
+  margin: 0 16px;
+  border-radius: 14px;
+  overflow: hidden;
+  background: var(--ion-color-step-100, #EDEDED);
+  padding: 0;
 }
 
 .settings-item {
-  --min-height: 54px;
-  --padding-start: 18px;
-  --inner-padding-end: 16px;
-  --border-color: #eaeaea;
+  --background: transparent;
+  --padding-start: 16px;
+  --inner-padding-end: 14px;
+  --min-height: 52px;
+  /* divider line */
+  --border-color: rgba(0, 0, 0, 0.08);
+  --border-width: 0 0 1px 0;
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
 }
 
 .settings-icon {
   font-size: 20px;
   color: #111;
-  margin-right: 6px;
 }
 
-.settings-label {
-  font-size: 14px;
-  font-weight: 500;
-  color: #111;
-}
-
-ion-item::part(detail-icon) {
-  color: #c9c9c9;
+.settings-chevron {
   font-size: 18px;
+  color: #bdbdbd;
+}
+
+.settings-toggle {
+  transform: scale(0.9);
 }

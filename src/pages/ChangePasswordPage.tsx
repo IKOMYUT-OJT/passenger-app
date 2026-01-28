@@ -69,7 +69,6 @@ const ChangePasswordPage: React.FC = () => {
             Enter your current password and create a new one.
           </IonText>
 
-          {/* Current Password */}
           <IonItem lines="none" className="cp-input password-input">
             <IonIcon
               icon={lockClosedOutline}

@@ -32,7 +32,7 @@ const MobileSignupPage: React.FC = () => {
 
   return (
     <IonPage>
-      <IonContent fullscreen className="ms-content">
+      <IonContent fullscreen scrollY={false}className="ms-content">
         <div className="ms-wrap">
           <div className="ms-logo">
             <img src="/logo4.png" alt="Logo" />

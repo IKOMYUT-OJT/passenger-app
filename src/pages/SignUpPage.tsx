@@ -23,7 +23,7 @@ import {
 import { useEffect, useState, useContext } from "react";
 import { useIonRouter } from "@ionic/react";
 import { useHistory } from "react-router-dom";
-import { AuthContext } from "../App"; // ✅ ADD THIS
+import { AuthContext } from "../App"; 
 import "../styles/SignUpPage.css";
 
 

@@ -17,9 +17,8 @@ ion-toolbar {
   background: white !important;
 }
 
-/* Title styling */
 .wallet-title {
-  margin-left: -20px;
+  margin-left: -100px;
   font-family: "Poppins", sans-serif;
   font-weight: 550;
   font-size: 20px;
@@ -173,7 +172,6 @@ ion-toolbar {
   color: #e53935;
 }
 
-/* ===== Recharge Modal ===== */
 .recharge-modal {
   --border-radius: 16px 16px 0 0;
 }
@@ -240,6 +238,77 @@ ion-toolbar {
   place-items: center;
   color: #fff;
   font-size: 12px;
+}
+.method-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.method-logo {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+}
+
+.recharge-methods.v2 {
+  display: flex;
+  gap: 12px;
+  margin: 10px 0 14px;
+}
+
+.method-pill-v2 {
+  flex: 1;
+  border: none;
+  border-radius: 12px;
+  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #fff;
+  cursor: pointer;
+  position: relative;
+}
+
+.method-pill-v2.gcash {
+  background: #0b66ff;
+}
+
+.method-pill-v2.maya {
+  background: #25e28a;
+}
+
+.method-logo-v2 {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 8px;
+  padding: 3px;
+}
+
+.method-text-v2 {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.method-check-v2 {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.95);
+  color: #111;
+  display: grid;
+  place-items: center;
+  font-size: 12px;
+}
+
+.method-pill-v2:active {
+  transform: scale(0.99);
 }
 
 .recharge-field {

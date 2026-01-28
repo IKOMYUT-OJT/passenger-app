@@ -63,7 +63,6 @@ const DiscountPage: React.FC = () => {
 
       <IonContent fullscreen scrollY={false} className="discount-content">
         <div className="discount-form">
-          {/* Full Name */}
           <IonItem lines="none" className="discount-input">
             <IonInput
               placeholder="Full Name"
@@ -72,7 +71,6 @@ const DiscountPage: React.FC = () => {
             />
           </IonItem>
 
-          {/* ID Number */}
           <IonItem lines="none" className="discount-input">
             <IonInput
               placeholder="ID Number"
@@ -81,7 +79,6 @@ const DiscountPage: React.FC = () => {
             />
           </IonItem>
 
-          {/* ID Type */}
           <IonItem lines="none" className="discount-input discount-select">
             <IonSelect
               value={idType}
@@ -99,7 +96,6 @@ const DiscountPage: React.FC = () => {
             </div>
           </IonItem>
 
-          {/* Upload box */}
           <div className="discount-upload" onClick={openFilePicker} role="button" tabIndex={0}>
             <div className="discount-upload-inner">
               <div className="discount-upload-text">
@@ -108,7 +104,6 @@ const DiscountPage: React.FC = () => {
             </div>
           </div>
 
-          {/* Hidden file input */}
           <input
             ref={fileRef}
             type="file"
@@ -117,7 +112,6 @@ const DiscountPage: React.FC = () => {
             style={{ display: "none" }}
           />
 
-          {/* Checkbox row */}
           <div className="discount-terms">
             <input
               type="checkbox"
@@ -128,7 +122,6 @@ const DiscountPage: React.FC = () => {
             <label htmlFor="discount-terms">I agree to terms of service policy</label>
           </div>
 
-          {/* Apply button */}
           <IonButton expand="block" className="discount-apply-btn" onClick={handleApply}>
             Apply
           </IonButton>
