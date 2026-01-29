@@ -20,41 +20,41 @@ const ForgotPasswordPage: React.FC = () => {
 
   return (
     <IonPage>
-      <IonContent fullscreen className="forgot-password-content" scrollY={true}>
-        <div className="forgot-password-wrap">
-          <h2 className="forgot-password-title">Forgot Password</h2>
-          <p className="forgot-password-subtitle">
-            Enter your mobile number to receive a verification code
-          </p>
+      <IonContent fullscreen className="forgot-password-content" scrollY={false}>
+        <h2 className="forgot-password-title">Forgot Password</h2>
+        <p className="forgot-password-subtitle">
+          Enter your mobile number to receive a 
+          verification code
+        </p>
+        
 
-          <IonItem lines="none" className="forgot-input-item">
-            <IonIcon icon={callOutline} slot="start" className="forgot-input-icon" />
-            <IonInput
-              type="tel"
-              placeholder="09XXXXXXXXX"
-              value={mobileNumber}
-              maxlength={11}
-              onIonChange={(e: any) => {
-                const value = (e.detail.value ?? "").replace(/[^0-9]/g, "");
-                setMobileNumber(value);
-              }}
-              onKeyPress={(e: any) => {
-                if (!/[0-9]/.test(e.key)) {
-                  e.preventDefault();
-                }
-              }}
-              className="forgot-input"
-            />
-          </IonItem>
+        <IonItem lines="none" className="forgot-input-item">
+          <IonIcon icon={callOutline} slot="start" className="forgot-input-icon" />
+          <IonInput
+            type="tel"
+            placeholder="09XXXXXXXXX"
+            value={mobileNumber}
+            maxlength={11}
+            onIonChange={(e: any) => {
+              const value = (e.detail.value ?? "").replace(/[^0-9]/g, "");
+              setMobileNumber(value);
+            }}
+            onKeyPress={(e: any) => {
+              if (!/[0-9]/.test(e.key)) {
+                e.preventDefault();
+              }
+            }}
+            className="forgot-input"
+          />
+        </IonItem>
 
-          <IonButton expand="block" className="send-btn" onClick={handleSend}>
-            Send
-          </IonButton>
+        <IonButton expand="block" className="send-btn" onClick={handleSend}>
+          Send
+        </IonButton>
 
-          <div className="back-to-signin" onClick={() => ionRouter.push("/login", "back")}>
-            <IonIcon icon={arrowBack} className="back-icon" />
-            <span>Back to Sign In</span>
-          </div>
+        <div className="back-to-signin" onClick={() => ionRouter.push("/login", "back")}>
+          <IonIcon icon={arrowBack} className="back-icon" />
+          <span>Back to Sign In</span>
         </div>
       </IonContent>
     </IonPage>

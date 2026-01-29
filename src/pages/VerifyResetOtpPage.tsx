@@ -53,45 +53,43 @@ const VerifyResetOtpPage: React.FC = () => {
 
   return (
     <IonPage>
-      <IonContent fullscreen className="otp-content">
-        <div className="otp-wrap">
-          <h2 className="otp-title">Verify Your Mobile Number</h2>
-          <p className="otp-subtitle">
-            Enter the 6-digit verification code we just sent to your mobile number.
-          </p>
+      <IonContent fullscreen className="otp-content" scrollY={false}>
+        <h2 className="otp-title">Verify Your Mobile Number</h2>
+        <p className="otp-subtitle">
+          Enter the 6-digit verification code we just sent to your mobile number.
+        </p>
 
-          <div className="otp-row">
-            {code.map((d, i) => (
-              <input
-                key={i}
-                id={`otp-${i}`}
-                className="otp-box"
-                value={d}
-                onChange={(e) => setDigit(i, e.target.value)}
-                inputMode="numeric"
-                maxLength={1}
-              />
-            ))}
+        <div className="otp-row">
+          {code.map((d, i) => (
+            <input
+              key={i}
+              id={`otp-${i}`}
+              className="otp-box"
+              value={d}
+              onChange={(e) => setDigit(i, e.target.value)}
+              inputMode="numeric"
+              maxLength={1}
+            />
+          ))}
+        </div>
+
+        <IonButton expand="block" className="otp-btn" onClick={handleVerify}>
+          Verify
+        </IonButton>
+
+        {seconds > 0 ? (
+          <div className="otp-resend muted">{seconds}s Resend Confirmation Code</div>
+        ) : (
+          <div className="otp-resend">
+            Didn't you receive any code?{" "}
+            <span className="ms-link" onClick={handleResend}>
+              Resend Code
+            </span>
           </div>
-
-          <IonButton expand="block" className="otp-btn" onClick={handleVerify}>
-            Verify
-          </IonButton>
-
-          {seconds > 0 ? (
-            <div className="otp-resend muted">{seconds}s Resend Confirmation Code</div>
-          ) : (
-            <div className="otp-resend">
-              Didn't you receive any code?{" "}
-              <span className="ms-link" onClick={handleResend}>
-                Resend Code
-              </span>
-            </div>
-          )}
-           <div className="back-to-signin" onClick={() => ionRouter.push("/forgot-password", "back")}>
-            <IonIcon icon={arrowBack} className="back-icon" />
-            <span>Back</span>
-          </div>
+        )}
+         <div className="back-to-signin" onClick={() => ionRouter.push("/forgot-password", "back")}>
+          <IonIcon icon={arrowBack} className="back-icon" />
+          <span>Back</span>
         </div>
       </IonContent>
     </IonPage>

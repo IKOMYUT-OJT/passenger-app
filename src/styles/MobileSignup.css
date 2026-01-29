@@ -1,56 +1,73 @@
 .ms-content,
 .otp-content {
   --background: #ffffff;
-  overflow-y: auto;
-  overflow-x: hidden;
+  --padding-top: 0;
+  --padding-bottom: 0;
+  --padding-start: 0;
+  --padding-end: 0;
+  height: 100vh;
 }
 
-.ms-wrap,
-.otp-wrap {
-  min-height: 100vh;
-  padding: 40px 22px;
+.ms-content::part(scroll),
+.otp-content::part(scroll) {
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  text-align: center;
-  margin: 0 auto;
-  max-width: 600px;
-  box-sizing: border-box;
+  align-items: center;
+  min-height: 100%;
+  padding: 40px 20px;
+}
+
+.ms-logo {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 24px;
 }
 
 .ms-logo img {
-  min-width: 150px;
-  margin-right: 0px;
-  margin-bottom: 18px;
-  
+  width: 100%;
+  min-width: 200px;
+  height: auto;
 }
 
 .ms-title {
+  font-family: 'Poppins', sans-serif;
   font-size: 28px;
   font-weight: 800;
-  margin: 0;
+  margin: 0 0 8px 0;
   color: #000;
+  text-align: center;
+  max-width: 400px;
+  width: 100%;
 }
 
 .ms-subtitle {
-  margin-top: 8px;
-  margin-bottom: 22px;
+  font-family: 'Poppins', sans-serif;
+  margin-top: 0;
+  margin-bottom: 24px;
   font-size: 14px;
   color: #777;
+  text-align: center;
+  max-width: 400px;
+  width: 100%;
 }
 
 .ms-input {
   width: 100%;
-  max-width: 360px;
-  border: 1.6px solid #cfcfcf;
+  max-width: 400px;
+  border: 2px solid #e0e0e0;
   border-radius: 12px;
-  padding: 10px 14px;
+  padding: 12px 16px;
   text-align: left;
-  margin-top: 10px;
-  background: #fff;
+  margin-bottom: 16px;
+  background: #f8f8f8;
   display: flex;
   align-items: center;
+  transition: border-color 0.3s;
+}
+
+.ms-input:focus-within {
+  border-color: #008000;
 }
 
 .ms-input .mobile-prefix {
@@ -63,18 +80,31 @@
 
 .ms-btn {
   --background: #008000;
-  --border-radius: 14px;
-  height: 52px;
+  --background-hover: #036e03;
+  --background-activated: #036e03;
+  --border-radius: 12px;
+  height: 50px;
   width: 100%;
-  max-width: 360px;
-  margin-top: 18px;
-  font-weight: 700;
+  max-width: 400px;
+  margin-top: 8px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  text-transform: none;
+  box-shadow: 0 4px 12px rgba(0, 128, 0, 0.3);
+}
+
+.ms-btn:hover {
+  --background: #036e03;
 }
 
 .ms-footer {
-  margin-top: 18px;
-  font-size: 13px;
-  color: #444;
+  margin-top: 20px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  color: #666;
+  text-align: center;
+  max-width: 400px;
+  width: 100%;
 }
 
 .ms-link {
@@ -84,36 +114,47 @@
 }
 
 .otp-title {
-  font-size: 20px;
-  font-weight: 800;
-  margin-top: 22px;
-  margin-bottom: 8px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  margin: 0 0 8px 0;
   color: #000;
+  text-align: center;
+  max-width: 400px;
+  width: 100%;
 }
 
 .otp-subtitle {
-  font-size: 13px;
-  color: #777;
-  max-width: 360px;
-  margin-bottom: 20px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  color: #666;
+  max-width: 400px;
+  width: 100%;
+  margin: 0 0 24px 0;
+  text-align: center;
+  line-height: 1.5;
 }
 
 .otp-row {
   display: flex;
-  gap: 10px;
+  gap: 12px;
   justify-content: center;
-  margin: 10px 0 18px;
+  margin: 0 0 20px 0;
+  max-width: 400px;
+  width: 100%;
 }
 
 .otp-box {
-  width: 44px;
-  height: 52px;
-  border-radius: 10px;
-  border: 1.6px solid #cfcfcf;
+  width: 48px;
+  height: 56px;
+  border-radius: 12px;
+  border: 2px solid #e0e0e0;
+  background: #f8f8f8;
   text-align: center;
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 700;
   outline: none;
+  transition: border-color 0.3s;
 }
 
 .otp-box:focus {
@@ -122,11 +163,16 @@
 
 .otp-btn {
   --background: #008000;
-  --border-radius: 14px;
-  height: 52px;
+  --background-hover: #036e03;
+  --background-activated: #036e03;
+  --border-radius: 12px;
+  height: 50px;
   width: 100%;
-  max-width: 360px;
-  font-weight: 700;
+  max-width: 400px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  text-transform: none;
+  box-shadow: 0 4px 12px rgba(0, 128, 0, 0.3);
 }
 
 .otp-btn:hover {
@@ -138,17 +184,19 @@
   align-items: center;
   justify-content: center;
   gap: 8px;
-  margin-top: 16px;
+  margin-top: 20px;
   font-family: 'Poppins', sans-serif;
-  font-size: 0.9375rem;
+  font-size: 14px;
   color: #008000;
   font-weight: 600;
   cursor: pointer;
-  transition: color 0.3s;
+  transition: opacity 0.2s;
+  max-width: 400px;
+  width: 100%;
 }
 
 .back-to-signin:hover {
-  color: #036e03;
+  opacity: 0.8;
 }
 
 .back-icon {
@@ -156,9 +204,13 @@
 }
 
 .otp-resend {
-  margin-top: 12px;
-  font-size: 12px;
-  color: #333;
+  margin-top: 16px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 13px;
+  color: #666;
+  text-align: center;
+  max-width: 400px;
+  width: 100%;
 }
 
 .otp-resend.muted {
