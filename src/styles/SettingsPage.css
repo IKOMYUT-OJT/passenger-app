@@ -1,5 +1,19 @@
 .settings-header {
   transform: translateY(30px);
+  box-shadow: none !important;
+}
+
+.settings-header::after {
+  display: none;
+}
+
+.settings-header ion-toolbar {
+  --box-shadow: none;
+  --border-width: 0 !important;
+}
+
+.settings-header ion-toolbar::after {
+  display: none;
 }
 
 .settings-toolbar {

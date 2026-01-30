@@ -13,7 +13,10 @@ import {
   IonSelectOption,
   IonButton,
   IonText,
+  IonModal,
+  IonIcon,
 } from "@ionic/react";
+import { closeOutline, schoolOutline, accessibilityOutline, peopleOutline, chevronDownOutline } from "ionicons/icons";
 import "../styles/DiscountPage.css";
 
 const DiscountPage: React.FC = () => {
@@ -21,16 +24,31 @@ const DiscountPage: React.FC = () => {
 
   const [fullName, setFullName] = useState("");
   const [idNumber, setIdNumber] = useState("");
-  const [idType, setIdType] = useState<string>("Student");
+  const [idType, setIdType] = useState<string>("");
   const [agree, setAgree] = useState(false);
 
   const [selectedFileName, setSelectedFileName] = useState<string>("");
+  const [showModal, setShowModal] = useState(false);
 
   const openFilePicker = () => fileRef.current?.click();
 
   const onFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     setSelectedFileName(file ? file.name : "");
+  };
+
+  const handleIdTypeSelect = (type: string) => {
+    setIdType(type);
+    setShowModal(false);
+  };
+
+  const getIdTypeIcon = () => {
+    switch(idType) {
+      case "Student": return schoolOutline;
+      case "PWD": return accessibilityOutline;
+      case "Senior Citizen": return peopleOutline;
+      default: return null;
+    }
   };
 
   const handleApply = () => {
@@ -79,22 +97,32 @@ const DiscountPage: React.FC = () => {
             />
           </IonItem>
 
-          <IonItem lines="none" className="discount-input discount-select">
-            <IonSelect
-              value={idType}
-              interface="popover"
-              placeholder="ID Type"
-              onIonChange={(e) => setIdType(e.detail.value)}
-            >
-              <IonSelectOption value="Student">Student</IonSelectOption>
-              <IonSelectOption value="PWD">PWD</IonSelectOption>
-              <IonSelectOption value="Senior Citizen">Senior Citizen</IonSelectOption>
-            </IonSelect>
-
-            <div className="discount-select-hint">
-              <IonText color="medium">Ex. {idType || "Student"}</IonText>
-            </div>
-          </IonItem>
+          <div 
+            className="discount-input discount-select" 
+            onClick={() => setShowModal(true)}
+            style={{ 
+              cursor: "pointer", 
+              display: "flex", 
+              alignItems: "center",
+              justifyContent: "center",
+              padding: "0 16px",
+              gap: "8px"
+            }}
+          >
+            {idType && getIdTypeIcon() && (
+              <IonIcon 
+                icon={getIdTypeIcon()!} 
+                style={{ fontSize: "20px", color: "#008000" }}
+              />
+            )}
+            <IonText color={idType ? "dark" : "medium"} style={{ fontFamily: "Poppins, sans-serif" }}>
+              {idType || "Select ID Type"}
+            </IonText>
+            <IonIcon 
+              icon={chevronDownOutline} 
+              style={{ fontSize: "18px", color: "#666", marginLeft: "auto" }}
+            />
+          </div>
 
           <div className="discount-upload" onClick={openFilePicker} role="button" tabIndex={0}>
             <div className="discount-upload-inner">
@@ -126,6 +154,138 @@ const DiscountPage: React.FC = () => {
             Apply
           </IonButton>
         </div>
+
+        <IonModal
+          isOpen={showModal}
+          onDidDismiss={() => setShowModal(false)}
+          className="discount-type-modal"
+          cssClass="centered-modal"
+          backdropDismiss={true}
+          style={{
+            "--background": "rgba(0, 0, 0, 0.5)",
+            "--backdrop-opacity": "0.5"
+          }}
+        >
+          <div style={{
+            background: "white",
+            borderRadius: "20px",
+            padding: "24px",
+            maxWidth: "340px",
+            width: "90%",
+            margin: "auto",
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            boxShadow: "0 10px 40px rgba(0, 0, 0, 0.15)"
+          }}>
+            <h2 style={{ 
+              fontFamily: "Poppins, sans-serif", 
+              fontSize: "18px", 
+              fontWeight: "600", 
+              margin: "0 0 4px 0",
+              textAlign: "left",
+              color: "#000"
+            }}>
+              Choose ID Type
+            </h2>
+            <p style={{ 
+              fontFamily: "Poppins, sans-serif", 
+              fontSize: "13px", 
+              color: "#666",
+              margin: "0 0 24px 0",
+              textAlign: "left"
+            }}>
+              Select one to apply your discount
+            </p>
+
+            <div style={{ display: "flex", flexDirection: "column", gap: "0" }}>
+              <div 
+                onClick={() => handleIdTypeSelect("Student")}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  padding: "14px 0",
+                  cursor: "pointer",
+                  transition: "opacity 0.2s"
+                }}
+                onMouseDown={(e) => e.currentTarget.style.opacity = "0.6"}
+                onMouseUp={(e) => e.currentTarget.style.opacity = "1"}
+                onMouseLeave={(e) => e.currentTarget.style.opacity = "1"}
+              >
+                <IonIcon 
+                  icon={schoolOutline} 
+                  style={{ fontSize: "22px", color: "#000", marginRight: "12px" }}
+                />
+                <span style={{ fontFamily: "Poppins, sans-serif", fontSize: "15px", color: "#000" }}>
+                  Student
+                </span>
+              </div>
+
+              <div 
+                onClick={() => handleIdTypeSelect("Senior Citizen")}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  padding: "14px 0",
+                  cursor: "pointer",
+                  transition: "opacity 0.2s"
+                }}
+                onMouseDown={(e) => e.currentTarget.style.opacity = "0.6"}
+                onMouseUp={(e) => e.currentTarget.style.opacity = "1"}
+                onMouseLeave={(e) => e.currentTarget.style.opacity = "1"}
+              >
+                <IonIcon 
+                  icon={peopleOutline} 
+                  style={{ fontSize: "22px", color: "#000", marginRight: "12px" }}
+                />
+                <span style={{ fontFamily: "Poppins, sans-serif", fontSize: "15px", color: "#000" }}>
+                  Senior Citizen
+                </span>
+              </div>
+
+              <div 
+                onClick={() => handleIdTypeSelect("PWD")}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  padding: "14px 0",
+                  cursor: "pointer",
+                  transition: "opacity 0.2s"
+                }}
+                onMouseDown={(e) => e.currentTarget.style.opacity = "0.6"}
+                onMouseUp={(e) => e.currentTarget.style.opacity = "1"}
+                onMouseLeave={(e) => e.currentTarget.style.opacity = "1"}
+              >
+                <IonIcon 
+                  icon={accessibilityOutline} 
+                  style={{ fontSize: "22px", color: "#000", marginRight: "12px" }}
+                />
+                <span style={{ fontFamily: "Poppins, sans-serif", fontSize: "15px", color: "#000" }}>
+                  PWD
+                </span>
+              </div>
+            </div>
+
+            <IonButton
+              expand="block"
+              fill="clear"
+              onClick={() => setShowModal(false)}
+              style={{ 
+                marginTop: "20px",
+                fontFamily: "Poppins, sans-serif",
+                fontWeight: "500",
+                fontSize: "15px",
+                "--color": "#666",
+                border: "1px solid #d0d0d0",
+                borderRadius: "12px",
+                height: "44px"
+              }}
+            >
+              Cancel
+            </IonButton>
+          </div>
+        </IonModal>
       </IonContent>
     </IonPage>
   );

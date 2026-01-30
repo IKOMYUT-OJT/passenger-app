@@ -61,7 +61,7 @@ const Profilepage: React.FC = () => {
           <div className="avatar-wrap">
             <IonAvatar className="profile-avatar">
               <img
-                src="flogo1.png"
+                src="man.png"
                 alt="Profile"
               />
             </IonAvatar>

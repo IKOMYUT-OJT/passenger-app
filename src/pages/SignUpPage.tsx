@@ -211,11 +211,6 @@ const SignUpPage: React.FC = () => {
                   Sign Up
                 </IonButton>
 
-                <div className="back-to-signin" onClick={() => ionRouter.push("/login", "back")}>
-                  <IonIcon icon={arrowBack} className="back-icon" />
-                  <span>Back to Sign In</span>
-                </div>
-
               </form>
 
               <IonAlert

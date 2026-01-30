@@ -2,12 +2,24 @@
   transform: none;
   margin-top: 34px;
   margin-bottom: -40px;
+  box-shadow: none !important;
 }
+
+.wallet-header::after {
+  display: none;
+}
+
 .wallet-toolbar {
   --background: transparent;
   --ion-toolbar-background: transparent;
   --border-width: 0 !important;
   --border-color: transparent !important;
+  --box-shadow: none;
+}
+
+.wallet-toolbar::after {
+  display: none;
+}
   box-shadow: none !important;
 }
 

@@ -2,6 +2,20 @@
 
 .notification-header {
   transform: translateY(30px);
+  box-shadow: none !important;
+}
+
+.notification-header::after {
+  display: none;
+}
+
+.notification-header ion-toolbar {
+  --box-shadow: none;
+  --border-width: 0 !important;
+}
+
+.notification-header ion-toolbar::after {
+  display: none;
 }
 
 .notification-toolbar {
@@ -18,7 +32,7 @@
 
 .notification-content {
   --padding-top: 30px;
-  --background: #f5f5f5;
+  --background: #ffffff;
   overflow-y: auto;
   overflow-x: hidden;
 }
@@ -46,7 +60,7 @@
   --min-height: 90px;
   margin: 8px 12px;
   border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.418);
   font-family: 'Poppins', sans-serif;
   transition: transform 0.2s, box-shadow 0.2s;
 }

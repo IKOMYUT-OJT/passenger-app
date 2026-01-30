@@ -1,5 +1,19 @@
 .discount-header {
   transform: translateY(30px);
+  box-shadow: none !important;
+}
+
+.discount-header::after {
+  display: none;
+}
+
+.discount-header ion-toolbar {
+  --box-shadow: none;
+  --border-width: 0 !important;
+}
+
+.discount-header ion-toolbar::after {
+  display: none;
 }
 
 .discount-title {

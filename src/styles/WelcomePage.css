@@ -24,6 +24,7 @@
   right: 0;
   bottom: 0;
   margin: auto;
+  transition: background 1s ease-out;
 }
 
 .welcome-logo {
@@ -32,13 +33,15 @@
   align-items: center;
   justify-content: center;
   margin-bottom: 1.5rem;
+  transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .welcome-logo img {
-  width: 180px;
+  width: 280px;
   max-width: 90%;
   height: auto;
   display: block;
+  transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .welcome-text {
@@ -60,7 +63,7 @@
   display: inline-block;
   opacity: 0;
   animation: popBounce 0.8s ease-out 0.2s forwards;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  
 }
 
 .red-letter {
@@ -191,6 +194,57 @@
   }
 }
 
+@keyframes logoShrinkToLogin {
+  0% {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1) translateY(-280px);
+    opacity: 1;
+  }
+}
+
+@keyframes textFadeOut {
+  0% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(50px) scale(0.8);
+  }
+}
+
+@keyframes contentFadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.welcome-container.exit-animation {
+  background: transparent;
+}
+
+.welcome-container.exit-animation .welcome-logo {
+  animation: logoShrinkToLogin 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.welcome-container.exit-animation .welcome-logo img {
+  filter: brightness(1);
+}
+
+.welcome-container.exit-animation .welcome-text {
+  animation: textFadeOut 0.6s cubic-bezier(0.4, 0, 0.6, 1) forwards;
+}
+
+.welcome-content.exit-animation {
+  animation: contentFadeOut 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
 @keyframes shrinkText {
   from {
     font-size: 3.5rem;
@@ -225,31 +279,31 @@
 
 @media (min-width: 1025px) {
   .welcome-logo img {
-    width: 350px;
+    width: 280px;
   }
 }
 
 @media (min-width: 769px) and (max-width: 1024px) {
   .welcome-logo img {
-    width: 320px;
+    width: 240px;
   }
 }
 
 @media (max-width: 768px) {
   .welcome-logo img {
-    width: 280px;
+    width: 220px;
   }
 }
 
 @media (max-width: 480px) {
   .welcome-logo img {
-    width: 240px;
+    width: 160px;
   }
 }
 
 @media (max-width: 360px) {
   .welcome-logo img {
-    width: 220px;
+    width: 140px;
   }
 }
 

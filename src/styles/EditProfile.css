@@ -1,5 +1,19 @@
 .edit-profile-header {
-  transform: translateY(30px); 
+  transform: translateY(30px);
+  box-shadow: none !important;
+}
+
+.edit-profile-header::after {
+  display: none;
+}
+
+.edit-profile-header ion-toolbar {
+  --box-shadow: none;
+  --border-width: 0 !important;
+}
+
+.edit-profile-header ion-toolbar::after {
+  display: none;
 }
 
 .profile-name{

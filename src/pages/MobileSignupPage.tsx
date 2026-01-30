@@ -1,7 +1,6 @@
-import { IonPage, IonContent, IonButton, IonInput, IonIcon } from "@ionic/react";
+import { IonPage, IonContent, IonButton, IonInput } from "@ionic/react";
 import { useState } from "react";
 import { useIonRouter } from "@ionic/react";
-import { arrowBack } from "ionicons/icons";
 import "../styles/MobileSignup.css";
 
 const MobileSignupPage: React.FC = () => {
@@ -69,11 +68,6 @@ const MobileSignupPage: React.FC = () => {
           <span className="ms-link" onClick={handleGoLogin}>
             SIGN IN
           </span>
-        </div>
-
-         <div className="back-to-signin" onClick={handleGoLogin}>
-          <IonIcon icon={arrowBack} className="back-icon" />
-          <span>Back to Sign In</span>
         </div>
       </IonContent>
     </IonPage>
