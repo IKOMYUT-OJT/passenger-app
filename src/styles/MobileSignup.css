@@ -81,7 +81,7 @@
 .ms-btn {
   --background: #008000;
   --background-hover: #036e03;
-  --background-activated: #036e03;
+  --background-activated: #008000;
   --border-radius: 12px;
   height: 50px;
   width: 100%;
@@ -164,7 +164,7 @@
 .otp-btn {
   --background: #008000;
   --background-hover: #036e03;
-  --background-activated: #036e03;
+  --background-activated: #008000;
   --border-radius: 12px;
   height: 50px;
   width: 100%;

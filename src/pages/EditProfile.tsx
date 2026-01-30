@@ -42,7 +42,7 @@ const EditProfile: React.FC = () => {
         <div className="edit-avatar-wrapper">
           <IonAvatar className="edit-avatar">
             <img
-              src="https://ionicframework.com/docs/img/demos/avatar.svg"
+              src="flogo1.png"
               alt="Avatar"
             />
           </IonAvatar>

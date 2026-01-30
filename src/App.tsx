@@ -108,9 +108,15 @@ const App: React.FC = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [openNearbySheet, setOpenNearbySheet] = useState(false);
   const [openQRSheet, setOpenQRSheet] = useState(false);
+  const [showWelcome, setShowWelcome] = useState(() => {
+    // Show welcome page only on fresh browser load
+    return !sessionStorage.getItem("appInitialized");
+  });
 
   useEffect(() => {
     setIsLoggedIn(localStorage.getItem("isLoggedIn") === "true");
+    // Mark app as initialized after first render
+    sessionStorage.setItem("appInitialized", "true");
   }, []);
   useEffect(() => {
     const handler = () => setOpenNearbySheet(true);
@@ -159,17 +165,19 @@ const App: React.FC = () => {
             <Route
               exact
               path="/"
-              render={() =>
-                isLoggedIn ? <Redirect to="/tabs/homepage" /> : <WelcomePage />
-              }
+              render={() => {
+                if (isLoggedIn) return <Redirect to="/tabs/homepage" />;
+                if (showWelcome) return <WelcomePage />;
+                return <Redirect to="/login" />;
+              }}
             />
+
+            <Route exact path="/welcome" component={WelcomePage} />
 
             <Route
               exact
               path="/login"
-              render={() =>
-                isLoggedIn ? <Redirect to="/tabs/homepage" /> : <LoginPage />
-              }
+              component={LoginPage}
             />
 
             <Route

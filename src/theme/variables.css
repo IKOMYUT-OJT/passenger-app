@@ -9,3 +9,35 @@ body.dark {
   --ion-background-color: #000000;
   --ion-text-color: #ffffff;
 }
+
+ion-button:active,
+ion-button.activated {
+  --background: #008000 !important;
+  --background-activated: #008000 !important;
+  --background-focused: #008000 !important;
+  --ripple-color: rgba(0, 128, 0, 0.3) !important;
+}
+
+ion-tab-button:active,
+ion-tab-button.tab-selected {
+  --color-selected: #008000 !important;
+}
+
+ion-fab-button:active,
+ion-fab-button.activated {
+  --background-activated: #008000 !important;
+  --background-focused: #008000 !important;
+}
+
+ion-button::part(native) {
+  transition: all 0.2s ease;
+}
+
+ion-button:active::part(native) {
+  background: #008000 !important;
+  color: #ffffff !important;
+}
+
+ion-ripple-effect {
+  --ripple-color: rgba(0, 128, 0, 0.3);
+}

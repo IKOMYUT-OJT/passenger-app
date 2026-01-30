@@ -53,7 +53,7 @@ const SettingsPage: React.FC = () => {
         >
           <IonAvatar slot="start" className="settings-profile-avatar">
             <img
-              src="https://ionicframework.com/docs/img/demos/avatar.svg"
+              src="flogo1.png"
               alt="Avatar"
             />
           </IonAvatar>

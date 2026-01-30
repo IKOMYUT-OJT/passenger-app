@@ -1,9 +1,11 @@
 .profile-header-bar {
   transform: translateY(30px);
+  
 }
 
 .profile-toolbar {
   --background: #ffffff;
+  
 }
 
 .profile-title {

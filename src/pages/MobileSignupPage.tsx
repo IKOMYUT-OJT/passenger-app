@@ -64,7 +64,6 @@ const MobileSignupPage: React.FC = () => {
           Submit
         </IonButton>
 
-        
         <div className="ms-footer">
           Already have an account?{" "}
           <span className="ms-link" onClick={handleGoLogin}>

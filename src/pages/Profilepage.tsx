@@ -43,7 +43,7 @@ const Profilepage: React.FC = () => {
     setShowLogoutModal(false);
     setIsLoggedIn(false);
     localStorage.removeItem("isLoggedIn");
-    ionRouter.push("/", "root");
+    window.location.href = "/login";
   };
 
   return (
@@ -61,7 +61,7 @@ const Profilepage: React.FC = () => {
           <div className="avatar-wrap">
             <IonAvatar className="profile-avatar">
               <img
-                src="https://ionicframework.com/docs/img/demos/avatar.svg"
+                src="flogo1.png"
                 alt="Profile"
               />
             </IonAvatar>

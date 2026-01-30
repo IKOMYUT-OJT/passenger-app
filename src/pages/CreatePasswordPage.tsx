@@ -28,7 +28,7 @@ const CreatePasswordPage: React.FC = () => {
     localStorage.removeItem("resetMobile");
     localStorage.removeItem("resetFlow");
     alert("Password reset successful!");
-    ionRouter.push("/login", "root", "replace");
+    window.location.href = "/login";
   };
 
   return (
@@ -77,9 +77,9 @@ const CreatePasswordPage: React.FC = () => {
           Reset Password
         </IonButton>
 
-        <div className="back-to-signin" onClick={() => ionRouter.push("/forgot-password", "back")}>
+        <div className="back-to-signin" onClick={() => window.location.href = "/login"}>
           <IonIcon icon={arrowBack} className="back-icon" />
-          <span>Back to Forgot Password</span>
+          <span>Back to Sign In</span>
         </div>
       </IonContent>
     </IonPage>

@@ -64,6 +64,12 @@ const Homepage: React.FC = () => {
           </MapContainer>
         </div>
 
+        <IonFab slot="fixed" vertical="top" horizontal="start" className="logo-fab">
+          <div className="logo-fab-btn">
+            <img src="./logoicon.png" alt="Logo" className="top-logo" />
+          </div>
+        </IonFab>
+
         <IonFab slot="fixed" vertical="top" horizontal="end" className="top-fab">
           <IonFabButton className="top-fab-btn" onClick={goToNotifications}>
             <IonIcon icon={notifications} />

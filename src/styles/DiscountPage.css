@@ -43,7 +43,7 @@ ion-toolbar ion-title {
 
 .discount-input ion-input,
 .discount-input ion-select {
-  margin-top: 8px;
+  margin-top: 3px;
   padding: 12px 0;
 }
 
@@ -98,6 +98,8 @@ ion-toolbar ion-title {
 }
 
 .discount-apply-btn {
+  --background: #008000;
+  --background-activated: #008000;
   margin-top: 14px;
   height: 52px;
   border-radius: 14px;

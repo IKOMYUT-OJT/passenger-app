@@ -136,7 +136,7 @@
 
 .signup-button {
   --background: #008000 !important;
-  --background-activated: #006600 !important;
+  --background-activated: #008000 !important;
   --background-hover: #009900 !important;
   --color: #fff;
   --border-radius: 15px;

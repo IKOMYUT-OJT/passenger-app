@@ -8,7 +8,7 @@ import {
   IonItem,
 } from "@ionic/react";
 import { lockClosed, eye, eyeOff, callOutline } from "ionicons/icons";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { AuthContext } from "../App";
 import "../styles/LoginPage.css";
@@ -20,7 +20,13 @@ const LoginPage: React.FC = () => {
   const [error, setError] = useState("");
 
   const history = useHistory();
-  const { setIsLoggedIn } = useContext(AuthContext);
+  const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      history.replace("/tabs/homepage");
+    }
+  }, [isLoggedIn, history]);
 
   const handleLogin = () => {
     if (!mobileNumber || !password) {

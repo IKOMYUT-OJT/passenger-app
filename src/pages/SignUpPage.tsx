@@ -87,12 +87,12 @@ const SignUpPage: React.FC = () => {
   setShowAlert(false);
   setIsNavigating(true);
   
-  // Clean up localStorage and navigate
+  // Clean up localStorage and navigate to login page
   setTimeout(() => {
     localStorage.removeItem("verifiedMobile");
     localStorage.removeItem("pendingMobile");
     localStorage.removeItem("isLoggedIn");
-    ionRouter.push("/", "root", "replace");
+    ionRouter.push("/login", "root", "replace");
   }, 0);
 };
 
