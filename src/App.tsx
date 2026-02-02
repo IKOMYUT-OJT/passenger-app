@@ -43,6 +43,12 @@ import NotificationPage from "./pages/NotificationPage";
 import ForgotPasswordPage from "./pages/ForgotPasswordPage";
 import CreatePasswordPage from "./pages/CreatePasswordPage";
 import VerifyResetOtpPage from "./pages/VerifyResetOtpPage";
+import Addresspage from "./pages/Addresspage";
+import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
+import SecurityPage from "./pages/SecurityPage";
+import HelpPage from "./pages/HelpPage";
+import AccountDeletionPage from "./pages/AccountDeletionPage";
+import AboutPage from "./pages/AboutPage";
 
 
 
@@ -115,6 +121,10 @@ const App: React.FC = () => {
   useEffect(() => {
     setIsLoggedIn(localStorage.getItem("isLoggedIn") === "true");
     sessionStorage.setItem("appInitialized", "true");
+    
+    // Initialize dark mode from localStorage
+    const darkMode = localStorage.getItem("darkMode") === "true";
+    document.body.classList.toggle("dark", darkMode);
   }, []);
   useEffect(() => {
     const handler = () => setOpenNearbySheet(true);
@@ -235,6 +245,48 @@ const App: React.FC = () => {
               path="/notifications"
               render={() =>
                 isLoggedIn ? <NotificationPage /> : <Redirect to="/" />
+              }
+            />
+            <Route
+              exact
+              path="/address"
+              render={() =>
+                isLoggedIn ? <Addresspage /> : <Redirect to="/" />
+              }
+            />
+            <Route
+              exact
+              path="/privacy-policy"
+              render={() =>
+                isLoggedIn ? <PrivacyPolicyPage /> : <Redirect to="/" />
+              }
+            />
+            <Route
+              exact
+              path="/security"
+              render={() =>
+                isLoggedIn ? <SecurityPage /> : <Redirect to="/" />
+              }
+            />
+            <Route
+              exact
+              path="/help"
+              render={() =>
+                isLoggedIn ? <HelpPage /> : <Redirect to="/" />
+              }
+            />
+            <Route
+              exact
+              path="/account-deletion"
+              render={() =>
+                isLoggedIn ? <AccountDeletionPage /> : <Redirect to="/" />
+              }
+            />
+            <Route
+              exact
+              path="/about"
+              render={() =>
+                isLoggedIn ? <AboutPage /> : <Redirect to="/" />
               }
             />
             <Route exact path="/forgot-password" component={ForgotPasswordPage} />

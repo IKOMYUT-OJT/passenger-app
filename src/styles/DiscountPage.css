@@ -8,6 +8,7 @@
 }
 
 .discount-header ion-toolbar {
+  --background: #ffffff;
   --box-shadow: none;
   --border-width: 0 !important;
 }

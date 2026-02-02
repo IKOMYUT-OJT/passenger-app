@@ -27,6 +27,10 @@ const ChangePasswordPage: React.FC = () => {
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  
+  const [currentPasswordFocused, setCurrentPasswordFocused] = useState(false);
+  const [newPasswordFocused, setNewPasswordFocused] = useState(false);
+  const [confirmPasswordFocused, setConfirmPasswordFocused] = useState(false);
 
   const handleSave = () => {
     if (!currentPassword || !newPassword || !confirmPassword) {
@@ -69,16 +73,18 @@ const ChangePasswordPage: React.FC = () => {
             Enter your current password and create a new one.
           </IonText>
 
-          <IonItem lines="none" className="cp-input password-input">
+          <IonItem lines="none" className={`cp-input password-input ${currentPasswordFocused || currentPassword ? 'has-value' : ''}`}>
             <IonIcon
               icon={lockClosedOutline}
               slot="start"
               className="cp-left-icon"
             />
+            <span className="floating-label">Current Password</span>
             <IonInput
-              placeholder="Current Password"
               type={showCurrent ? "text" : "password"}
               value={currentPassword}
+              onIonFocus={() => setCurrentPasswordFocused(true)}
+              onIonBlur={() => setCurrentPasswordFocused(false)}
               onIonChange={(e) => setCurrentPassword(e.detail.value!)}
             />
             <IonIcon
@@ -90,16 +96,18 @@ const ChangePasswordPage: React.FC = () => {
           </IonItem>
 
           
-          <IonItem lines="none" className="cp-input password-input">
+          <IonItem lines="none" className={`cp-input password-input ${newPasswordFocused || newPassword ? 'has-value' : ''}`}>
             <IonIcon
               icon={lockClosedOutline}
               slot="start"
               className="cp-left-icon"
             />
+            <span className="floating-label">New Password</span>
             <IonInput
-              placeholder="New Password"
               type={showNew ? "text" : "password"}
               value={newPassword}
+              onIonFocus={() => setNewPasswordFocused(true)}
+              onIonBlur={() => setNewPasswordFocused(false)}
               onIonChange={(e) => setNewPassword(e.detail.value!)}
             />
             <IonIcon
@@ -111,16 +119,18 @@ const ChangePasswordPage: React.FC = () => {
           </IonItem>
 
           
-          <IonItem lines="none" className="cp-input password-input">
+          <IonItem lines="none" className={`cp-input password-input ${confirmPasswordFocused || confirmPassword ? 'has-value' : ''}`}>
             <IonIcon
               icon={lockClosedOutline}
               slot="start"
               className="cp-left-icon"
             />
+            <span className="floating-label">Confirm New Password</span>
             <IonInput
-              placeholder="Confirm New Password"
               type={showConfirm ? "text" : "password"}
               value={confirmPassword}
+              onIonFocus={() => setConfirmPasswordFocused(true)}
+              onIonBlur={() => setConfirmPasswordFocused(false)}
               onIonChange={(e) => setConfirmPassword(e.detail.value!)}
             />
             <IonIcon

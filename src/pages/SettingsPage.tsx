@@ -24,6 +24,8 @@ import {
   helpCircleOutline,
   informationCircleOutline,
   chevronForwardOutline,
+  documentTextOutline,
+  trashOutline,
 } from "ionicons/icons";
 
 import { useIonRouter } from "@ionic/react";
@@ -33,6 +35,9 @@ const SettingsPage: React.FC = () => {
   const ionRouter = useIonRouter();
   const [profileImage, setProfileImage] = useState(() => {
     return localStorage.getItem("profileImage") || "flogo1.png";
+  });
+  const [darkMode, setDarkMode] = useState(() => {
+    return localStorage.getItem("darkMode") === "true";
   });
 
   useEffect(() => {
@@ -46,6 +51,16 @@ const SettingsPage: React.FC = () => {
       window.removeEventListener("profileImageUpdated", handleProfileImageUpdate);
     };
   }, []);
+
+  useEffect(() => {
+    document.body.classList.toggle("dark", darkMode);
+  }, [darkMode]);
+
+  const handleDarkModeToggle = (checked: boolean) => {
+    setDarkMode(checked);
+    localStorage.setItem("darkMode", checked.toString());
+    document.body.classList.toggle("dark", checked);
+  };
 
   return (
     <IonPage>
@@ -75,7 +90,7 @@ const SettingsPage: React.FC = () => {
 
           <IonLabel className="settings-profile-label">
             <div className="settings-profile-name">Mark Parra</div>
-            <div className="settings-profile-phone">09123456789</div>
+            <div className="settings-profile-phone">09124069789</div>
           </IonLabel>
 
           <IonIcon
@@ -91,13 +106,19 @@ const SettingsPage: React.FC = () => {
             <IonLabel className="settings-label">Dark Mode</IonLabel>
             <IonToggle
               slot="end"
-              checked={false}
+              checked={darkMode}
+              onIonChange={(e) => handleDarkModeToggle(e.detail.checked)}
               className="settings-toggle"
-              disabled
             />
           </IonItem>
 
-          <IonItem lines="full" button className="settings-item" detail={false}>
+          <IonItem 
+            lines="full" 
+            button 
+            className="settings-item" 
+            detail={false}
+            onClick={() => ionRouter.push("/notifications")}
+          >
             <IonIcon
               icon={notificationsOutline}
               slot="start"
@@ -111,13 +132,19 @@ const SettingsPage: React.FC = () => {
             />
           </IonItem>
 
-          <IonItem lines="full" button className="settings-item" detail={false}>
+          <IonItem 
+            lines="full" 
+            button 
+            className="settings-item" 
+            detail={false}
+            onClick={() => ionRouter.push("/change-password")}
+          >
             <IonIcon
-              icon={shieldCheckmarkOutline}
+              icon={lockClosedOutline}
               slot="start"
               className="settings-icon"
             />
-            <IonLabel className="settings-label">Privacy</IonLabel>
+            <IonLabel className="settings-label">Change Password</IonLabel>
             <IonIcon
               slot="end"
               icon={chevronForwardOutline}
@@ -125,9 +152,35 @@ const SettingsPage: React.FC = () => {
             />
           </IonItem>
 
-          <IonItem lines="full" button className="settings-item" detail={false}>
+          <IonItem 
+            lines="full" 
+            button 
+            className="settings-item" 
+            detail={false}
+            onClick={() => ionRouter.push("/privacy-policy")}
+          >
             <IonIcon
-              icon={lockClosedOutline}
+              icon={documentTextOutline}
+              slot="start"
+              className="settings-icon"
+            />
+            <IonLabel className="settings-label">Privacy Policy</IonLabel>
+            <IonIcon
+              slot="end"
+              icon={chevronForwardOutline}
+              className="settings-chevron"
+            />
+          </IonItem>
+
+          <IonItem 
+            lines="full" 
+            button 
+            className="settings-item" 
+            detail={false}
+            onClick={() => ionRouter.push("/security")}
+          >
+            <IonIcon
+              icon={shieldCheckmarkOutline}
               slot="start"
               className="settings-icon"
             />
@@ -139,21 +192,13 @@ const SettingsPage: React.FC = () => {
             />
           </IonItem>
 
-          <IonItem lines="full" button className="settings-item" detail={false}>
-            <IonIcon
-              icon={personOutline}
-              slot="start"
-              className="settings-icon"
-            />
-            <IonLabel className="settings-label">My Account</IonLabel>
-            <IonIcon
-              slot="end"
-              icon={chevronForwardOutline}
-              className="settings-chevron"
-            />
-          </IonItem>
-
-          <IonItem lines="full" button className="settings-item" detail={false}>
+          <IonItem 
+            lines="full" 
+            button 
+            className="settings-item" 
+            detail={false}
+            onClick={() => ionRouter.push("/help")}
+          >
             <IonIcon
               icon={helpCircleOutline}
               slot="start"
@@ -167,7 +212,33 @@ const SettingsPage: React.FC = () => {
             />
           </IonItem>
 
-          <IonItem lines="none" button className="settings-item" detail={false}>
+          <IonItem 
+            lines="full" 
+            button 
+            className="settings-item" 
+            detail={false}
+            onClick={() => ionRouter.push("/account-deletion")}
+          >
+            <IonIcon
+              icon={trashOutline}
+              slot="start"
+              className="settings-icon"
+            />
+            <IonLabel className="settings-label">Account Deletion</IonLabel>
+            <IonIcon
+              slot="end"
+              icon={chevronForwardOutline}
+              className="settings-chevron"
+            />
+          </IonItem>
+
+          <IonItem 
+            lines="none" 
+            button 
+            className="settings-item" 
+            detail={false}
+            onClick={() => ionRouter.push("/about")}
+          >
             <IonIcon
               icon={informationCircleOutline}
               slot="start"
@@ -181,6 +252,7 @@ const SettingsPage: React.FC = () => {
             />
           </IonItem>
         </IonList>
+        <div className="settings-version">Version 4.4.2</div>
       </IonContent>
     </IonPage>
   );

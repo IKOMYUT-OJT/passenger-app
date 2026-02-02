@@ -154,7 +154,6 @@
   color: #999;
 }
 
-/* Responsive Styles */
 @media (min-width: 1025px) {
   .notification-content { max-width: 800px; margin: 0 auto; }
   .notification-list { max-width: 800px; }

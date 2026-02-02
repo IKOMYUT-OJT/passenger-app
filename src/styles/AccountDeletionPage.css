@@ -1,0 +1,171 @@
+.deletion-header {
+  transform: translateY(30px);
+  box-shadow: none !important;
+}
+
+.deletion-header::after {
+  display: none;
+}
+
+.deletion-header ion-toolbar {
+  --box-shadow: none;
+  --border-width: 0 !important;
+}
+
+.deletion-header ion-toolbar::after {
+  display: none;
+}
+
+.deletion-toolbar {
+  --background: #ffffff;
+}
+
+.deletion-title {
+  text-align: left;
+  font-family: "Poppins", sans-serif;
+  font-weight: 550;
+  font-size: 20px;
+  padding-left: 0;
+}
+
+.deletion-content {
+  --padding-top: 30px;
+  --background: #ffffff;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.deletion-container {
+  padding: 20px 16px;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.deletion-warning-icon {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.deletion-warning-icon ion-icon {
+  font-size: 64px;
+  color: #e74c3c;
+}
+
+.deletion-container h2 {
+  font-family: "Poppins", sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: #000;
+  margin: 0 0 8px 0;
+  text-align: center;
+}
+
+.deletion-subtitle {
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  color: #666;
+  margin: 0 0 24px 0;
+  text-align: center;
+}
+
+.deletion-info,
+.deletion-alternative {
+  margin-bottom: 24px;
+  padding: 16px;
+  background: #fff3cd;
+  border-radius: 12px;
+  border-left: 4px solid #ffc107;
+}
+
+.deletion-info h3,
+.deletion-alternative h3 {
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: #000;
+  margin: 0 0 12px 0;
+}
+
+.deletion-info ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.deletion-info li {
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  color: #333;
+  line-height: 1.8;
+  margin-bottom: 4px;
+}
+
+.deletion-alternative p {
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #333;
+  margin: 0;
+}
+
+.deletion-button {
+  --border-radius: 12px;
+  height: 50px;
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: none;
+  margin-top: 16px;
+}
+
+.deletion-modal {
+  --width: 90%;
+  --max-width: 400px;
+  --height: auto;
+  --border-radius: 20px;
+}
+
+.deletion-modal-content {
+  padding: 32px 24px;
+  text-align: center;
+}
+
+.deletion-modal-icon {
+  margin-bottom: 16px;
+}
+
+.deletion-modal-icon ion-icon {
+  font-size: 56px;
+  color: #e74c3c;
+}
+
+.deletion-modal-content h2 {
+  font-family: "Poppins", sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: #000;
+  margin: 0 0 8px 0;
+}
+
+.deletion-modal-content p {
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  color: #666;
+  margin: 0 0 24px 0;
+}
+
+.deletion-modal-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.deletion-modal-buttons ion-button {
+  --border-radius: 12px;
+  height: 48px;
+  font-family: "Poppins", sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  text-transform: none;
+  margin: 0;
+}

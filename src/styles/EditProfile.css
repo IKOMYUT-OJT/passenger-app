@@ -79,6 +79,7 @@ ion-toolbar ion-title {
   margin: 100px auto 0 auto;
   max-width: 600px;
   box-sizing: border-box;
+  
 }
 
 .edit-input {
@@ -89,10 +90,11 @@ ion-toolbar ion-title {
   height: 60px;
   font-size: 16px;
   width: 100%;
+  
 }
 
 .edit-input ion-input {
-  
+  margin-top: -25px;
   padding: 12px 0;
 }
 

@@ -28,6 +28,8 @@ import {
   notificationsOutline,
   cardOutline,
   cameraOutline,
+  locationOutline,
+  documentTextOutline,
 } from "ionicons/icons";
 
 import { useIonRouter } from "@ionic/react";
@@ -113,7 +115,7 @@ const Profilepage: React.FC = () => {
           </div>
 
           <h2 className="profile-name">Mark Parra</h2>
-          <p className="profile-number">09123456789</p>
+          <p className="profile-number">PASSENGER</p>
         </div>
 
         <IonList inset className="profile-list">
@@ -132,6 +134,17 @@ const Profilepage: React.FC = () => {
             lines="full"
             button
             className="profile-item"
+            onClick={() => ionRouter.push("/address")}
+          >
+            <IonIcon icon={locationOutline} slot="start" className="profile-icon" />
+            <IonLabel>Address</IonLabel>
+            <IonIcon icon={chevronForwardOutline} slot="end" className="profile-chevron" />
+          </IonItem>
+
+          <IonItem
+            lines="full"
+            button
+            className="profile-item"
             onClick={() => ionRouter.push("/notifications")}
           >
             <IonIcon
@@ -140,21 +153,6 @@ const Profilepage: React.FC = () => {
               className="profile-icon"
             />
             <IonLabel>Notifications</IonLabel>
-            <IonIcon icon={chevronForwardOutline} slot="end" className="profile-chevron" />
-          </IonItem>
-
-          <IonItem
-            lines="full"
-            button
-            className="profile-item"
-            onClick={() => ionRouter.push("/change-password")}
-          >
-            <IonIcon
-              icon={lockClosedOutline}
-              slot="start"
-              className="profile-icon"
-            />
-            <IonLabel>Change Password</IonLabel>
             <IonIcon icon={chevronForwardOutline} slot="end" className="profile-chevron" />
           </IonItem>
 
@@ -180,8 +178,9 @@ const Profilepage: React.FC = () => {
             <IonIcon icon={chevronForwardOutline} slot="end" className="profile-chevron" />
           </IonItem>
 
+
           <IonItem
-            lines="none"
+            lines="full"
             button
             className="profile-item"
             onClick={() => ionRouter.push("/settings")}
@@ -198,7 +197,8 @@ const Profilepage: React.FC = () => {
             onClick={() => setShowLogoutModal(true)}
           >
             <IonIcon icon={logOutOutline} slot="start" className="profile-icon danger" />
-            <IonLabel className="danger">Log Out</IonLabel>
+            <IonLabel className="danger">Logout</IonLabel>
+            <IonIcon icon={chevronForwardOutline} slot="end" className="profile-chevron danger" />
           </IonItem>
         </IonList>
 

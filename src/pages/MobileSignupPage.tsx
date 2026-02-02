@@ -1,11 +1,13 @@
-import { IonPage, IonContent, IonButton, IonInput } from "@ionic/react";
+import { IonPage, IonContent, IonButton, IonInput, IonItem, IonIcon } from "@ionic/react";
 import { useState } from "react";
 import { useIonRouter } from "@ionic/react";
+import { callOutline } from "ionicons/icons";
 import "../styles/MobileSignup.css";
 
 const MobileSignupPage: React.FC = () => {
   const ionRouter = useIonRouter();
   const [mobile, setMobile] = useState("");
+  const [mobileFocused, setMobileFocused] = useState(false);
 
   const handleSubmit = () => {
     const clean = (mobile ?? "").replace(/\s+/g, "");
@@ -40,13 +42,16 @@ const MobileSignupPage: React.FC = () => {
         <h2 className="ms-title">Hello!</h2>
         <p className="ms-subtitle">Create Your Account with Your Mobile Number</p>
 
-        <div className="ms-input">
+        <IonItem className={`ms-input ${mobileFocused || mobile ? 'has-value' : ''}`} lines="none">
+          <IonIcon icon={callOutline} slot="start" />
+          <span className="floating-label">Mobile Number</span>
           <IonInput
-            placeholder="09XXXXXXXXX"
             type="tel"
             inputMode="numeric"
             maxlength={11}
             value={mobile}
+            onIonFocus={() => setMobileFocused(true)}
+            onIonBlur={() => setMobileFocused(false)}
             onIonChange={(e) => {
               const value = (e.detail.value ?? '').replace(/[^0-9]/g, '');
               setMobile(value);
@@ -57,7 +62,7 @@ const MobileSignupPage: React.FC = () => {
               }
             }}
           />
-        </div>
+        </IonItem>
 
         <IonButton type="button" expand="block" className="ms-btn" onClick={handleSubmit}>
           Submit

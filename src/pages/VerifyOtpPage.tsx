@@ -55,6 +55,10 @@ const VerifyOtpPage: React.FC = () => {
   return (
     <IonPage>
       <IonContent fullscreen className="otp-content">
+        <div className="otp-logo">
+          <img src="/flogo1.png" alt="Logo" />
+        </div>
+        
         <h2 className="otp-title">Verify Your Mobile Number</h2>
           <p className="otp-subtitle">
             Enter the 6-digit verification code we just sent to your mobile number to continue your signup.

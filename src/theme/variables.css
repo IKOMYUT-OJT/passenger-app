@@ -3,11 +3,379 @@
   --ion-font-family: "Poppins", sans-serif;
   --ion-background-color: #ffffff;
   --ion-text-color: #000000;
+  --ion-card-background: #ffffff;
+  --ion-item-background: #ffffff;
+  --ion-toolbar-background: #ffffff;
+  --ion-border-color: #e8e8e8;
+  --ion-label-color: #000000;
+  --ion-secondary-text-color: #8c8c8c;
 }
 
 body.dark {
-  --ion-background-color: #000000;
+  --ion-background-color: #121212;
   --ion-text-color: #ffffff;
+  --ion-card-background: #1e1e1e;
+  --ion-item-background: #1e1e1e;
+  --ion-toolbar-background: #1e1e1e;
+  --ion-border-color: #2c2c2c;
+  --ion-label-color: #ffffff;
+  --ion-secondary-text-color: #b0b0b0;
+}
+
+body.dark ion-content {
+  --background: #121212;
+}
+
+body.dark ion-header {
+  --background: #1e1e1e;
+}
+
+body.dark ion-toolbar {
+  --background: #1e1e1e;
+  --color: #ffffff;
+}
+
+body.dark ion-title {
+  color: #ffffff;
+}
+
+body.dark ion-back-button {
+  --color: #ffffff;
+}
+
+body.dark .profile-header-bar,
+body.dark .settings-header,
+body.dark .notification-header,
+body.dark .address-header,
+body.dark .privacy-header,
+body.dark .security-header,
+body.dark .help-header,
+body.dark .deletion-header,
+body.dark .about-header {
+  --background: #1e1e1e;
+}
+
+body.dark .edit-profile-header,
+body.dark .wallet-header,
+body.dark .discount-header,
+body.dark .change-password-header,
+body.dark .cp-header {
+  --background: #1e1e1e;
+}
+
+body.dark .edit-profile-header ion-toolbar,
+body.dark .wallet-header ion-toolbar,
+body.dark .discount-header ion-toolbar,
+body.dark .change-password-header ion-toolbar,
+body.dark .cp-header ion-toolbar {
+  --background: #1e1e1e !important;
+}
+
+body.dark .discount-header,
+body.dark .cp-header {
+  --background: #1e1e1e !important;
+}
+
+body.dark .discount-header::after,
+body.dark .cp-header::after {
+  background: #1e1e1e !important;
+}
+
+body.dark .profile-toolbar,
+body.dark .settings-toolbar,
+body.dark .notification-toolbar,
+body.dark .address-toolbar,
+body.dark .privacy-toolbar,
+body.dark .security-toolbar,
+body.dark .help-toolbar,
+body.dark .deletion-toolbar,
+body.dark .about-toolbar {
+  --background: #1e1e1e !important;
+}
+
+body.dark .edit-profile-toolbar,
+body.dark .wallet-toolbar,
+body.dark .discount-toolbar,
+body.dark .change-password-toolbar,
+body.dark .cp-toolbar {
+  --background: #1e1e1e !important;
+}
+
+body.dark .profile-title,
+body.dark .settings-title,
+body.dark .notification-title,
+body.dark .address-title,
+body.dark .privacy-title,
+body.dark .security-title,
+body.dark .help-title,
+body.dark .deletion-title,
+body.dark .about-title {
+  color: #ffffff !important;
+}
+
+body.dark .edit-profile-title,
+body.dark .wallet-title,
+body.dark .discount-title,
+body.dark .change-password-title,
+body.dark .cp-title {
+  color: #ffffff !important;
+}
+
+body.dark ion-list {
+  background: #1e1e1e;
+}
+
+body.dark ion-item {
+  --background: #1e1e1e;
+  --color: #ffffff;
+  --border-color: #2c2c2c;
+}
+
+body.dark ion-label {
+  color: #ffffff !important;
+}
+
+body.dark ion-icon {
+  color: #ffffff;
+}
+
+body.dark .profile-list,
+body.dark .settings-list,
+body.dark .security-list,
+body.dark .help-contact-list {
+  background: #1e1e1e !important;
+}
+
+body.dark .profile-content,
+body.dark .settings-content {
+  --background: #121212 !important;
+}
+
+body.dark .notification-content,
+body.dark .address-content,
+body.dark .privacy-content,
+body.dark .security-content,
+body.dark .help-content,
+body.dark .deletion-content,
+body.dark .about-content {
+  --background: #121212 !important;
+}
+
+body.dark .edit-profile-content,
+body.dark .wallet-content,
+body.dark .discount-content,
+body.dark .change-password-content,
+body.dark .cp-content {
+  --background: #121212 !important;
+}
+
+body.dark .discount-form,
+body.dark .cp-form {
+  background: #121212 !important;
+}
+
+body.dark .profile-header {
+  background: #121212 !important;
+}
+
+body.dark .profile-toolbar,
+body.dark .settings-toolbar {
+  --background: #121212 !important;
+}
+
+body.dark .section-label,
+body.dark .settings-section,
+body.dark .security-section-label,
+body.dark .help-section-label,
+body.dark .notification-section {
+  color: #b0b0b0 !important;
+}
+
+body.dark .settings-profile-item {
+  --background: #008000 !important;
+  background: #008000 !important;
+}
+
+body.dark .profile-item,
+body.dark .settings-item,
+body.dark .security-item,
+body.dark .help-contact-item {
+  --background: #1e1e1e !important;
+  background: #1e1e1e !important;
+}
+
+body.dark .profile-name,
+body.dark .settings-profile-name,
+body.dark .profile-item ion-label,
+body.dark .settings-item ion-label,
+body.dark .security-label,
+body.dark .help-contact-label,
+body.dark .help-contact-value {
+  color: #ffffff !important;
+}
+
+body.dark .profile-number,
+body.dark .settings-profile-phone,
+body.dark .settings-section,
+body.dark .security-section-label,
+body.dark .help-section-label {
+  color: #b0b0b0 !important;
+}
+
+body.dark .current-address-card {
+  background: #006600 !important;
+}
+
+body.dark .saved-place-card {
+  background: #1e3e1e !important;
+}
+
+body.dark .saved-place-title,
+body.dark .saved-place-address {
+  color: #ffffff !important;
+}
+
+body.dark .saved-place-notes {
+  color: #b0b0b0 !important;
+}
+
+body.dark .notification-item {
+  --background: #1e1e1e !important;
+  background: #1e1e1e !important;
+}
+
+body.dark .notification-time {
+  color: #b0b0b0 !important;
+}
+
+body.dark .notification-title-text,
+body.dark .notification-message {
+  color: #ffffff !important;
+}
+
+body.dark .notification-list {
+  background: #121212 !important;
+}
+
+body.dark .notification-list ion-item {
+  --background: #1e1e1e !important;
+  background: #1e1e1e !important;
+}
+
+body.dark .notification-item {
+  --background: #1e1e1e !important;
+  background: #1e1e1e !important;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+}
+
+body.dark .notification-icon-wrapper {
+  background: #2c2c2c !important;
+}
+
+body.dark .notification-title,
+body.dark .notification-body {
+  color: #ffffff !important;
+}
+
+body.dark .notification-item-title {
+  color: #ffffff !important;
+}
+
+body.dark .notification-section {
+  color: #b0b0b0 !important;
+}
+
+body.dark .privacy-container h2,
+body.dark .privacy-section h3,
+body.dark .privacy-section p,
+body.dark .security-info h3,
+body.dark .security-info li,
+body.dark .about-section h3,
+body.dark .about-section p,
+body.dark .about-section li {
+  color: #ffffff !important;
+}
+
+body.dark .privacy-update,
+body.dark .about-version {
+  color: #b0b0b0 !important;
+}
+
+body.dark .security-info {
+  background: #1e1e1e !important;
+}
+
+body.dark .help-accordion-content {
+  background: #1e1e1e !important;
+  color: #ffffff !important;
+}
+
+body.dark .help-accordion-header {
+  --background: #1e1e1e !important;
+}
+
+body.dark .help-accordion-header ion-label {
+  color: #ffffff !important;
+}
+
+body.dark .deletion-container h2 {
+  color: #ffffff !important;
+}
+
+body.dark .deletion-info h3,
+body.dark .deletion-info li,
+body.dark .deletion-info p,
+body.dark .deletion-alternative h3,
+body.dark .deletion-alternative p {
+  color: #000000 !important;
+}
+
+body.dark .deletion-subtitle {
+  color: #b0b0b0 !important;
+}
+
+body.dark .logout-sheet h2,
+body.dark .logout-title {
+  color: #000000 !important;
+}
+
+body.dark .logout-sub,
+body.dark .logout-sheet p {
+  color: #333333 !important;
+}
+
+body.dark .logout-modal-sheet,
+body.dark .deletion-modal {
+  --background: #ffffff !important;
+}
+
+body.dark .logout-sheet,
+body.dark .deletion-modal-content {
+  background: #ffffff !important;
+}
+
+body.dark .deletion-modal-content h2,
+body.dark .deletion-modal-content p {
+  color: #000000 !important;
+}
+
+body.dark .main-tabbar {
+  --background: #1e1e1e !important;
+  background: #1e1e1e !important;
+}
+
+body.dark .tabbar-wrapper {
+  background: #1e1e1e !important;
+}
+
+body.dark ion-tab-button {
+  --color: #ffffff;
+  --color-selected: #008000;
+}
+
+body.dark .main-tabbar::before {
+  background: #1e1e1e !important;
+  box-shadow: 0 -6px 10px rgba(0, 0, 0, 0.6);
 }
 
 ion-button:active,

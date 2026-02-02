@@ -47,6 +47,11 @@ const SignUpPage: React.FC = () => {
   const [showAlert, setShowAlert] = useState(false);
   const [agreed, setAgreed] = useState(false);
   const [isNavigating, setIsNavigating] = useState(false);
+  const [fullNameFocused, setFullNameFocused] = useState(false);
+  const [emailFocused, setEmailFocused] = useState(false);
+  const [addressFocused, setAddressFocused] = useState(false);
+  const [passwordFocused, setPasswordFocused] = useState(false);
+  const [confirmPasswordFocused, setConfirmPasswordFocused] = useState(false);
 
   useEffect(() => {
     if (isNavigating) return;
@@ -87,7 +92,6 @@ const SignUpPage: React.FC = () => {
   setShowAlert(false);
   setIsNavigating(true);
   
-  // Clean up localStorage and navigate to login page
   setTimeout(() => {
     localStorage.removeItem("verifiedMobile");
     localStorage.removeItem("pendingMobile");
@@ -112,11 +116,13 @@ const SignUpPage: React.FC = () => {
               <p className="signup-subtitle">Fill out the form to create your account</p>
 
               <form className="signup-form">
-                <IonItem lines="none" className="signup-item">
+                <IonItem lines="none" className={`signup-item ${fullNameFocused || fullName ? 'has-value' : ''}`}>
                   <IonIcon icon={person} slot="start" />
+                  <span className="floating-label">Full Name</span>
                   <IonInput
-                    placeholder="Full Name"
                     value={fullName}
+                    onIonFocus={() => setFullNameFocused(true)}
+                    onIonBlur={() => setFullNameFocused(false)}
                     onIonChange={(e) => setFullName(e.detail.value ?? "")}
                   />
                 </IonItem>
@@ -131,31 +137,37 @@ const SignUpPage: React.FC = () => {
                   />
                 </IonItem>
 
-                <IonItem lines="none" className="signup-item">
+                <IonItem lines="none" className={`signup-item ${emailFocused || email ? 'has-value' : ''}`}>
                   <IonIcon icon={mail} slot="start" />
+                  <span className="floating-label">Email</span>
                   <IonInput
-                    placeholder="Email"
                     type="email"
                     value={email}
+                    onIonFocus={() => setEmailFocused(true)}
+                    onIonBlur={() => setEmailFocused(false)}
                     onIonChange={(e) => setEmail(e.detail.value ?? "")}
                   />
                 </IonItem>
 
-                <IonItem lines="none" className="signup-item">
+                <IonItem lines="none" className={`signup-item ${addressFocused || address ? 'has-value' : ''}`}>
                   <IonIcon icon={home} slot="start" />
+                  <span className="floating-label">Address</span>
                   <IonInput
-                    placeholder="Address"
                     value={address}
+                    onIonFocus={() => setAddressFocused(true)}
+                    onIonBlur={() => setAddressFocused(false)}
                     onIonChange={(e) => setAddress(e.detail.value ?? "")}
                   />
                 </IonItem>
 
-                <IonItem lines="none" className="signup-item password-box">
+                <IonItem lines="none" className={`signup-item password-box ${passwordFocused || password ? 'has-value' : ''}`}>
                   <IonIcon icon={lockClosed} slot="start" />
+                  <span className="floating-label">Password</span>
                   <IonInput
-                    placeholder="Password"
                     type={showPassword ? "text" : "password"}
                     value={password}
+                    onIonFocus={() => setPasswordFocused(true)}
+                    onIonBlur={() => setPasswordFocused(false)}
                     onIonChange={(e) => setPassword(e.detail.value ?? "")}
                   />
                   <IonIcon
@@ -166,12 +178,14 @@ const SignUpPage: React.FC = () => {
                   />
                 </IonItem>
 
-                <IonItem lines="none" className="signup-item password-box">
+                <IonItem lines="none" className={`signup-item password-box ${confirmPasswordFocused || confirmPassword ? 'has-value' : ''}`}>
                   <IonIcon icon={lockClosed} slot="start" />
+                  <span className="floating-label">Confirm Password</span>
                   <IonInput
-                    placeholder="Confirm Password"
                     type={showConfirmPassword ? "text" : "password"}
                     value={confirmPassword}
+                    onIonFocus={() => setConfirmPasswordFocused(true)}
+                    onIonBlur={() => setConfirmPasswordFocused(false)}
                     onIonChange={(e) => setConfirmPassword(e.detail.value ?? "")}
                   />
                   <IonIcon

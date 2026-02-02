@@ -18,6 +18,8 @@ const LoginPage: React.FC = () => {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
+  const [mobileFocused, setMobileFocused] = useState(false);
+  const [passwordFocused, setPasswordFocused] = useState(false);
 
   const history = useHistory();
   const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
@@ -55,14 +57,16 @@ const LoginPage: React.FC = () => {
         </div>
 
         <div className="login-form">
-          <IonItem className="signup-item">
+          <IonItem className={`signup-item ${mobileFocused || mobileNumber ? 'has-value' : ''}`}>
             <IonIcon slot="start" icon={callOutline} />
+            <span className="floating-label">Mobile Number</span>
             <IonInput
-              placeholder="09XXXXXXXXX"
               type="tel"
               inputMode="numeric"
               maxlength={11}
               value={mobileNumber}
+              onIonFocus={() => setMobileFocused(true)}
+              onIonBlur={() => setMobileFocused(false)}
               onIonChange={(e) => {
                 const value = e.detail.value!.replace(/[^0-9]/g, '');
                 setMobileNumber(value);
@@ -75,12 +79,14 @@ const LoginPage: React.FC = () => {
             />
           </IonItem>
 
-          <IonItem className="signup-item password-box">
+          <IonItem className={`signup-item password-box ${passwordFocused || password ? 'has-value' : ''}`}>
             <IonIcon slot="start" icon={lockClosed} />
+            <span className="floating-label">Password</span>
             <IonInput
-              placeholder="Password"
               type={showPassword ? "text" : "password"}
               value={password}
+              onIonFocus={() => setPasswordFocused(true)}
+              onIonBlur={() => setPasswordFocused(false)}
               onIonChange={(e) => setPassword(e.detail.value!)}
             />
             <IonIcon

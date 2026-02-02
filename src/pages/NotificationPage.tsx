@@ -34,7 +34,6 @@ interface Notification {
 const NotificationPage: React.FC = () => {
   const ionRouter = useIonRouter();
 
-  // Sample notifications data
   const notifications: Notification[] = [
     {
       id: 1,

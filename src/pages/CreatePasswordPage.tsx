@@ -10,6 +10,8 @@ const CreatePasswordPage: React.FC = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [showNewPassword, setShowNewPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [newPasswordFocused, setNewPasswordFocused] = useState(false);
+  const [confirmPasswordFocused, setConfirmPasswordFocused] = useState(false);
 
   const handleResetPassword = () => {
     if (!newPassword || !confirmPassword) {
@@ -34,17 +36,23 @@ const CreatePasswordPage: React.FC = () => {
   return (
     <IonPage>
       <IonContent fullscreen className="create-password-content" scrollY={false}>
+        <div className="create-logo">
+          <img src="/flogo1.png" alt="Logo" />
+        </div>
+        
         <h2 className="create-password-title">Create New Password</h2>
         <p className="create-password-subtitle">
           Enter your new password
         </p>
 
-        <IonItem lines="none" className="create-input-item">
+        <IonItem lines="none" className={`create-input-item ${newPasswordFocused || newPassword ? 'has-value' : ''}`}>
           <IonIcon icon={lockClosed} slot="start" className="create-input-icon" />
+          <span className="floating-label">New Password</span>
           <IonInput
             type={showNewPassword ? "text" : "password"}
-            placeholder="New Password"
             value={newPassword}
+            onIonFocus={() => setNewPasswordFocused(true)}
+            onIonBlur={() => setNewPasswordFocused(false)}
             onIonChange={(e: any) => setNewPassword(e.detail.value ?? "")}
             className="create-input"
           />
@@ -56,12 +64,14 @@ const CreatePasswordPage: React.FC = () => {
           />
         </IonItem>
 
-        <IonItem lines="none" className="create-input-item">
+        <IonItem lines="none" className={`create-input-item ${confirmPasswordFocused || confirmPassword ? 'has-value' : ''}`}>
           <IonIcon icon={lockClosed} slot="start" className="create-input-icon" />
+          <span className="floating-label">Confirm Password</span>
           <IonInput
             type={showConfirmPassword ? "text" : "password"}
-            placeholder="Confirm Password"
             value={confirmPassword}
+            onIonFocus={() => setConfirmPasswordFocused(true)}
+            onIonBlur={() => setConfirmPasswordFocused(false)}
             onIonChange={(e: any) => setConfirmPassword(e.detail.value ?? "")}
             className="create-input"
           />

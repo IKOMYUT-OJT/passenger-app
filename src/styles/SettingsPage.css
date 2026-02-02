@@ -47,10 +47,11 @@ ion-toolbar ion-title {
   margin-bottom: 20px;
   max-width: 700px;
   width: calc(100% - 32px);
-  --background: var(--ion-color-step-100, #EDEDED);
+  --background: #008000;
+  background: #008000;
   --padding-start: 16px;
   --inner-padding-end: 14px;
-  --min-height: 64px;
+  --min-height: 70px;
 }
 
 .settings-profile-avatar {
@@ -66,14 +67,14 @@ ion-toolbar ion-title {
   font-family: "Poppins", sans-serif;
   font-size: 16px;
   font-weight: 600;
-  color: #000;
+  color: #ffffff;
 }
 
 .settings-profile-phone {
   margin-top: 2px;
   font-family: "Poppins", sans-serif;
   font-size: 11px;
-  color: #8c8c8c;
+  color: #ffffff;
 }
 
 .settings-section {
@@ -90,12 +91,13 @@ ion-toolbar ion-title {
   width: calc(100% - 32px);
   border-radius: 14px;
   overflow: hidden;
-  background: var(--ion-color-step-100, #EDEDED);
+  background: #ffffff;
   padding: 0;
 }
 
 .settings-item {
-  --background: transparent;
+  --background: #ffffff;
+  background: #ffffff;
   --padding-start: 16px;
   --inner-padding-end: 14px;
   --min-height: 52px;
@@ -106,18 +108,38 @@ ion-toolbar ion-title {
   font-size: 16px;
 }
 
+.settings-item ion-label {
+  font-weight: 600;
+  font-size: 15px;
+  color: #000;
+}
+
 .settings-icon {
-  font-size: 20px;
-  color: #111;
+  font-size: 22px;
+  color: #000;
+  font-weight: bold;
+  stroke-width: 50px;
+  --ionicon-stroke-width: 50px;
 }
 
 .settings-chevron {
-  font-size: 18px;
-  color: #bdbdbd;
+  font-size: 22px;
+  color: #666;
+  font-weight: 700;
+  stroke-width: 3px;
 }
 
 .settings-toggle {
   transform: scale(0.9);
+}
+
+.settings-version {
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  color: #8c8c8c;
+  text-align: center;
+  margin-top: 40px;
+  margin-bottom: 20px;
 }
 
 @media (min-width: 1025px) {

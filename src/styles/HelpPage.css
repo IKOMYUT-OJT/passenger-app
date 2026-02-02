@@ -1,0 +1,111 @@
+.help-header {
+  transform: translateY(30px);
+  box-shadow: none !important;
+}
+
+.help-header::after {
+  display: none;
+}
+
+.help-header ion-toolbar {
+  --box-shadow: none;
+  --border-width: 0 !important;
+}
+
+.help-header ion-toolbar::after {
+  display: none;
+}
+
+.help-toolbar {
+  --background: #ffffff;
+}
+
+.help-title {
+  text-align: left;
+  font-family: "Poppins", sans-serif;
+  font-weight: 550;
+  font-size: 20px;
+  padding-left: 0;
+}
+
+.help-content {
+  --padding-top: 30px;
+  --background: #ffffff;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.help-section-label {
+  margin: 16px 16px 12px;
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #000;
+}
+
+.help-accordion-group {
+  margin: 0 auto;
+  max-width: 700px;
+  width: calc(100% - 32px);
+}
+
+.help-accordion-header {
+  --background: #ffffff;
+  --padding-start: 16px;
+  --inner-padding-end: 16px;
+  --min-height: 52px;
+  font-family: "Poppins", sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.help-accordion-content {
+  padding: 16px;
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #333;
+  background: #f9f9f9;
+}
+
+.help-contact-list {
+  margin: 0 auto;
+  max-width: 700px;
+  width: calc(100% - 32px);
+  border-radius: 14px;
+  overflow: hidden;
+  background: #ffffff;
+  padding: 0;
+}
+
+.help-contact-item {
+  --background: #ffffff;
+  background: #ffffff;
+  --padding-start: 16px;
+  --inner-padding-end: 14px;
+  --min-height: 64px;
+  --border-color: rgba(0, 0, 0, 0.08);
+  --border-width: 0 0 1px 0;
+}
+
+.help-icon {
+  font-size: 22px;
+  color: #008000;
+  font-weight: bold;
+  stroke-width: 50px;
+  --ionicon-stroke-width: 50px;
+}
+
+.help-contact-label {
+  font-family: "Poppins", sans-serif;
+  font-size: 13px;
+  color: #666;
+  margin-bottom: 2px;
+}
+
+.help-contact-value {
+  font-family: "Poppins", sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: #000;
+}

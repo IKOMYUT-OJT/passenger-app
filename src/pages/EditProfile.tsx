@@ -16,15 +16,15 @@ import {
   IonRow,
   IonCol,
 } from "@ionic/react";
-import { eyeOutline, eyeOffOutline, cameraOutline } from "ionicons/icons";
+import { eyeOutline, eyeOffOutline, cameraOutline, add } from "ionicons/icons";
 import "../styles/EditProfile.css";
 
 const EditProfile: React.FC = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [fullName, setFullName] = useState("");
-  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [mobile, setMobile] = useState("");
-  const [password, setPassword] = useState("");
+  const [address, setAddress] = useState("");
   const [profileImage, setProfileImage] = useState(() => {
     return localStorage.getItem("profileImage") || "man.png";
   });
@@ -101,9 +101,9 @@ const EditProfile: React.FC = () => {
 
           <IonItem lines="none" className="edit-input">
             <IonInput
-              placeholder="Username"
-              value={username}
-              onIonChange={(e) => setUsername(e.detail.value!)}
+              placeholder="Email"
+              value={email}
+              onIonChange={(e) => setEmail(e.detail.value!)}
             />
           </IonItem>
 
@@ -117,17 +117,11 @@ const EditProfile: React.FC = () => {
 
           <IonItem lines="none" className="edit-input password-input">
             <IonInput
-              placeholder="Password"
-              type={showPassword ? "text" : "password"}
-              value={password}
-              onIonChange={(e) => setPassword(e.detail.value!)}
+              placeholder="Address"
+              value={address}
+              onIonChange={(e) => setAddress(e.detail.value!)}
             />
-            <IonIcon
-              icon={showPassword ? eyeOffOutline : eyeOutline}
-              slot="end"
-              className="password-toggle"
-              onClick={() => setShowPassword(!showPassword)}
-            />
+            
           </IonItem>
         </div>
         

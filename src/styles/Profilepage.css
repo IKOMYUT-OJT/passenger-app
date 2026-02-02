@@ -112,7 +112,7 @@ ion-toolbar ion-title {
 
 .profile-list {
   margin: 10px auto 0 auto;
-  max-width: 600px;
+  max-width: 800px;
   width: calc(100% - 32px);
   border-radius: 14px;
   overflow: hidden;
@@ -126,16 +126,28 @@ ion-toolbar ion-title {
   --min-height: 52px;
   --border-color: #e8e8e8;
   --border-width: 0 0 1px 0;
+  font-weight: 600;
+}
+
+.profile-item ion-label {
+  font-weight: 500;
+  font-size: 15px;
+  color: #000;
 }
 
 .profile-icon {
-  font-size: 20px;
-  color: #111;
+  font-size: 22px;
+  color: #000;
+  font-weight: bold;
+  stroke-width: 50px;
+  --ionicon-stroke-width: 50px;
 }
 
 .profile-chevron {
-  font-size: 18px;
-  color: #bdbdbd;
+  font-size: 22px;
+  color: #666;
+  font-weight: 700;
+  stroke-width: 3px;
 }
 
 .logout-item {
