@@ -93,6 +93,39 @@
   color: #000;
 }
 
+/* Dark Mode Styles */
+.ion-palette-dark .nearby-sheet {
+  --background: #1e1e1e;
+}
+
+.ion-palette-dark .nearby-title {
+  color: #ffffff;
+}
+
+.ion-palette-dark .nearby-close {
+  color: #ffffff;
+}
+
+.ion-palette-dark .nearby-row + .nearby-row {
+  border-top: 1px solid #2c2c2c;
+}
+
+.ion-palette-dark .nearby-icon {
+  color: #ffffff;
+}
+
+.ion-palette-dark .nearby-busname {
+  color: #ffffff;
+}
+
+.ion-palette-dark .nearby-route {
+  color: #b0b0b0;
+}
+
+.ion-palette-dark .nearby-eta {
+  color: #ffffff;
+}
+
 @media (min-width: 1025px) {
   .nearby-sheet { --max-width: 500px; }
   .nearby-title { font-size: 19px; }

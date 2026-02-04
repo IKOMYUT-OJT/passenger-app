@@ -1,93 +1,37 @@
-import { useState, useRef, useEffect } from "react";
+import { useState } from "react";
 import {
   IonPage,
-  IonHeader,
-  IonToolbar,
-  IonTitle,
-  IonButtons,
-  IonBackButton,
   IonContent,
-  IonAvatar,
   IonItem,
   IonInput,
-  IonIcon,
   IonButton,
   IonGrid,
   IonRow,
   IonCol,
 } from "@ionic/react";
-import { eyeOutline, eyeOffOutline, cameraOutline, add } from "ionicons/icons";
+import { PageHeader, ProfileAvatar } from "../components/common";
+import { useProfileImage } from "../hooks";
 import "../styles/EditProfile.css";
 
 const EditProfile: React.FC = () => {
-  const [showPassword, setShowPassword] = useState(false);
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [mobile, setMobile] = useState("");
   const [address, setAddress] = useState("");
-  const [profileImage, setProfileImage] = useState(() => {
-    return localStorage.getItem("profileImage") || "man.png";
-  });
-  const fileInputRef = useRef<HTMLInputElement>(null);
-
-  useEffect(() => {
-    const handleProfileImageUpdate = () => {
-      const updatedImage = localStorage.getItem("profileImage") || "man.png";
-      setProfileImage(updatedImage);
-    };
-
-    window.addEventListener("profileImageUpdated", handleProfileImageUpdate);
-    return () => {
-      window.removeEventListener("profileImageUpdated", handleProfileImageUpdate);
-    };
-  }, []);
-
-  const handleCameraClick = () => {
-    fileInputRef.current?.click();
-  };
-
-  const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        const imageData = reader.result as string;
-        setProfileImage(imageData);
-        localStorage.setItem("profileImage", imageData);
-        window.dispatchEvent(new Event("profileImageUpdated"));
-      };
-      reader.readAsDataURL(file);
-    }
-  };
+  const { profileImage, updateProfileImage } = useProfileImage();
 
   return (
     <IonPage>
-      <IonHeader className="edit-profile-header">
-        <IonToolbar>
-          <IonButtons slot="start">
-            <IonBackButton text="" defaultHref="/tabs/profilepage" />
-          </IonButtons>
+      <PageHeader title="Edit Profile" defaultHref="/tabs/profilepage" />
 
-          <IonTitle className="edit-profile-title">Edit Profile</IonTitle>
-        </IonToolbar>
-      </IonHeader>
-
-      <IonContent fullscreen scrollY={true} className="edit-profile-content">
-        <input
-          type="file"
-          ref={fileInputRef}
-          accept="image/*"
-          onChange={handleImageChange}
-          style={{ display: 'none' }}
-        />
-        <div className="edit-avatar-wrapper" onClick={handleCameraClick} style={{ cursor: 'pointer' }}>
-          <IonAvatar className="edit-avatar">
-            <img
-              src={profileImage}
-              alt="Avatar"
-            />
-          </IonAvatar>
-          <IonIcon icon={cameraOutline} className="camera-icon" />
+      <IonContent fullscreen scrollY={true} className="page-content">
+        <div className="edit-avatar-container">
+          <ProfileAvatar
+            imageSource={profileImage}
+            onImageChange={updateProfileImage}
+            size="large"
+            showCamera={true}
+          />
         </div>
 
         <div className="edit-form">
@@ -115,25 +59,24 @@ const EditProfile: React.FC = () => {
             />
           </IonItem>
 
-          <IonItem lines="none" className="edit-input password-input">
+          <IonItem lines="none" className="edit-input">
             <IonInput
               placeholder="Address"
               value={address}
               onIonChange={(e) => setAddress(e.detail.value!)}
             />
-            
           </IonItem>
         </div>
         
         <IonGrid className="edit-actions">
           <IonRow>
             <IonCol>
-              <IonButton expand="block" className="cancel-btn">
+              <IonButton expand="block" className="app-button-secondary">
                 Cancel
               </IonButton>
             </IonCol>
             <IonCol>
-              <IonButton expand="block" className="save-btn">
+              <IonButton expand="block" className="app-button-primary">
                 Save changes
               </IonButton>
             </IonCol>

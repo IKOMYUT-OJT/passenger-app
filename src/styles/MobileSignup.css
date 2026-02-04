@@ -226,6 +226,8 @@
   box-shadow: none;
   width: 340px;
   max-width: 100%;
+  cursor: pointer;
+  pointer-events: auto;
 }
 
 .signup-button:hover {

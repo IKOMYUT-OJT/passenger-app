@@ -26,23 +26,20 @@ import {
 } from "ionicons/icons";
 import { BarcodeScanner } from "@capacitor-mlkit/barcode-scanning";
 import { Capacitor } from "@capacitor/core";
+import { LoadingProvider } from "./contexts/LoadingContext";
 
 import Homepage from "./pages/Homepage";
 import Profilepage from "./pages/Profilepage";
 import EditProfile from "./pages/EditProfile";
 import SettingsPage from "./pages/SettingsPage";
 import LoginPage from "./pages/LoginPage";
-import SignUpPage from "./pages/SignUpPage";
 import WalletPage from "./pages/WalletPage";
 import ChangePasswordPage from "./pages/ChangePasswordPage";
 import DiscountPage from "./pages/DiscountPage";
 import WelcomePage from "./pages/WelcomePage";
 import MobileSignupPage from "./pages/MobileSignupPage";
-import VerifyOtpPage from "./pages/VerifyOtpPage";
 import NotificationPage from "./pages/NotificationPage";
 import ForgotPasswordPage from "./pages/ForgotPasswordPage";
-import CreatePasswordPage from "./pages/CreatePasswordPage";
-import VerifyResetOtpPage from "./pages/VerifyResetOtpPage";
 import Addresspage from "./pages/Addresspage";
 import PrivacyPolicyPage from "./pages/PrivacyPolicyPage";
 import SecurityPage from "./pages/SecurityPage";
@@ -57,11 +54,14 @@ import "@ionic/react/css/core.css";
 import "@ionic/react/css/normalize.css";
 import "@ionic/react/css/structure.css";
 import "@ionic/react/css/typography.css";
-import "@ionic/react/css/palettes/dark.system.css";
+import "@ionic/react/css/palettes/dark.class.css";
 import "./theme/variables.css";
 import "./theme/tabs.css";
 import "./theme/sheet.css";
 import "./theme/qr-scanner.css";
+import "./styles/common.css";
+import "./styles/responsive.css";
+import "./styles/common.css";
 
 setupIonicReact();
 
@@ -124,7 +124,7 @@ const App: React.FC = () => {
     
     // Initialize dark mode from localStorage
     const darkMode = localStorage.getItem("darkMode") === "true";
-    document.body.classList.toggle("dark", darkMode);
+    document.documentElement.classList.toggle("ion-palette-dark", darkMode);
   }, []);
   useEffect(() => {
     const handler = () => setOpenNearbySheet(true);
@@ -145,9 +145,7 @@ const App: React.FC = () => {
     }
 
     document.body.classList.add("scanner-active");
-    const result = await BarcodeScanner.scan({
-      formats: ["QR_CODE"],
-    });
+    const result = await BarcodeScanner.scan({});
 
     if (result.barcodes.length > 0) {
       const value = result.barcodes[0].rawValue;
@@ -168,7 +166,8 @@ const App: React.FC = () => {
     <AuthContext.Provider value={{ isLoggedIn, setIsLoggedIn }}>
       <IonApp>
         <IonReactRouter>
-          <IonRouterOutlet>
+          <LoadingProvider>
+            <IonRouterOutlet>
             <Route
               exact
               path="/"
@@ -196,20 +195,6 @@ const App: React.FC = () => {
                 ) : (
                   <MobileSignupPage />
                 )
-              }
-            />
-            <Route
-              exact
-              path="/signup/verify"
-              render={() =>
-                isLoggedIn ? <Redirect to="/tabs/homepage" /> : <VerifyOtpPage />
-              }
-            />
-            <Route
-              exact
-              path="/signup/details"
-              render={() =>
-                isLoggedIn ? <Redirect to="/tabs/homepage" /> : <SignUpPage />
               }
             />
 
@@ -290,8 +275,6 @@ const App: React.FC = () => {
               }
             />
             <Route exact path="/forgot-password" component={ForgotPasswordPage} />
-            <Route exact path="/verify-reset-otp" component={VerifyResetOtpPage} />
-            <Route exact path="/create-password" component={CreatePasswordPage} />
 
             <Route
               path="/tabs"
@@ -406,6 +389,7 @@ const App: React.FC = () => {
               </div>
             </IonContent>
           </IonModal>
+          </LoadingProvider>
         </IonReactRouter>
       </IonApp>
     </AuthContext.Provider>

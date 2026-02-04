@@ -1,10 +1,5 @@
 import {
   IonPage,
-  IonHeader,
-  IonToolbar,
-  IonTitle,
-  IonButtons,
-  IonBackButton,
   IonContent,
   IonList,
   IonItem,
@@ -13,13 +8,12 @@ import {
   IonBadge,
 } from "@ionic/react";
 import {
-  notificationsOutline,
   checkmarkCircle,
   informationCircle,
   warning,
   timeOutline,
 } from "ionicons/icons";
-import { useIonRouter } from "@ionic/react";
+import { PageHeader } from "../components/common";
 import "../styles/NotificationPage.css";
 
 interface Notification {
@@ -32,8 +26,6 @@ interface Notification {
 }
 
 const NotificationPage: React.FC = () => {
-  const ionRouter = useIonRouter();
-
   const notifications: Notification[] = [
     {
       id: 1,
@@ -101,50 +93,46 @@ const NotificationPage: React.FC = () => {
 
   return (
     <IonPage>
-      <IonHeader className="notification-header">
-        <IonToolbar className="notification-toolbar">
-          <IonButtons slot="start">
-            <IonBackButton text="" defaultHref="/tabs/homepage" />
-          </IonButtons>
-          <IonTitle className="notification-title">Notifications</IonTitle>
-        </IonToolbar>
-      </IonHeader>
+      <PageHeader title="Notifications" defaultHref="/tabs/profilepage" />
 
-      <IonContent fullscreen scrollY={true} className="notification-content">
-        <div className="notification-section">All Notifications</div>
-        
-        <IonList className="notification-list">
-          {notifications.map((notification) => (
-            <IonItem
-              key={notification.id}
-              lines="none"
-              className={`notification-item ${
-                notification.read ? "" : "notification-unread"
-              }`}
-              button
-              detail={false}
-            >
-              <div className="notification-icon-wrapper" slot="start">
-                <IonIcon
-                  icon={getIconByType(notification.type)}
-                  className={`notification-icon ${getIconColor(notification.type)}`}
-                />
+      <IonContent fullscreen scrollY={true} className="page-content notification-page-content">
+        <div className="notification-container">
+          <div className="notification-header-section">
+            <h3 className="section-title">Recent</h3>
+            <button className="mark-all-read">Mark all as read</button>
+          </div>
+
+          <div className="notifications-wrapper">
+            {notifications.map((notification) => (
+              <div
+                key={notification.id}
+                className={`notification-card ${
+                  notification.read ? "notification-read" : "notification-unread"
+                }`}
+              >
+                <div className="notification-icon-container">
+                  <div className={`notification-icon-circle ${notification.type}`}>
+                    <IonIcon icon={getIconByType(notification.type)} />
+                  </div>
+                </div>
+
+                <div className="notification-content-wrapper">
+                  <div className="notification-top-row">
+                    <h4 className="notification-title">{notification.title}</h4>
+                    {!notification.read && (
+                      <span className="notification-dot"></span>
+                    )}
+                  </div>
+                  <p className="notification-text">{notification.message}</p>
+                  <div className="notification-footer">
+                    <IonIcon icon={timeOutline} className="notification-time-icon" />
+                    <span className="notification-time-text">{notification.time}</span>
+                  </div>
+                </div>
               </div>
-
-              <IonLabel className="notification-label">
-                <div className="notification-header-row">
-                  <h3 className="notification-item-title">{notification.title}</h3>
-                  {!notification.read && <IonBadge className="notification-badge">New</IonBadge>}
-                </div>
-                <p className="notification-message">{notification.message}</p>
-                <div className="notification-time">
-                  <IonIcon icon={timeOutline} className="time-icon" />
-                  <span>{notification.time}</span>
-                </div>
-              </IonLabel>
-            </IonItem>
-          ))}
-        </IonList>
+            ))}
+          </div>
+        </div>
       </IonContent>
     </IonPage>
   );

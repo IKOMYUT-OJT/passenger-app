@@ -187,3 +187,19 @@
   .qr-button { width: 50px; height: 50px; bottom: 18px; }
   .qr-button ion-icon { font-size: 20px; }
 }
+
+/* ==================== DARK MODE ==================== */
+.ion-palette-dark .main-tabbar {
+  --background: #1e1e1e;
+  border-top-color: rgba(255, 255, 255, 0.08);
+}
+
+.ion-palette-dark .main-tabbar::before {
+  background: #1e1e1e;
+  box-shadow: 0 -6px 10px rgba(0, 0, 0, 0.3);
+}
+
+.ion-palette-dark .main-tabbar ion-tab-button {
+  --color: #b0b0b0;
+  --color-selected: #4ade80;
+}

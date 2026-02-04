@@ -1,25 +1,16 @@
-import {
-  IonPage,
-  IonContent,
-  IonButton,
-  IonInput,
-  IonIcon,
-  IonText,
-  IonItem,
-} from "@ionic/react";
-import { lockClosed, eye, eyeOff, callOutline } from "ionicons/icons";
+import { IonButton, IonText } from "@ionic/react";
+import { lockClosed, callOutline } from "ionicons/icons";
 import { useState, useContext, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { AuthContext } from "../App";
+import { AuthPageLayout, AuthHeader, FloatingLabelInput, LoadingSpinner } from "../components/common";
 import "../styles/LoginPage.css";
 
 const LoginPage: React.FC = () => {
   const [mobileNumber, setMobileNumber] = useState("");
   const [password, setPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
-  const [mobileFocused, setMobileFocused] = useState(false);
-  const [passwordFocused, setPasswordFocused] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const history = useHistory();
   const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
@@ -37,89 +28,67 @@ const LoginPage: React.FC = () => {
     }
 
     setError("");
-    setIsLoggedIn(true);
-    localStorage.setItem("isLoggedIn", "true");
-    history.push("/tabs/homepage");
+    setLoading(true);
+    setTimeout(() => {
+      setIsLoggedIn(true);
+      localStorage.setItem("isLoggedIn", "true");
+      setLoading(false);
+      history.push("/tabs/homepage");
+    }, 1000);
   };
 
   const handleSignUp = () => history.push("/signup");
   const handleForgotPassword = () => history.push("/forgot-password");
 
   return (
-    <IonPage>
-      <IonContent fullscreen className="login-content" scrollY={true}>
-        <div className="login-header">
-          <img src="./flogo1.png" alt="Logo" className="login-logo" />
-          <div className="login-texts">
-            <h2 className="login-title">Welcome!</h2>
-            <p className="login-subtitle">Login to your Account</p>
-          </div>
+    <AuthPageLayout>
+      <AuthHeader
+        title="Welcome!"
+        subtitle="Login to your Account"
+      />
+
+      <div className="auth-form">
+        <FloatingLabelInput
+          label="Mobile Number"
+          value={mobileNumber}
+          onValueChange={setMobileNumber}
+          type="tel"
+          inputMode="numeric"
+          icon={callOutline}
+          maxlength={11}
+        />
+
+        <FloatingLabelInput
+          label="Password"
+          value={password}
+          onValueChange={setPassword}
+          type="password"
+          icon={lockClosed}
+        />
+
+        <div className="forgot-password" onClick={handleForgotPassword}>
+          Forgot Password?
         </div>
 
-        <div className="login-form">
-          <IonItem className={`signup-item ${mobileFocused || mobileNumber ? 'has-value' : ''}`}>
-            <IonIcon slot="start" icon={callOutline} />
-            <span className="floating-label">Mobile Number</span>
-            <IonInput
-              type="tel"
-              inputMode="numeric"
-              maxlength={11}
-              value={mobileNumber}
-              onIonFocus={() => setMobileFocused(true)}
-              onIonBlur={() => setMobileFocused(false)}
-              onIonChange={(e) => {
-                const value = e.detail.value!.replace(/[^0-9]/g, '');
-                setMobileNumber(value);
-              }}
-              onKeyPress={(e: any) => {
-                if (!/[0-9]/.test(e.key)) {
-                  e.preventDefault();
-                }
-              }}
-            />
-          </IonItem>
+        {error && (
+          <IonText color="danger" className="form-error">
+            {error}
+          </IonText>
+        )}
 
-          <IonItem className={`signup-item password-box ${passwordFocused || password ? 'has-value' : ''}`}>
-            <IonIcon slot="start" icon={lockClosed} />
-            <span className="floating-label">Password</span>
-            <IonInput
-              type={showPassword ? "text" : "password"}
-              value={password}
-              onIonFocus={() => setPasswordFocused(true)}
-              onIonBlur={() => setPasswordFocused(false)}
-              onIonChange={(e) => setPassword(e.detail.value!)}
-            />
-            <IonIcon
-              slot="end"
-              icon={showPassword ? eyeOff : eye}
-              onClick={() => setShowPassword(!showPassword)}
-              className="toggle-password"
-            />
-          </IonItem>
+        <IonButton expand="block" className="app-button-primary mt-20" onClick={handleLogin}>
+          Sign In
+        </IonButton>
 
-          <div className="forgot-password" onClick={handleForgotPassword}>
-            Forgot Password?
-          </div>
-
-          {error && (
-            <IonText color="danger" className="login-error">
-              {error}
-            </IonText>
-          )}
-
-          <IonButton expand="block" className="login-button" onClick={handleLogin}>
-            Sign In
-          </IonButton>
-
-          <div className="signup-text">
-            Don’t have an account?{" "}
-            <span className="signup-link" onClick={handleSignUp}>
-              SIGN UP
-            </span>
-          </div>
+        <div className="signup-text">
+          Don't have an account?{" "}
+          <span className="form-link" onClick={handleSignUp}>
+            SIGN UP
+          </span>
         </div>
-      </IonContent>
-    </IonPage>
+      </div>
+      <LoadingSpinner isOpen={loading} message="Signing in..." />
+    </AuthPageLayout>
   );
 };
 

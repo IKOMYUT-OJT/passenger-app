@@ -1,18 +1,18 @@
 import { useState } from "react";
 import {
   IonPage,
-  IonHeader,
-  IonToolbar,
-  IonTitle,
   IonContent,
-  IonButtons,
-  IonBackButton,
   IonIcon,
   IonButton,
   IonModal,
   IonInput,
   IonItem,
   IonLabel,
+  IonHeader,
+  IonToolbar,
+  IonButtons,
+  IonTitle,
+  useIonRouter,
 } from "@ionic/react";
 import {
   locationOutline,
@@ -20,7 +20,7 @@ import {
   addCircle,
   closeOutline,
 } from "ionicons/icons";
-import { useIonRouter } from "@ionic/react";
+import { PageHeader } from "../components/common";
 import "../styles/Addresspage.css";
 
 interface SavedPlace {
@@ -110,55 +110,63 @@ const Addresspage: React.FC = () => {
 
   return (
     <IonPage>
-      <IonHeader className="address-header">
-        <IonToolbar className="address-toolbar">
-          <IonButtons slot="start">
-            <IonBackButton text="" defaultHref="/profile" />
-          </IonButtons>
-          <IonTitle className="address-title">My Address</IonTitle>
-        </IonToolbar>
-      </IonHeader>
+      <PageHeader title="My Address" defaultHref="/tabs/profilepage" />
 
-      <IonContent className="address-content">
-        <div className="current-address-section">
-          <h3 className="section-label">Current Address</h3>
-          <div className="current-address-card">
-            <div className="current-address-icon">
-              <IonIcon icon={locationOutline} />
+      <IonContent className="page-content address-page-content">
+        <div className="address-container">
+          <div className="current-address-section">
+            <div className="section-header">
+              <IonIcon icon={locationOutline} className="section-icon" />
+              <h3 className="section-label">Current Location</h3>
             </div>
-            <div className="current-address-text">
-              {currentAddress}
-            </div>
-            <div className="current-address-arrow">
-              <IonIcon icon={chevronForwardOutline} />
-            </div>
-          </div>
-        </div>
-
-        <div className="saved-places-section">
-          <div className="saved-places-header">
-            <h3 className="section-label">Saved Places</h3>
-            <IonButton
-              fill="clear"
-              className="add-place-btn"
-              onClick={handleAddNew}
-            >
-              <IonIcon icon={addCircle} />
-            </IonButton>
-          </div>
-
-          <div className="saved-places-list">
-            {savedPlaces.map((place) => (
-              <div
-                key={place.id}
-                className="saved-place-card"
-                onClick={() => handleEditPlace(place)}
-              >
-                <div className="saved-place-title">{place.title}</div>
-                <div className="saved-place-address">{place.address}</div>
-                <div className="saved-place-notes">{place.notes}</div>
+            <div className="current-address-card" onClick={() => setShowMapModal(true)}>
+              <div className="current-address-content">
+                <div className="current-address-text">
+                  {currentAddress}
+                </div>
               </div>
-            ))}
+              <IonIcon icon={chevronForwardOutline} className="card-chevron" />
+            </div>
+          </div>
+
+          <div className="saved-places-section">
+            <div className="section-header">
+              <IonIcon icon={locationOutline} className="section-icon" />
+              <h3 className="section-label">Saved Places</h3>
+              <button className="add-place-btn" onClick={handleAddNew}>
+                <IonIcon icon={addCircle} />
+              </button>
+            </div>
+
+            <div className="saved-places-list">
+              {savedPlaces.length === 0 ? (
+                <div className="empty-state">
+                  <IonIcon icon={locationOutline} className="empty-icon" />
+                  <p className="empty-text">No saved places yet</p>
+                  <p className="empty-subtext">Add your favorite locations for quick access</p>
+                </div>
+              ) : (
+                savedPlaces.map((place) => (
+                  <div
+                    key={place.id}
+                    className="saved-place-card"
+                    onClick={() => handleEditPlace(place)}
+                  >
+                    <div className="saved-place-icon">
+                      <IonIcon icon={locationOutline} />
+                    </div>
+                    <div className="saved-place-content">
+                      <div className="saved-place-title">{place.title}</div>
+                      <div className="saved-place-address">{place.address}</div>
+                      {place.notes && place.notes !== "Notes: My home" && (
+                        <div className="saved-place-notes">{place.notes}</div>
+                      )}
+                    </div>
+                    <IonIcon icon={chevronForwardOutline} className="card-chevron" />
+                  </div>
+                ))
+              )}
+            </div>
           </div>
         </div>
 

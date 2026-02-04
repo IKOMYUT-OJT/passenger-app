@@ -40,25 +40,31 @@
 /* Bus Animation */
 .bus-animation {
   position: absolute;
-  right: -550px;
+  left: -550px;
   top: 50%;
-  transform: translateY(-50%) scaleX(-1);
   z-index: 10;
   animation: busMovement 3.5s ease-in-out forwards;
+  width: 500px;
+  height: auto;
 }
 
 .bus-animation img {
-  width: 500px;
+  width: 100%;
   height: auto;
   display: block;
+  transform: none !important;
+  max-width: none !important;
+  min-width: 500px;
 }
 
 @keyframes busMovement {
   0% {
-    right: -550px;
+    left: -550px;
+    transform: translateY(-50%);
   }
   100% {
-    right: calc(100% + 550px);
+    left: calc(100% + 550px);
+    transform: translateY(-50%);
   }
 }
 
@@ -70,12 +76,15 @@
   justify-content: center;
   margin-bottom: 0.5rem;
   transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
-  position: relative;
+  position: absolute;
+  top: 38%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   z-index: 15;
 }
 
 .welcome-logo img {
-  width: 100px;
+  width: 40px;
   max-width: 90%;
   height: auto;
   display: block;
@@ -85,20 +94,26 @@
 @keyframes logoDropDown {
   0% {
     opacity: 0;
-    transform: translateY(-500px);
+    transform: translate(-50%, -550px);
   }
-  60% {
+  50% {
     opacity: 1;
-    transform: translateY(20px);
   }
-  80% {
-    transform: translateY(-10px);
+  70% {
+    transform: translate(-50%, calc(-50% + 15px));
+  }
+  85% {
+    transform: translate(-50%, calc(-50% - 8px));
+  }
+  95% {
+    transform: translate(-50%, calc(-50% + 3px));
   }
   100% {
     opacity: 1;
-    transform: translateY(0);
+    transform: translate(-50%, -50%);
   }
 }
+
 
 /* Text Animation - same line as bus, revealed as bus passes */
 .welcome-text {
@@ -117,19 +132,19 @@
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 5;
-  animation: moveTextDown 0.5s ease-out 2.5s forwards;
+  animation: moveTextDown 0.3s cubic-bezier(0.4, 0, 0.2, 1) 2.5s forwards;
 }
 
 @keyframes moveTextDown {
   0% {
     top: 50%;
     transform: translate(-50%, -50%);
-    font-size: 2.5rem;
+    opacity: 1;
   }
   100% {
-    top: 70%;
+    top: 55%;
     transform: translate(-50%, -50%);
-    font-size: 1.8rem;
+    opacity: 1;
   }
 }
 
@@ -142,16 +157,16 @@
   color: #ff0000;
 }
 
-/* Letters appear one by one as bus passes (right to left) - synchronized with bus movement */
-.letter-9 { animation: letterAppear 0.15s ease-out 1.0s forwards; }
-.letter-8 { animation: letterAppear 0.15s ease-out 1.1s forwards; }
-.letter-7 { animation: letterAppear 0.15s ease-out 1.2s forwards; }
-.letter-6 { animation: letterAppear 0.15s ease-out 1.3s forwards; }
+/* Letters appear one by one as bus passes (left to right) - synchronized with bus movement */
+.letter-1 { animation: letterAppear 0.15s ease-out 1.0s forwards; }
+.letter-2 { animation: letterAppear 0.15s ease-out 1.1s forwards; }
+.letter-3 { animation: letterAppear 0.15s ease-out 1.2s forwards; }
+.letter-4 { animation: letterAppear 0.15s ease-out 1.3s forwards; }
 .letter-5 { animation: letterAppear 0.15s ease-out 1.4s forwards; }
-.letter-4 { animation: letterAppear 0.15s ease-out 1.5s forwards; }
-.letter-3 { animation: letterAppear 0.15s ease-out 1.6s forwards; }
-.letter-2 { animation: letterAppear 0.15s ease-out 1.7s forwards; }
-.letter-1 { animation: letterAppear 0.15s ease-out 1.8s forwards; }
+.letter-6 { animation: letterAppear 0.15s ease-out 1.5s forwards; }
+.letter-7 { animation: letterAppear 0.15s ease-out 1.6s forwards; }
+.letter-8 { animation: letterAppear 0.15s ease-out 1.7s forwards; }
+.letter-9 { animation: letterAppear 0.15s ease-out 1.8s forwards; }
 
 @keyframes letterAppear {
   0% {

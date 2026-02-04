@@ -1,11 +1,6 @@
 import { useMemo, useRef, useState } from "react";
 import {
   IonPage,
-  IonHeader,
-  IonToolbar,
-  IonTitle,
-  IonButtons,
-  IonBackButton,
   IonContent,
   IonIcon,
   IonButton,
@@ -19,6 +14,7 @@ import {
   eyeOutline,
   arrowDownOutline,
 } from "ionicons/icons";
+import { PageHeader } from "../components/common";
 import "../styles/WalletPage.css";
 
 type Tab = "all" | "recharge" | "withdrawal";
@@ -79,6 +75,7 @@ function makeId() {
 
 const WalletPage: React.FC = () => {
   const [tab, setTab] = useState<Tab>("all");
+  const [seeAll, setSeeAll] = useState<boolean>(false);
 
   const [balance, setBalance] = useState<number>(100000);
   const [showBalance, setShowBalance] = useState<boolean>(true);
@@ -226,20 +223,18 @@ const WalletPage: React.FC = () => {
 
   return (
     <IonPage>
-      <IonHeader className="wallet-header">
-        <IonToolbar className="wallet-toolbar ion-no-border">
-          <IonButtons slot="start">
-            <IonBackButton text="" defaultHref="/tabs/profilepage" />
-          </IonButtons>
-          <IonTitle className="wallet-title">Wallet Balance</IonTitle>
-        </IonToolbar>
-      </IonHeader>
+      <PageHeader 
+        title={seeAll ? "My Transaction" : "Wallet Balance"} 
+        defaultHref={seeAll ? undefined : "/tabs/profilepage"}
+        onBack={seeAll ? () => setSeeAll(false) : undefined}
+      />
 
       <IonContent className="wallet-content">
         <div className="wallet-shell">
           {/* Balance Card */}
-          <div className="balance-card-v2">
-            <div className="balance-top">
+          {!seeAll && (
+            <div className="balance-card-v2">
+              <div className="balance-top">
               <div className="balance-top-left">
                 <div className="balance-label-v2">Wallet Balance</div>
 
@@ -277,8 +272,14 @@ const WalletPage: React.FC = () => {
               </button>
             </div>
           </div>
+          )}
 
-          <div className="th-title">Transaction History</div>
+          {!seeAll && (
+          <div className="th-header">
+            <div className="th-title">Transaction History</div>
+            <button className="see-all-btn" onClick={() => setSeeAll(true)}>See All</button>
+          </div>
+          )}
 
           <div className="pill-row">
             <button
@@ -410,20 +411,19 @@ const WalletPage: React.FC = () => {
           className="success-modal"
         >
           <div className="recharge-success">
-            <div className="success-title">Recharge Success</div>
-
             <div className="success-badge">
-              <div className="success-ring">
-                <div className="success-dot">
-                  <IonIcon icon={checkmarkOutline} />
-                </div>
+              <div className="success-checkmark-circle">
+                <svg className="success-checkmark" viewBox="0 0 52 52">
+                  <circle className="success-checkmark-circle-anim" cx="26" cy="26" r="25" fill="none"/>
+                  <path className="success-checkmark-check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+                </svg>
               </div>
             </div>
 
             <div className="success-text">
-              <div className="success-main">Recharge Submitted</div>
+              <div className="success-main">Recharge Successful</div>
               <div className="success-sub">
-                It will update to successful in a moment.
+                Your wallet has been successfully recharged.
               </div>
             </div>
 
@@ -524,20 +524,19 @@ const WalletPage: React.FC = () => {
           className="success-modal"
         >
           <div className="recharge-success">
-            <div className="success-title">Withdrawal Success</div>
-
             <div className="success-badge">
-              <div className="success-ring">
-                <div className="success-dot">
-                  <IonIcon icon={checkmarkOutline} />
-                </div>
+              <div className="success-checkmark-circle">
+                <svg className="success-checkmark" viewBox="0 0 52 52">
+                  <circle className="success-checkmark-circle-anim" cx="26" cy="26" r="25" fill="none"/>
+                  <path className="success-checkmark-check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+                </svg>
               </div>
             </div>
 
             <div className="success-text">
-              <div className="success-main">Withdrawal Submitted</div>
+              <div className="success-main">Withdrawal Successful</div>
               <div className="success-sub">
-                It will update to successful in a moment.
+                Your withdrawal has been successfully processed.
               </div>
             </div>
 

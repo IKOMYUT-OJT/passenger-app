@@ -1,11 +1,6 @@
 import { useEffect, useState } from "react";
 import {
   IonPage,
-  IonHeader,
-  IonToolbar,
-  IonTitle,
-  IonButtons,
-  IonBackButton,
   IonContent,
   IonList,
   IonItem,
@@ -20,7 +15,6 @@ import {
   notificationsOutline,
   shieldCheckmarkOutline,
   lockClosedOutline,
-  personOutline,
   helpCircleOutline,
   informationCircleOutline,
   chevronForwardOutline,
@@ -29,51 +23,32 @@ import {
 } from "ionicons/icons";
 
 import { useIonRouter } from "@ionic/react";
+import { PageHeader } from "../components/common";
+import { useProfileImage } from "../hooks";
 import "../styles/SettingsPage.css";
 
 const SettingsPage: React.FC = () => {
   const ionRouter = useIonRouter();
-  const [profileImage, setProfileImage] = useState(() => {
-    return localStorage.getItem("profileImage") || "flogo1.png";
-  });
+  const { profileImage } = useProfileImage("flogo1.png");
   const [darkMode, setDarkMode] = useState(() => {
     return localStorage.getItem("darkMode") === "true";
   });
 
   useEffect(() => {
-    const handleProfileImageUpdate = () => {
-      const updatedImage = localStorage.getItem("profileImage") || "flogo1.png";
-      setProfileImage(updatedImage);
-    };
-
-    window.addEventListener("profileImageUpdated", handleProfileImageUpdate);
-    return () => {
-      window.removeEventListener("profileImageUpdated", handleProfileImageUpdate);
-    };
-  }, []);
-
-  useEffect(() => {
-    document.body.classList.toggle("dark", darkMode);
+    document.documentElement.classList.toggle("ion-palette-dark", darkMode);
   }, [darkMode]);
 
   const handleDarkModeToggle = (checked: boolean) => {
     setDarkMode(checked);
     localStorage.setItem("darkMode", checked.toString());
-    document.body.classList.toggle("dark", checked);
+    document.documentElement.classList.toggle("ion-palette-dark", checked);
   };
 
   return (
     <IonPage>
-      <IonHeader className="settings-header">
-        <IonToolbar className="settings-toolbar">
-          <IonButtons slot="start">
-            <IonBackButton text="" defaultHref="/tabs/profilepage" />
-          </IonButtons>
-          <IonTitle className="settings-title">Settings</IonTitle>
-        </IonToolbar>
-      </IonHeader>
+      <PageHeader title="Settings" defaultHref="/tabs/profilepage" />
 
-      <IonContent fullscreen scrollY={true} className="settings-content">
+      <IonContent fullscreen scrollY={true} className="page-content">
         <IonItem
           lines="none"
           button

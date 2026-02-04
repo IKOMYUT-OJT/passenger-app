@@ -9,9 +9,11 @@
   --ion-border-color: #e8e8e8;
   --ion-label-color: #000000;
   --ion-secondary-text-color: #8c8c8c;
+  --app-background: #ffffff;
+  --app-text-dark: #000;
 }
 
-body.dark {
+.ion-palette-dark {
   --ion-background-color: #121212;
   --ion-text-color: #ffffff;
   --ion-card-background: #1e1e1e;
@@ -20,34 +22,36 @@ body.dark {
   --ion-border-color: #2c2c2c;
   --ion-label-color: #ffffff;
   --ion-secondary-text-color: #b0b0b0;
+  --app-background: #121212;
+  --app-text-dark: #ffffff;
 }
 
-body.dark ion-content {
+.ion-palette-dark ion-content {
   --background: #121212;
 }
 
-body.dark ion-header {
+.ion-palette-dark ion-header {
   --background: #1e1e1e;
 }
 
-body.dark ion-toolbar {
+.ion-palette-dark ion-toolbar {
   --background: #1e1e1e;
   --color: #ffffff;
 }
 
-body.dark ion-title {
+.ion-palette-dark ion-title {
   color: #ffffff;
 }
 
-body.dark ion-back-button {
+.ion-palette-dark ion-back-button {
   --color: #ffffff;
 }
 
-body.dark .profile-header-bar,
-body.dark .settings-header,
-body.dark .notification-header,
-body.dark .address-header,
-body.dark .privacy-header,
+.ion-palette-dark .profile-header-bar,
+.ion-palette-dark .settings-header,
+.ion-palette-dark .notification-header,
+.ion-palette-dark .address-header,
+.ion-palette-dark .privacy-header,
 body.dark .security-header,
 body.dark .help-header,
 body.dark .deletion-header,

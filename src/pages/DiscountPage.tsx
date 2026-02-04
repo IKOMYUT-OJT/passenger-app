@@ -1,11 +1,6 @@
 import { useRef, useState } from "react";
 import {
   IonPage,
-  IonHeader,
-  IonToolbar,
-  IonTitle,
-  IonButtons,
-  IonBackButton,
   IonContent,
   IonItem,
   IonInput,
@@ -18,6 +13,7 @@ import {
 } from "@ionic/react";
 import { closeOutline, schoolOutline, accessibilityOutline, peopleOutline, chevronDownOutline } from "ionicons/icons";
 import { useIonRouter } from "@ionic/react";
+import { PageHeader } from "../components/common";
 import "../styles/DiscountPage.css";
 
 const DiscountPage: React.FC = () => {
@@ -31,6 +27,8 @@ const DiscountPage: React.FC = () => {
 
   const [selectedFileName, setSelectedFileName] = useState<string>("");
   const [showModal, setShowModal] = useState(false);
+  const [isReviewing, setIsReviewing] = useState(false);
+  const [isApproved, setIsApproved] = useState(false);
 
   const openFilePicker = () => fileRef.current?.click();
 
@@ -67,23 +65,82 @@ const DiscountPage: React.FC = () => {
       return;
     }
 
-    alert("Discount request submitted!");
+    // Show reviewing screen
+    setIsReviewing(true);
+    
+    // Simulate ID review process (3 seconds)
+    setTimeout(() => {
+      setIsReviewing(false);
+      setIsApproved(true);
+    }, 3000);
+  };
+
+  const handleApprovalDone = () => {
+    setIsApproved(false);
     ionRouter.push("/tabs/profilepage", "back");
   };
 
   return (
     <IonPage>
-      <IonHeader className="discount-header">
-        <IonToolbar>
-          <IonButtons slot="start">
-            <IonBackButton text="" defaultHref="/tabs/profilepage" />
-          </IonButtons>
-          <IonTitle className="discount-title">Apply for Discount</IonTitle>
-        </IonToolbar>
-      </IonHeader>
+      <PageHeader title="Apply for Discount" backTo="/tabs/profilepage" />
 
       <IonContent fullscreen scrollY={true} className="discount-content">
-        <div className="discount-form">
+        {isReviewing ? (
+          // Reviewing ID Screen
+          <div className="discount-review-screen">
+            <div className="discount-review-animation">
+              <div className="discount-checkmark-circle">
+                <svg className="discount-checkmark" viewBox="0 0 52 52">
+                  <circle className="discount-checkmark-circle-anim" cx="26" cy="26" r="25" fill="none"/>
+                  <path className="discount-checkmark-check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+                </svg>
+              </div>
+            </div>
+            <h2 className="discount-review-title">Reviewing your ID</h2>
+            <p className="discount-review-text">We are verifying your ID, please sit back as it will take up 24 hours for your request to be registered.</p>
+          </div>
+        ) : isApproved ? (
+          // Discount Approved Screen
+          <div className="discount-approved-screen">
+            <div className="discount-approved-card">
+              <div className="discount-approved-header">
+                <svg className="discount-approved-checkmark" viewBox="0 0 52 52">
+                  <circle cx="26" cy="26" r="25" fill="#fff"/>
+                  <path fill="none" stroke="#008000" strokeWidth="3" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+                </svg>
+                <h3>Discount Approved!</h3>
+                <p>Congratulations! Your discount request has been approved.</p>
+              </div>
+            </div>
+            
+            <div className="discount-approved-badge">
+              {idType === "Student" && (
+                <>
+                  <IonIcon icon={schoolOutline} className="discount-badge-icon" />
+                  <span className="discount-badge-label">STUDENT</span>
+                </>
+              )}
+              {idType === "PWD" && (
+                <>
+                  <IonIcon icon={accessibilityOutline} className="discount-badge-icon" />
+                  <span className="discount-badge-label">PWD</span>
+                </>
+              )}
+              {idType === "Senior Citizen" && (
+                <>
+                  <IonIcon icon={peopleOutline} className="discount-badge-icon" />
+                  <span className="discount-badge-label">SENIOR CITIZEN</span>
+                </>
+              )}
+            </div>
+
+            <IonButton expand="block" className="discount-done-btn" onClick={handleApprovalDone}>
+              Done
+            </IonButton>
+          </div>
+        ) : (
+          // Application Form
+          <div className="discount-form">
           <IonItem lines="none" className="discount-input">
             <IonInput
               placeholder="Full Name"
@@ -157,6 +214,7 @@ const DiscountPage: React.FC = () => {
             Apply
           </IonButton>
         </div>
+        )}
 
         <IonModal
           isOpen={showModal}

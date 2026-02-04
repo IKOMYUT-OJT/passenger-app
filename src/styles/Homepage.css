@@ -25,7 +25,7 @@
   left: 0;
   right: 0;
   height: calc(80px + env(safe-area-inset-top));
-  background: #ffffff;
+  background: transparent;
   z-index: 40;
   pointer-events: none;
   transition: opacity 0.3s ease;

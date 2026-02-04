@@ -6,8 +6,8 @@ import {
   IonPage,
   IonButton,
 } from "@ionic/react";
-import { lockClosed, chevronUpOutline, notifications } from "ionicons/icons";
-import { useEffect } from "react";
+import { chevronUpOutline, notifications } from "ionicons/icons";
+import { useEffect, useState } from "react";
 import { MapContainer, TileLayer, useMap } from "react-leaflet";
 import { useIonRouter } from "@ionic/react";
 import "leaflet/dist/leaflet.css";
@@ -21,15 +21,23 @@ L.Icon.Default.mergeOptions({
   shadowUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png",
 });
 
-function MapResizer() {
+function MapResizer({ onZoomStart, onZoomEnd }: { onZoomStart: () => void; onZoomEnd: () => void }) {
   const map = useMap();
 
   useEffect(() => {
     const t = setTimeout(() => {
       map.invalidateSize();
     }, 250);
-    return () => clearTimeout(t);
-  }, [map]);
+
+    map.on('zoomstart', onZoomStart);
+    map.on('zoomend', onZoomEnd);
+
+    return () => {
+      clearTimeout(t);
+      map.off('zoomstart', onZoomStart);
+      map.off('zoomend', onZoomEnd);
+    };
+  }, [map, onZoomStart, onZoomEnd]);
 
   return null;
 }
@@ -37,6 +45,7 @@ function MapResizer() {
 const Homepage: React.FC = () => {
   const center: [number, number] = [14.5995, 120.9842];
   const ionRouter = useIonRouter();
+  const [isZooming, setIsZooming] = useState(false);
 
   const openNearby = () => {
     window.dispatchEvent(new Event("open-nearby"));
@@ -44,6 +53,14 @@ const Homepage: React.FC = () => {
 
   const goToNotifications = () => {
     ionRouter.push("/notifications");
+  };
+
+  const handleZoomStart = () => {
+    setIsZooming(true);
+  };
+
+  const handleZoomEnd = () => {
+    setTimeout(() => setIsZooming(false), 300);
   };
 
   return (
@@ -56,7 +73,7 @@ const Homepage: React.FC = () => {
             zoomControl={false}
             className="leaflet-map"
           >
-            <MapResizer />
+            <MapResizer onZoomStart={handleZoomStart} onZoomEnd={handleZoomEnd} />
            <TileLayer
              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
              attribution="&copy; OpenStreetMap contributors"
@@ -64,11 +81,7 @@ const Homepage: React.FC = () => {
           </MapContainer>
         </div>
 
-        <IonFab slot="fixed" vertical="top" horizontal="start" className="logo-fab">
-          <div className="logo-fab-btn">
-            <img src="./logoicon.png" alt="Logo" className="top-logo" />
-          </div>
-        </IonFab>
+        <div className={`status-bar-overlay ${isZooming ? 'transparent' : ''}`} />
 
         <IonFab slot="fixed" vertical="top" horizontal="end" className="top-fab">
           <IonFabButton className="top-fab-btn" onClick={goToNotifications}>

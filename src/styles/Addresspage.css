@@ -28,82 +28,91 @@
   padding-left: 0;
 }
 
-.address-content {
-  --background: #ffffff;
-  --padding-top: 16px;
-  --padding-bottom: 20px;
-  --padding-start: 16px;
-  --padding-end: 16px;
+.address-page-content {
+  --background: #f8f8f8;
+}
+
+.address-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.section-icon {
+  font-size: 20px;
+  color: #008000;
 }
 
 .section-label {
   font-family: "Poppins", sans-serif;
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 600;
   color: #000000;
-  margin: 0 0 12px 0;
+  margin: 0;
+  flex: 1;
 }
 
 .current-address-section {
-  margin-bottom: 24px;
+  margin-bottom: 32px;
 }
 
 .current-address-card {
-  background: #008000;
+  background: #ffffff;
   border-radius: 12px;
   padding: 16px;
   display: flex;
   align-items: center;
   gap: 12px;
   cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  transition: transform 0.2s;
 }
 
-.current-address-icon {
-  flex-shrink: 0;
+.current-address-card:active {
+  transform: scale(0.98);
 }
 
-.current-address-icon ion-icon {
-  font-size: 24px;
-  color: #ffffff;
+.current-address-content {
+  flex: 1;
 }
 
 .current-address-text {
-  flex: 1;
   font-family: "Poppins", sans-serif;
   font-size: 14px;
-  color: #ffffff;
-  line-height: 1.4;
+  color: #333333;
+  line-height: 1.5;
 }
 
-.current-address-arrow {
-  flex-shrink: 0;
-}
-
-.current-address-arrow ion-icon {
+.card-chevron {
   font-size: 20px;
-  color: #ffffff;
+  color: #cccccc;
+  flex-shrink: 0;
 }
 
 .saved-places-section {
   margin-bottom: 20px;
 }
 
-.saved-places-header {
+.add-place-btn {
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin-left: auto;
+  cursor: pointer;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  margin-bottom: 12px;
-}
-
-.add-place-btn {
-  --padding-start: 0;
-  --padding-end: 0;
-  margin: 0;
-  height: 32px;
+  justify-content: center;
 }
 
 .add-place-btn ion-icon {
-  font-size: 28px;
+  font-size: 32px;
   color: #008000;
 }
 
@@ -113,16 +122,70 @@
   gap: 12px;
 }
 
-.saved-place-card {
-  background: #e8f5e8;
+.empty-state {
+  text-align: center;
+  padding: 48px 24px;
+  background: #ffffff;
   border-radius: 12px;
-  padding: 14px 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.empty-icon {
+  font-size: 64px;
+  color: #d0d0d0;
+  margin-bottom: 16px;
+}
+
+.empty-text {
+  font-family: "Poppins", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: #666666;
+  margin: 0 0 8px 0;
+}
+
+.empty-subtext {
+  font-family: "Poppins", sans-serif;
+  font-size: 13px;
+  color: #999999;
+  margin: 0;
+}
+
+.saved-place-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
   cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
   transition: transform 0.2s;
 }
 
 .saved-place-card:active {
   transform: scale(0.98);
+}
+
+.saved-place-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: #e8f5e9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.saved-place-icon ion-icon {
+  font-size: 22px;
+  color: #008000;
+}
+
+.saved-place-content {
+  flex: 1;
+  min-width: 0;
 }
 
 .saved-place-title {
@@ -136,14 +199,20 @@
 .saved-place-address {
   font-family: "Poppins", sans-serif;
   font-size: 13px;
-  color: #333333;
+  color: #666666;
   margin-bottom: 2px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .saved-place-notes {
   font-family: "Poppins", sans-serif;
   font-size: 12px;
-  color: #666666;
+  color: #999999;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .map-modal {

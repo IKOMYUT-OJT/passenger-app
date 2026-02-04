@@ -121,3 +121,182 @@ ion-toolbar ion-title {
   font-family: "Poppins", sans-serif;
   font-weight: 600;
 }
+
+/* Reviewing ID Screen */
+.discount-review-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: calc(100vh - 120px);
+  padding: 0 32px;
+  text-align: center;
+}
+
+.discount-review-animation {
+  margin-bottom: 32px;
+}
+
+.discount-checkmark-circle {
+  width: 120px;
+  height: 120px;
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.discount-checkmark {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  display: block;
+  stroke-width: 3;
+  stroke: #fff;
+  stroke-miterlimit: 10;
+  box-shadow: inset 0px 0px 0px #008000;
+  animation: fill-green .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both;
+}
+
+.discount-checkmark-circle-anim {
+  stroke-dasharray: 166;
+  stroke-dashoffset: 166;
+  stroke-width: 3;
+  stroke-miterlimit: 10;
+  stroke: #008000;
+  fill: #D1F4D1;
+  animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+}
+
+.discount-checkmark-check {
+  transform-origin: 50% 50%;
+  stroke-dasharray: 48;
+  stroke-dashoffset: 48;
+  stroke: #008000;
+  stroke-width: 3;
+  animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+}
+
+@keyframes stroke {
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes scale {
+  0%, 100% {
+    transform: none;
+  }
+  50% {
+    transform: scale3d(1.1, 1.1, 1);
+  }
+}
+
+@keyframes fill-green {
+  100% {
+    box-shadow: inset 0px 0px 0px 60px #008000;
+  }
+}
+
+.discount-review-title {
+  font-family: "Poppins", sans-serif;
+  font-size: 24px;
+  font-weight: 600;
+  color: #000;
+  margin: 0 0 12px 0;
+}
+
+.discount-review-text {
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  color: #666;
+  line-height: 1.5;
+  margin: 0;
+  max-width: 320px;
+}
+
+/* Discount Approved Screen */
+.discount-approved-screen {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: calc(100vh - 120px);
+}
+
+.discount-approved-card {
+  background: #008000;
+  border-radius: 16px;
+  padding: 32px 24px;
+  width: 100%;
+  max-width: 360px;
+  margin-bottom: 24px;
+}
+
+.discount-approved-header {
+  text-align: center;
+  color: white;
+}
+
+.discount-approved-checkmark {
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 16px;
+  display: block;
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.discount-approved-header h3 {
+  font-family: "Poppins", sans-serif;
+  font-size: 22px;
+  font-weight: 600;
+  margin: 0 0 8px 0;
+}
+
+.discount-approved-header p {
+  font-family: "Poppins", sans-serif;
+  font-size: 13px;
+  margin: 0;
+  opacity: 0.95;
+  line-height: 1.4;
+}
+
+.discount-approved-badge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 360px;
+  padding: 24px;
+  margin-bottom: auto;
+}
+
+.discount-badge-icon {
+  font-size: 64px;
+  color: #008000;
+  background: #D1F4D1;
+  border-radius: 50%;
+  padding: 20px;
+  margin-bottom: 12px;
+}
+
+.discount-badge-label {
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: #008000;
+  letter-spacing: 0.5px;
+}
+
+.discount-done-btn {
+  --background: #008000;
+  --background-activated: #006600;
+  width: 100%;
+  max-width: 360px;
+  height: 52px;
+  border-radius: 14px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  margin-top: 16px;
+}
