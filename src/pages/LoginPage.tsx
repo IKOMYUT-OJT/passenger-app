@@ -73,7 +73,7 @@ const LoginPage: React.FC = () => {
         {error && (
           <IonText color="danger" className="form-error">
             {error}
-          </IonText>
+          </IonText> 
         )}
 
         <IonButton expand="block" className="app-button-primary mt-20" onClick={handleLogin}>

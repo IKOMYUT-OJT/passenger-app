@@ -19,9 +19,7 @@ export const LoadingProvider: React.FC<{ children: React.ReactNode }> = ({ child
   const [message, setMessage] = useState("Loading...");
   const location = useLocation();
 
-  // Show loading on route change (except for welcome page)
   useEffect(() => {
-    // Skip loading for welcome page
     if (location.pathname === "/welcome" || location.pathname === "/") {
       return;
     }
