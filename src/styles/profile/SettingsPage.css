@@ -66,7 +66,7 @@
 .settings-profile-item {
   margin: 18px auto 8px auto;
   border-radius: 14px;
-  margin-top: 30px;
+  margin-top: 6px;
   margin-bottom: 20px;
   max-width: 700px;
   width: calc(100% - 32px);
@@ -160,8 +160,8 @@
   font-size: 14px;
   color: #8c8c8c;
   text-align: center;
-  margin-top: 40px;
-  margin-bottom: 20px;
+  margin-top: 170px;
+  margin-bottom: 0px;
 }
 
 .ion-palette-dark .settings-header {
@@ -421,7 +421,6 @@ body.ion-palette-dark .ion-page[data-page="settings"] .page-title {
   color: #ffffff !important;
 }
 
-/* Kill Ionic hairline borders + cover safe area top strip */
 .ion-palette-dark .ion-page[data-page="settings"] {
   background: #121212 !important;
   background-color: #121212 !important;

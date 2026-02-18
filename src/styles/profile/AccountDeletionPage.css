@@ -267,7 +267,6 @@ ion-modal.deletion-modal::part(content) {
   color: #e0e0e0 !important;
 }
 
-/* Strong dark-mode text enforcement (fixes cases where text stays dark) */
 html.ion-palette-dark .deletion-container,
 body.ion-palette-dark .deletion-container,
 .ion-palette-dark .deletion-container {
@@ -295,7 +294,6 @@ body.ion-palette-dark .deletion-subtitle,
   color: var(--ion-secondary-text-color) !important;
 }
 
-/* Modal dark mode - comprehensive styling */
 html.ion-palette-dark ion-modal.deletion-modal,
 body.ion-palette-dark ion-modal.deletion-modal,
 .ion-palette-dark ion-modal.deletion-modal,
@@ -340,7 +338,6 @@ body.ion-palette-dark .deletion-modal-content p,
   color: #ff6b6b !important;
 }
 
-/* Ensure all modal buttons stay readable in dark mode */
 html.ion-palette-dark .deletion-modal-buttons ion-button,
 body.ion-palette-dark .deletion-modal-buttons ion-button,
 .ion-palette-dark .deletion-modal-buttons ion-button {

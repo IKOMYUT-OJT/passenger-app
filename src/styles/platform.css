@@ -16,10 +16,6 @@
 }
 
 .platform-ios .floating-input-item {
-  border-radius: 15px;
-  border-width: 1.5px;
-  border-style: solid;
-  border-color: #000000;
   -webkit-appearance: none;
   appearance: none;
 }
@@ -32,7 +28,6 @@
   padding-top: calc(env(safe-area-inset-top) + 10px);
 }
 
-/* Keep custom headers aligned with `.page-header` on notched iOS devices */
 .platform-ios.has-notch .privacy-header,
 .platform-ios.has-notch .security-header,
 .platform-ios.has-notch .help-header,
@@ -72,10 +67,6 @@
 }
 
 .platform-android .floating-input-item {
-  border-radius: 15px;
-  border-width: 1.5px;
-  border-style: solid;
-  border-color: #000000;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
@@ -89,12 +80,7 @@
   --keyboard-offset: 0px;
 }
 
-.platform-web .floating-input-item {
-  border-radius: 15px;
-  border-width: 1.5px;
-  border-style: solid;
-  border-color: #000000;
-}
+
 
 .platform-web .qr-button {
   cursor: pointer;

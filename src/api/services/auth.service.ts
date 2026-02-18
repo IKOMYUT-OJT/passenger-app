@@ -1,8 +1,3 @@
-/**
- * Authentication Service
- * Handles all authentication-related API calls
- */
-
 import { apiClient } from '../client';
 import { API_ENDPOINTS } from '../../config/api.config';
 import { APP_CONFIG } from '../../config/app.config';

@@ -1,4 +1,3 @@
-/* Address page header styling */
 .ion-page[data-page="address"] .page-header,
 .address-header {
   transform: none;
@@ -407,7 +406,6 @@
 }
 
 
-/* Dark mode for address page header - ULTRA AGGRESSIVE FIX */
 html.ion-palette-dark .ion-page[data-page="address"],
 body.ion-palette-dark .ion-page[data-page="address"],
 .ion-palette-dark .ion-page[data-page="address"] {
@@ -469,7 +467,6 @@ body.ion-palette-dark .ion-page[data-page="address"] .page-toolbar,
   --padding-bottom: 0 !important;
 }
 
-/* Remove ALL pseudo-elements that could create white lines */
 html.ion-palette-dark .ion-page[data-page="address"] ion-header::before,
 html.ion-palette-dark .ion-page[data-page="address"] ion-header::after,
 body.ion-palette-dark .ion-page[data-page="address"] ion-header::before,
@@ -513,7 +510,6 @@ body.ion-palette-dark .ion-page[data-page="address"] .page-toolbar::after,
   position: absolute !important;
 }
 
-/* Target shadow DOM parts */
 .ion-palette-dark .ion-page[data-page="address"] ion-header::part(native),
 .ion-palette-dark .ion-page[data-page="address"] ion-toolbar::part(native) {
   background: #121212 !important;
@@ -521,13 +517,11 @@ body.ion-palette-dark .ion-page[data-page="address"] .page-toolbar::after,
   box-shadow: none !important;
 }
 
-/* Completely override any hairline borders */
 .ion-palette-dark .ion-page[data-page="address"] ion-header .header-md::after,
 .ion-palette-dark .ion-page[data-page="address"] ion-header .header-ios::after,
 .ion-palette-dark .ion-page[data-page="address"] ion-toolbar .toolbar-md::after,
 .ion-palette-dark .ion-page[data-page="address"] ion-toolbar .toolbar-ios::after {\n  display: none !important;\n  opacity: 0 !important;\n  height: 0 !important;\n  background: transparent !important;\n}
 
-/* Remove Ionic's built-in hairline border */
 .ion-palette-dark .ion-page[data-page="address"] .header-md::after,
 .ion-palette-dark .ion-page[data-page="address"] .header-ios::after,
 .ion-palette-dark .ion-page[data-page="address"] .toolbar-md::after,
@@ -553,7 +547,6 @@ body.ion-palette-dark .ion-page[data-page="address"] .page-toolbar::after,
   color: #ffffff !important;
 }
 
-/* Ensure no white lines anywhere in dark mode */
 .ion-palette-dark .ion-page[data-page="address"] ion-header,
 .ion-palette-dark .ion-page[data-page="address"] ion-toolbar,
 .ion-palette-dark .ion-page[data-page="address"] ion-content {
@@ -570,7 +563,6 @@ body.ion-palette-dark .ion-page[data-page="address"] .page-toolbar::after,
   box-shadow: none !important;
 }
 
-/* Cover the safe area with dark background */
 .ion-palette-dark .ion-page[data-page="address"]::before {
   content: "" !important;
   position: fixed !important;
@@ -599,7 +591,6 @@ body.ion-palette-dark .ion-page[data-page="address"] .page-toolbar::after,
   background: #121212 !important;
 }
 
-/* Nuclear option: Add a dark overlay to cover any potential white line */
 .ion-palette-dark .ion-page[data-page="address"] ion-header::after {
   content: "" !important;
   position: absolute !important;

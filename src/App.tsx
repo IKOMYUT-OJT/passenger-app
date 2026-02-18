@@ -64,7 +64,6 @@ import "./styles/base.css";
 import "./styles/responsive.css";
 import "./styles/platform.css";
 import "./theme/tabs.css";
-import "./theme/sheet.css";
 import "./theme/qr-scanner.css";
 
 setupIonicReact({

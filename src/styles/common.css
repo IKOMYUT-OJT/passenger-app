@@ -460,7 +460,6 @@ body .page-header .page-toolbar::after {
   border: none !important;
 }
 
-/* In dark mode, remove any remaining Ionic toolbar separators/lines */
 .ion-palette-dark ion-header ion-toolbar::before,
 .ion-palette-dark ion-header ion-toolbar::after {
   display: none !important;
@@ -469,7 +468,6 @@ body .page-header .page-toolbar::after {
   border: 0 !important;
 }
 
-/* Comprehensive dark mode header cleanup - disable all possible borders/shadows */
 .ion-palette-dark ion-header,
 .ion-palette-dark .page-header,
 .ion-palette-dark .settings-header {
@@ -522,7 +520,6 @@ body.ion-palette-dark .settings-header * {
   border-bottom: 0 !important;
 }
 
-/* Force remove all pseudo-elements on headers in dark mode */
 .ion-palette-dark ion-header *::before,
 .ion-palette-dark ion-header *::after,
 .ion-palette-dark .page-header *::before,
@@ -569,7 +566,6 @@ body.ion-palette-dark .settings-header *::after {
   padding-bottom: 0 !important;
 }
 
-/* Apply to ion-header globally in dark mode */
 html.ion-palette-dark ion-header,
 body.ion-palette-dark ion-header,
 .ion-palette-dark ion-header {
@@ -598,7 +594,6 @@ body.ion-palette-dark ion-header,
   width: 0 !important;
 }
 
-/* Avoid the extra dark band below headers in dark mode */
 html.ion-palette-dark ion-header::after,
 body.ion-palette-dark ion-header::after,
 .ion-palette-dark ion-header::after {
@@ -641,7 +636,6 @@ body.ion-palette-dark ion-header::after,
   color: #ffffff !important;
 }
 
-/* Global ion-content dark mode styling */
 html.ion-palette-dark ion-content,
 body.ion-palette-dark ion-content,
 .ion-palette-dark ion-content {
@@ -669,7 +663,7 @@ body.ion-palette-dark ion-content,
 }
 
 .ion-palette-dark .floating-input-item {
-  background: #1e1e1e;
+  background: transparent;
   border-color: #444444;
 }
 
@@ -683,7 +677,7 @@ body.ion-palette-dark ion-content,
 
 .ion-palette-dark .floating-input-item.has-value .floating-label {
   color: #ffffff;
-  background: #1e1e1e;
+  background: transparent;
 }
 
 .ion-palette-dark .password-toggle-icon {
@@ -694,7 +688,6 @@ body.ion-palette-dark ion-content,
   color: #ffffff !important;
 }
 
-/* Ensure auth/login inputs stay light even when dark mode is on */
 .ion-palette-dark .auth-force-light .floating-input-item {
   background: #ffffff !important;
   border-color: #000000 !important;
@@ -726,7 +719,6 @@ body.ion-palette-dark ion-content,
   color: #ffffff !important;
 }
 
-/* Force light mode overrides for auth pages */
 html:has(.auth-force-light-page) {
   background: #ffffff !important;
 }
@@ -916,7 +908,6 @@ ion-page.auth-force-light-page {
   color: #666666 !important;
 }
 
-/* Override ion-app and router background when auth page is present */
 .ion-palette-dark ion-app:has(.auth-force-light-page) {
   background: #ffffff !important;
 }
@@ -930,7 +921,6 @@ ion-router-outlet:has(.auth-force-light-page) {
   background: #ffffff !important;
 }
 
-/* Dark mode general overrides for text and inputs */
 .ion-palette-dark .page-content {
   --background: #121212 !important;
   background: #121212 !important;
@@ -960,7 +950,6 @@ ion-router-outlet:has(.auth-force-light-page) {
   opacity: 1 !important;
 }
 
-/* Light mode enforcement for auth pages */
 body.auth-page ion-page,
 body.auth-page ion-content,
 body.auth-page ion-toolbar {
@@ -977,7 +966,6 @@ body.auth-page ion-text {
   --color: #000000 !important;
 }
 
-/* ULTIMATE HEADER BORDER REMOVAL - MAXIMUM SPECIFICITY */
 html.ion-palette-dark ion-app ion-page ion-header,
 html.ion-palette-dark ion-app ion-page .page-header,
 html.ion-palette-dark ion-app ion-header,
@@ -1011,7 +999,6 @@ html.ion-palette-dark .page-header ion-toolbar,
   box-shadow: none !important;
 }
 
-/* Remove ALL pseudo-elements that could create lines */
 html.ion-palette-dark ion-app ion-page ion-header::before,
 html.ion-palette-dark ion-app ion-page ion-header::after,
 html.ion-palette-dark ion-app ion-page .page-header::before,
@@ -1047,10 +1034,7 @@ html.ion-palette-dark .page-header ion-toolbar::after,
   height: 0 !important;
 }
 
-/* ========== ULTIMATE DARK MODE WHITE LINE ELIMINATION ========== */
-/* This section uses maximum CSS specificity to override any possible white lines */
 
-/* Force dark background on ALL possible header elements */
 html.ion-palette-dark * ion-header,
 html.ion-palette-dark * ion-toolbar,
 body.ion-palette-dark * ion-header,
@@ -1075,7 +1059,6 @@ body.ion-palette-dark ion-page * ion-toolbar,
   box-shadow: none !important;
 }
 
-/* Remove ALL possible pseudo-elements that could create white lines */
 html.ion-palette-dark *::before,
 html.ion-palette-dark *::after,
 body.ion-palette-dark *::before,
@@ -1088,7 +1071,6 @@ body.ion-palette-dark *::after,
   box-shadow: none !important;
 }
 
-/* Target specific problematic pseudo-elements */
 html.ion-palette-dark ion-header *::before,
 html.ion-palette-dark ion-header *::after,
 html.ion-palette-dark ion-toolbar *::before,
@@ -1114,7 +1096,6 @@ body.ion-palette-dark ion-toolbar *::after,
   left: -9999px !important;
 }
 
-/* Force removal of Ionic's internal border/divider elements */
 html.ion-palette-dark .header-border,
 html.ion-palette-dark .toolbar-border,
 html.ion-palette-dark .header-separator,

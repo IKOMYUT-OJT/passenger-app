@@ -157,7 +157,7 @@
 }
 
 .ion-palette-dark .page-content {
-  --background: #121212;
+  --background: transparent;
 }
 
 .ion-page[data-page="profile"] .page-header {
@@ -184,8 +184,8 @@
 html.ion-palette-dark .ion-page[data-page="profile"] .page-header,
 body.ion-palette-dark .ion-page[data-page="profile"] .page-header,
 .ion-palette-dark .ion-page[data-page="profile"] .page-header {
-  --background: #000000 !important;
-  background: #000000 !important;
+  --background: transparent !important;
+  background: transparent !important;
   --border-width: 0 !important;
   --box-shadow: none !important;
   box-shadow: none !important;
@@ -220,7 +220,6 @@ body.ion-palette-dark .ion-page[data-page="profile"] .page-header::after,
   width: 0 !important;
 }
 
-/* Prevent extra dark band below the header in dark mode */
 .ion-palette-dark .ion-page[data-page="profile"] .page-header::after {
   display: none !important;
   content: none !important;
@@ -230,8 +229,8 @@ body.ion-palette-dark .ion-page[data-page="profile"] .page-header::after,
 html.ion-palette-dark .ion-page[data-page="profile"] .page-header ion-toolbar,
 body.ion-palette-dark .ion-page[data-page="profile"] .page-header ion-toolbar,
 .ion-palette-dark .ion-page[data-page="profile"] .page-header ion-toolbar {
-  --background: #000000 !important;
-  background: #000000 !important;
+  --background: transparent !important;
+  background: transparent !important;
   --border-width: 0 !important;
   --box-shadow: none !important;
   box-shadow: none !important;
@@ -270,7 +269,6 @@ body.ion-palette-dark .page-header *,
   border-top: 0 !important;
 }
 
-/* Target the page title specifically */
 html .page-header .page-title,
 body .page-header .page-title,
 .page-header .page-title,
@@ -283,7 +281,6 @@ body.ion-palette-dark .page-header .page-title,
   border-top: 0 !important;
 }
 
-/* Remove any remaining header separators */
 html ion-header.page-header,
 body ion-header.page-header,
 ion-header.page-header,
@@ -332,12 +329,14 @@ ion-toolbar::after {
 }
 
 .ion-palette-dark .profile-page-content {
-  --background: #121212 !important;
-  background: #121212 !important;
+  --background: transparent !important;
+  background: transparent !important;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 }
 
 .ion-palette-dark .profile-header {
-  background: #121212 !important;
+  background: transparent !important;
 }
 
 .ion-palette-dark .profile-name {
@@ -349,16 +348,17 @@ ion-toolbar::after {
 }
 
 .ion-palette-dark .profile-list {
-  background: #1e1e1e !important;
+  background: transparent !important;
   border-radius: 14px;
   overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .ion-palette-dark .profile-list ion-item {
-  --background: #1e1e1e !important;
+  --background: transparent !important;
   --color: #ffffff !important;
-  --border-color: rgba(255, 255, 255, 0.08) !important;
-  background: #1e1e1e !important;
+  --border-color: rgba(255, 255, 255, 0.05) !important;
+  background: transparent !important;
 }
 
 .ion-palette-dark .profile-list ion-label {
@@ -374,8 +374,8 @@ ion-toolbar::after {
 }
 
 .ion-palette-dark .profile-list-item {
-  --background: #1e1e1e !important;
-  background: #1e1e1e !important;
+  --background: transparent !important;
+  background: transparent !important;
 }
 
 .ion-palette-dark .profile-list-item ion-label {
@@ -387,8 +387,8 @@ ion-toolbar::after {
 }
 
 .ion-palette-dark .logout-item {
-  --background: #1e1e1e !important;
-  background: #1e1e1e !important;
+  --background: transparent !important;
+  background: transparent !important;
 }
 
 .ion-palette-dark .logout-item ion-label {
@@ -404,7 +404,8 @@ ion-toolbar::after {
 }
 
 .ion-palette-dark .logout-sheet {
-  background: #1e1e1e !important;
+  background: transparent !important;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .ion-palette-dark .logout-title {

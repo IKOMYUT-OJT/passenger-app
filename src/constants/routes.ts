@@ -1,8 +1,3 @@
-/**
- * Application route constants
- * Centralized route definitions for better maintainability
- */
-
 export const ROUTES = {
   // Public routes
   ROOT: '/',
@@ -35,5 +30,4 @@ export const ROUTES = {
   ACCOUNT_DELETION: '/account-deletion',
 } as const;
 
-// Helper type for route values
 export type RouteValue = typeof ROUTES[keyof typeof ROUTES];

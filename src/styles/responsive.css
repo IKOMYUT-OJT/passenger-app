@@ -1,11 +1,3 @@
-.platform-ios ion-modal {
-  --border-radius: 10px;
-}
-
-.platform-android ion-modal {
-  --border-radius: 4px;
-}
-
 @media (hover: none) and (pointer: coarse) {
   button, 
   ion-button, 
@@ -414,29 +406,4 @@
   }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
-}
 
-@media (prefers-contrast: high) {
-  .floating-input-item {
-    border-width: 2px;
-  }
-  
-  .app-button-primary,
-  .app-button-secondary {
-    border: 2px solid currentColor;
-  }
-
-  .page-list-inset,
-  .page-card {
-    border: 1px solid rgba(0, 0, 0, 0.2);
-  }
-}

@@ -1,0 +1,122 @@
+.nearby-toggle-green-btn {
+  width: 93%;
+  background: #008000;
+  color: #fff;
+  border: none;
+  border-radius: 15px;
+  padding: 14px 20px;
+  margin: 0 auto -5px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  gap: 8px;
+  box-shadow: 0 4px 12px rgba(0, 128, 0, 0.3);
+  transition: all 0.2s ease;
+  letter-spacing: 0.02em;
+  min-height: 52px;
+}
+.nearby-toggle-green-btn:active {
+  background: #008000;
+  transform: translateY(1px);
+}
+
+.nearby-toggle-green-btn:hover {
+  background: #008000;
+  box-shadow: 0 6px 16px rgba(0, 128, 0, 0.4);
+}
+.nearby-toggle-icon {
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  color: #fff !important;
+  width: 18px;
+  height: 18px;
+}
+
+.nearby-toggle-icon ion-icon {
+  color: #fff !important;
+}
+
+.nearby-toggle-label {
+  flex: none;
+  text-align: center;
+  font-weight: 600;
+  font-size: 16px;
+  letter-spacing: 0.02em;
+  color: #fff;
+}
+.nearby-buses-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  padding: 20px 18px 10px 18px;
+  max-width: 400px;
+  margin: 0 auto -5px auto;
+  border: 2px solid #e0e0e0;
+  transition: max-height 0.4s cubic-bezier(0.4,0,0.2,1);
+  overflow: hidden;
+}
+
+.nearby-buses-card.collapsed {
+  padding-bottom: 0;
+}
+
+.nearby-buses-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 700;
+  font-size: 1.2rem;
+  margin-bottom: 12px;
+}
+
+.nearby-buses-chevron {
+  color: #1ca12d;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.nearby-buses-list {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.nearby-bus-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.nearby-bus-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nearby-bus-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.nearby-bus-name {
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.nearby-bus-route {
+  font-size: 0.95rem;
+  color: #666;
+}
+
+.nearby-bus-eta {
+  font-weight: 700;
+  font-size: 1rem;
+  color: #222;
+  min-width: 48px;
+  text-align: right;
+}

@@ -3,7 +3,6 @@ html.ion-palette-dark ion-button[color="danger"]::part(native),
 body.ion-palette-dark ion-button[color="danger"]::part(native) {
   color: #fff !important;
 }
-/* Dark mode: 'Yes, Log Out' button uses dark red background and white text */
 .ion-palette-dark ion-button[color="danger"],
 html.ion-palette-dark ion-button[color="danger"],
 body.ion-palette-dark ion-button[color="danger"] {
@@ -12,7 +11,6 @@ body.ion-palette-dark ion-button[color="danger"] {
   --color: #fff !important;
   color: #fff !important;
 }
-/* Dark mode: force danger modal button text to white */
 .ion-palette-dark ion-button[color="danger"],
 html.ion-palette-dark ion-button[color="danger"],
 body.ion-palette-dark ion-button[color="danger"] {
@@ -171,7 +169,6 @@ ion-toolbar ion-title {
   font-weight: 600;
 }
 
-/* Reviewing ID Screen */
 .discount-review-screen {
   display: flex;
   flex-direction: column;
@@ -263,7 +260,6 @@ ion-toolbar ion-title {
   max-width: 320px;
 }
 
-/* Discount Approved Screen */
 .discount-approved-screen {
   padding: 24px;
   display: flex;
@@ -350,7 +346,6 @@ ion-toolbar ion-title {
   margin-top: 16px;
 }
 
-/* ==================== DARK MODE ==================== */
 .ion-palette-dark .discount-header {
   --background: #000000 !important;
   background: #000000 !important;
@@ -430,7 +425,6 @@ ion-toolbar ion-title {
   --placeholder-color: #999999 !important;
 }
 
-/* Comprehensive dark mode header fix for discount page */
 html.ion-palette-dark .ion-page[data-page="discount"] ion-header,
 body.ion-palette-dark .ion-page[data-page="discount"] ion-header,
 .ion-palette-dark .ion-page[data-page="discount"] ion-header,
@@ -481,7 +475,6 @@ body.ion-palette-dark .ion-page[data-page="discount"] ion-header,
   background: #121212 !important;
 }
 
-/* Dark mode for ID Type selection modal */
 html.ion-palette-dark ion-modal.discount-type-modal,
 body.ion-palette-dark ion-modal.discount-type-modal,
 .ion-palette-dark ion-modal.discount-type-modal {
@@ -500,7 +493,6 @@ body.ion-palette-dark .discount-type-modal::part(content),
   background: #1e1e1e !important;
 }
 
-/* Override inline styles for modal content in dark mode */
 html.ion-palette-dark ion-modal.discount-type-modal div,
 body.ion-palette-dark ion-modal.discount-type-modal div,
 .ion-palette-dark ion-modal.discount-type-modal div {

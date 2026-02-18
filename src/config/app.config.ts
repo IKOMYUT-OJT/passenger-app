@@ -1,8 +1,3 @@
-/**
- * Application Configuration
- * Centralized app-wide settings and configuration
- */
-
 export const APP_CONFIG = {
   // App Information
   APP_NAME: 'iKomyut',

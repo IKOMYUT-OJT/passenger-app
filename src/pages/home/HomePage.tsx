@@ -6,13 +6,15 @@ import {
   IonPage,
   IonButton,
 } from "@ionic/react";
-import { chevronUpOutline, notifications } from "ionicons/icons";
+import { notifications, chevronUp } from "ionicons/icons";
 import { useEffect, useState } from "react";
 import { MapContainer, TileLayer, useMap } from "react-leaflet";
 import { useIonRouter } from "@ionic/react";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import { ROUTES } from "../../constants";
+import NearbyBuses from "../../components/features/NearbyBuses";
+import { mockNearbyBuses } from "./mockNearbyBuses";
 import "../../styles/home/HomePage.css";
 
 delete (L.Icon.Default.prototype as any)._getIconUrl;
@@ -47,6 +49,7 @@ const Homepage: React.FC = () => {
   const center: [number, number] = [14.5995, 120.9842];
   const ionRouter = useIonRouter();
   const [isZooming, setIsZooming] = useState(false);
+  const [showNearby, setShowNearby] = useState(false);
 
   const openNearby = () => {
     console.log('Dispatching open-nearby event');
@@ -92,10 +95,23 @@ const Homepage: React.FC = () => {
         </IonFab>
 
         <div className="nearby-wrap">
-          <IonButton expand="block" className="nearby-btn" onClick={openNearby}>
-            <IonIcon icon={chevronUpOutline} slot="start" />
-            Show Nearby Buses
-          </IonButton>
+          {!showNearby && (
+            <button
+              className="nearby-toggle-green-btn"
+              onClick={() => setShowNearby(true)}
+              aria-label="Show Nearby Buses"
+            >
+              <IonIcon icon={chevronUp} className="nearby-toggle-icon" />
+              <span className="nearby-toggle-label">Show Nearby Buses</span>
+            </button>
+          )}
+          {showNearby && (
+            <NearbyBuses
+              buses={mockNearbyBuses}
+              expanded={true}
+              onHeaderClick={() => setShowNearby(false)}
+            />
+          )}
         </div>
       </IonContent>
     </IonPage>

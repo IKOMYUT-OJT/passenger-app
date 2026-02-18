@@ -85,19 +85,56 @@
   margin: 0;
 }
 
-.mark-all-read {
-  background: transparent;
-  border: none;
+.mark-all-read,
+.mark-all-read:visited,
+button.mark-all-read,
+.notification-container .mark-all-read {
+  background: transparent !important;
+  border: none !important;
   font-family: 'Poppins', sans-serif;
   font-size: 13px;
   font-weight: 500;
-  color: #008000;
+  color: #008000 !important;
   cursor: pointer;
   padding: 4px 8px;
+  transition: all 0.2s ease;
+  border-radius: 4px;
+  text-decoration: none !important;
+  outline: none !important;
+  box-shadow: none !important;
 }
 
-.mark-all-read:active {
-  opacity: 0.6;
+.mark-all-read:hover,
+.mark-all-read:focus-visible,
+button.mark-all-read:hover,
+.notification-container .mark-all-read:hover {
+  background: rgba(0, 128, 0, 0.15) !important;
+  color: #008000 !important;
+  text-decoration: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.mark-all-read:focus,
+button.mark-all-read:focus,
+.notification-container .mark-all-read:focus {
+  background: rgba(0, 128, 0, 0.2) !important;
+  color: #008000 !important;
+  outline: none !important;
+  text-decoration: none !important;
+  box-shadow: none !important;
+}
+
+.mark-all-read:active,
+.mark-all-read:active:hover,
+button.mark-all-read:active,
+.notification-container .mark-all-read:active {
+  background: rgba(0, 128, 0, 0.3) !important;
+  color: #008000 !important;
+  transform: scale(0.95);
+  text-decoration: none !important;
+  outline: none !important;
+  box-shadow: none !important;
 }
 
 .notifications-wrapper {
@@ -106,20 +143,45 @@
   gap: 12px;
 }
 
-.notification-card {
-  background: #ffffff;
+.notification-card,
+.notifications-wrapper .notification-card,
+div.notification-card {
+  background: #ffffff !important;
   border-radius: 12px;
   padding: 16px;
   display: flex;
   gap: 12px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-  transition: transform 0.2s;
+  transition: all 0.2s ease;
   cursor: pointer;
   position: relative;
+  border: 2px solid transparent !important;
 }
 
-.notification-card:active {
+.notification-card:hover,
+.notifications-wrapper .notification-card:hover,
+div.notification-card:hover {
+  background: rgba(0, 128, 0, 0.08) !important;
+  box-shadow: 0 4px 12px rgba(0, 128, 0, 0.2) !important;
+  border-color: rgba(0, 128, 0, 0.2) !important;
+}
+
+.notification-card:focus,
+.notifications-wrapper .notification-card:focus,
+div.notification-card:focus {
+  background: rgba(0, 128, 0, 0.1) !important;
+  box-shadow: 0 4px 16px rgba(0, 128, 0, 0.3) !important;
+  border-color: #008000 !important;
+  outline: none !important;
+}
+
+.notification-card:active,
+.notification-card:active:hover,
+.notifications-wrapper .notification-card:active,
+div.notification-card:active {
   transform: scale(0.98);
+  background: rgba(0, 128, 0, 0.15) !important;
+  border-color: #008000 !important;
 }
 
 .notification-unread {
@@ -252,38 +314,73 @@
   background: #000000 !important;
 }
 
-.ion-palette-dark .notification-title {
+.ion-palette-dark .notification-title,
+.ion-palette-dark .ion-page[data-page="notification"] .page-title {
   color: #ffffff !important;
 }
 
 .ion-palette-dark .section-title {
-  color: #ffffff;
+  color: #ffffff !important;
 }
 
-.ion-palette-dark .mark-all-read {
-  color: #4ade80;
+.ion-palette-dark .mark-all-read,
+.ion-palette-dark button.mark-all-read,
+.ion-palette-dark .notification-container .mark-all-read {
+  color: #4ade80 !important;
 }
 
-.ion-palette-dark .notification-card {
-  background: #1e1e1e;
+.ion-palette-dark .mark-all-read:hover,
+.ion-palette-dark button.mark-all-read:hover,
+.ion-palette-dark .notification-container .mark-all-read:hover {
+  background: rgba(74, 222, 128, 0.15) !important;
+  color: #4ade80 !important;
+}
+
+.ion-palette-dark .mark-all-read:active,
+.ion-palette-dark button.mark-all-read:active,
+.ion-palette-dark .notification-container .mark-all-read:active {
+  background: rgba(74, 222, 128, 0.25) !important;
+  color: #4ade80 !important;
+}
+
+.ion-palette-dark .notification-card,
+.ion-palette-dark .notifications-wrapper .notification-card,
+.ion-palette-dark div.notification-card {
+  background: #1e1e1e !important;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  border-color: transparent !important;
+}
+
+.ion-palette-dark .notification-card:hover,
+.ion-palette-dark .notifications-wrapper .notification-card:hover,
+.ion-palette-dark div.notification-card:hover {
+  background: rgba(74, 222, 128, 0.1) !important;
+  border-color: rgba(74, 222, 128, 0.3) !important;
+  box-shadow: 0 4px 12px rgba(74, 222, 128, 0.2) !important;
+}
+
+.ion-palette-dark .notification-card:active,
+.ion-palette-dark .notifications-wrapper .notification-card:active,
+.ion-palette-dark div.notification-card:active {
+  background: rgba(74, 222, 128, 0.15) !important;
+  border-color: #4ade80 !important;
 }
 
 .ion-palette-dark .notification-unread {
-  background: #1a2e1a;
+  background: #1a2e1a !important;
 }
 
 .ion-palette-dark .notification-title {
-  color: #ffffff;
+  color: #ffffff !important;
 }
 
 .ion-palette-dark .notification-text {
-  color: #b0b0b0;
+  color: #cccccc !important;
 }
 
 .ion-palette-dark .notification-time-icon,
 .ion-palette-dark .notification-time-text {
-  color: #808080;
+  color: #999999 !important;
 }
 
 .ion-palette-dark .notification-icon-circle.success {

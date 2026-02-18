@@ -347,7 +347,6 @@
   color: #777;
 }
 
-/* Force light mode on signup/OTP pages */
 .auth-force-light .otp-logo {
   background: #ffffff !important;
 }
