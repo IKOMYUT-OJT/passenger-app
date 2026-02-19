@@ -1,32 +1,4 @@
-.ion-page[data-page="editprofile"] .page-header {
-  --background: #ffffff !important;
-  background: #ffffff !important;
-  font-family: Poppins, sans-serif !important;
-  font-size: 20px !important;
-  font-weight: 550 !important;
-  transform: none !important;
-  border: none !important;
-  --border-width: 0 !important;
-  box-shadow: none !important;
-  --box-shadow: none !important;
-}
-
-.ion-page[data-page="editprofile"] .page-header ion-toolbar {
-  --background: #ffffff !important;
-  background: #ffffff !important;
-  --border-width: 0 !important;
-  border: none !important;
-}
-
-.ion-page[data-page="editprofile"] .page-header::before,
-.ion-page[data-page="editprofile"] .page-header::after,
-.ion-page[data-page="editprofile"] .page-header ion-toolbar::before,
-.ion-page[data-page="editprofile"] .page-header ion-toolbar::after {
-  display: none !important;
-  height: 0 !important;
-  width: 0 !important;
-  visibility: hidden !important;
-}
+/* Header styles now consolidated in common.css */
 
 .edit-avatar-container {
   display: flex;
@@ -81,95 +53,47 @@
   box-sizing: border-box;
 }
 
-.ion-palette-dark .page-content {
-  --background: #121212 !important;
-  background: #121212 !important;
-}
-
+/* Page-specific dark mode styles */
 .ion-palette-dark .edit-avatar-container {
-  background: #121212 !important;
+  background: var(--ion-background-color) !important;
 }
 
 .ion-palette-dark .edit-input {
-  background: #1e1e1e !important;
-  border-color: #444444 !important;
-  color: #ffffff !important;
-  --background: #1e1e1e !important;
-  --color: #ffffff !important;
+  background: var(--ion-item-background) !important;
+  border-color: var(--app-border-color-dark) !important;
+  color: var(--ion-text-color) !important;
+  --background: var(--ion-item-background) !important;
+  --color: var(--ion-text-color) !important;
 }
 
 .ion-palette-dark .edit-input ion-input {
-  color: #ffffff !important;
-  --color: #ffffff !important;
+  color: var(--ion-text-color) !important;
+  --color: var(--ion-text-color) !important;
 }
 
 .ion-palette-dark .edit-input ion-input::placeholder {
-  color: #999999 !important;
+  color: var(--app-text-lighter) !important;
   opacity: 1 !important;
 }
 
 .ion-palette-dark .edit-label {
-  color: #b0b0b0 !important;
+  color: var(--app-text-light) !important;
 }
 
 .ion-palette-dark .app-button-secondary {
   --background: #2c2c2c !important;
-  --color: #ffffff !important;
-  --border-color: #444444 !important;
-  border: 1px solid #444444 !important;
-  color: #ffffff !important;
+  --color: var(--ion-text-color) !important;
+  --border-color: #000000 !important;
+  border: 1px solid #000000 !important;
+  color: var(--ion-text-color) !important;
 }
 
 .ion-palette-dark .app-button-primary {
-  --color: #ffffff !important;
-  color: #ffffff !important;
+  --color: var(--ion-text-color) !important;
+  color: var(--ion-text-color) !important;
 }
-html.ion-palette-dark .ion-page[data-page="editprofile"] ion-header,
-body.ion-palette-dark .ion-page[data-page="editprofile"] ion-header,
-.ion-palette-dark .ion-page[data-page="editprofile"] ion-header,
-.ion-palette-dark .ion-page[data-page="editprofile"] .page-header,
-.ion-palette-dark .edit-profile-header {
-  --background: #121212 !important;
-  background: #121212 !important;
-  --border-width: 0 !important;
-  border: 0 !important;
-  --box-shadow: none !important;
-  box-shadow: none !important;
-  margin: 0 !important;
-}
-
-.ion-palette-dark .ion-page[data-page="editprofile"] ion-toolbar,
-.ion-palette-dark .edit-profile-toolbar {
-  --background: #121212 !important;
-  background: #121212 !important;
-  --border-width: 0 !important;
-  border: 0 !important;
-}
-
-.ion-palette-dark .ion-page[data-page="editprofile"] ion-header::before,
-.ion-palette-dark .ion-page[data-page="editprofile"] ion-header::after,
-.ion-palette-dark .ion-page[data-page="editprofile"] ion-toolbar::before,
-.ion-palette-dark .ion-page[data-page="editprofile"] ion-toolbar::after {
-  display: none !important;
-  opacity: 0 !important;
-  background: transparent !important;
-}
-
-.ion-palette-dark .ion-page[data-page="editprofile"] ion-header::after {
-  content: "" !important;
-  position: absolute !important;
-  bottom: -5px !important;
-  left: 0 !important;
-  right: 0 !important;
-  height: 10px !important;
-  background: #121212 !important;
-  z-index: 10 !important;
-  display: block !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-}
-
+/* Removed duplicate global header/toolbar styles - using theme defaults */
 .ion-palette-dark .ion-page[data-page="editprofile"] ion-content {
-  --background: #121212 !important;
-  background: #121212 !important;
+  --background: var(--ion-background-color) !important;
+  background: var(--ion-background-color) !important;
 }

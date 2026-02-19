@@ -1,52 +1,4 @@
-.ion-page[data-page="address"] .page-header,
-.address-header {
-  transform: none;
-  box-shadow: none !important;
-  --background: #ffffff;
-  background: #ffffff !important;
-  --border-width: 0 !important;
-  border: none !important;
-  --ion-safe-area-top: 0px;
-}
-
-.ion-page[data-page="address"] ion-header {
-  --background: #ffffff;
-  background: #ffffff !important;
-  --border-width: 0 !important;
-  border: none !important;
-  box-shadow: none !important;
-}
-
-.ion-page[data-page="address"] .page-header::after,
-.ion-page[data-page="address"] .page-header::before,
-.ion-page[data-page="address"] ion-header::after,
-.ion-page[data-page="address"] ion-header::before,
-.address-header::after,
-.address-header::before {
-  display: none !important;
-}
-
-.ion-page[data-page="address"] .page-toolbar,
-.address-header ion-toolbar {
-  --box-shadow: none !important;
-  box-shadow: none !important;
-  --border-width: 0 !important;
-  border: none !important;
-  --background: #ffffff;
-  background: #ffffff !important;
-}
-
-.ion-page[data-page="address"] .page-toolbar::after,
-.ion-page[data-page="address"] .page-toolbar::before,
-.address-header ion-toolbar::after,
-.address-header ion-toolbar::before {
-  display: none !important;
-}
-
-.address-toolbar {
-  --background: #ffffff;
-  background: #ffffff !important;
-}
+/* Header styles now consolidated in common.css */
 
 .ion-page[data-page="address"] .page-title,
 .address-title {
@@ -536,11 +488,7 @@ body.ion-palette-dark .ion-page[data-page="address"] .page-toolbar::after,
   border: none !important;
 }
 
-.ion-palette-dark .ion-page[data-page="address"] .page-title,
-.ion-palette-dark .ion-page[data-page="address"] ion-title,
-.ion-palette-dark .address-title {
-  color: #ffffff !important;
-}
+/* Dark mode text colors now handled by unified system in common.css */
 
 .ion-palette-dark .ion-page[data-page="address"] ion-back-button {
   --color: #ffffff !important;
@@ -591,6 +539,10 @@ body.ion-palette-dark .ion-page[data-page="address"] .page-toolbar::after,
   background: #121212 !important;
 }
 
+.ion-palette-dark .address-container {
+  background: transparent !important;
+}
+
 .ion-palette-dark .ion-page[data-page="address"] ion-header::after {
   content: "" !important;
   position: absolute !important;
@@ -607,51 +559,118 @@ body.ion-palette-dark .ion-page[data-page="address"] .page-toolbar::after,
 }
 
 .ion-palette-dark .section-label {
-  color: #b0b0b0;
+  color: #ffffff !important;
 }
 
 .ion-palette-dark .current-address-card {
-  background: #1e1e1e;
-  border-color: #008000;
+  background: #1e1e1e !important;
+  border-color: #444444 !important;
 }
 
 .ion-palette-dark .current-address-title,
 .ion-palette-dark .current-address-text {
-  color: #ffffff;
+  color: #ffffff !important;
 }
 
 .ion-palette-dark .saved-place-card {
-  background: #1e1e1e;
+  background: #1e1e1e !important;
+  border-color: #444444 !important;
 }
 
 .ion-palette-dark .saved-place-title,
 .ion-palette-dark .saved-place-address {
-  color: #ffffff;
+  color: #ffffff !important;
 }
 
 .ion-palette-dark .saved-place-notes {
-  color: #b0b0b0;
+  color: #cccccc !important;
+}
+
+.ion-palette-dark .card-chevron {
+  color: #666666 !important;
+}
+
+.ion-palette-dark .section-icon {
+  color: #00b300 !important;
+}
+
+.ion-palette-dark .add-place-btn ion-icon {
+  color: #00b300 !important;
+}
+
+.ion-palette-dark .saved-place-icon ion-icon {
+  color: #00b300 !important;
+}
+
+.ion-palette-dark .map-marker ion-icon {
+  color: #00b300 !important;
+}
+
+.ion-palette-dark .edit-toolbar ion-button {
+  --color: #ffffff !important;
+  color: #ffffff !important;
+}
+
+.ion-palette-dark .map-toolbar {
+  --background: #1e1e1e !important;
+  background: #1e1e1e !important;
+}
+
+.ion-palette-dark .map-toolbar ion-button {
+  --color: #ffffff !important;
+  color: #ffffff !important;
+}
+
+.ion-palette-dark .map-title {
+  color: #ffffff !important;
+}
+
+.ion-palette-dark .map-content {
+  --background: #121212 !important;
+  background: #121212 !important;
+}
+
+.ion-palette-dark .map-placeholder {
+  background: #2a2a2a !important;
+}
+
+.ion-palette-dark .map-address-card {
+  background: #1e1e1e !important;
+  border-color: #444444 !important;
+}
+
+.ion-palette-dark .map-address-text {
+  color: #ffffff !important;
+}
+
+.ion-palette-dark .map-save-btn {
+  --background: #00b300 !important;
+  background: #00b300 !important;
+  --color: #ffffff !important;
+  color: #ffffff !important;
 }
 
 .ion-palette-dark .edit-toolbar {
-  --background: #1e1e1e;
+  --background: #1e1e1e !important;
+  background: #1e1e1e !important;
 }
 
 .ion-palette-dark .edit-title {
-  color: #ffffff;
+  color: #ffffff !important;
 }
 
 .ion-palette-dark .edit-content {
-  --background: #121212;
+  --background: #121212 !important;
+  background: #121212 !important;
 }
 
 .ion-palette-dark .edit-input-item {
-  border-color: #444444;
-  background: #1e1e1e;
+  border-color: #444444 !important;
+  background: #1e1e1e !important;
 }
 
 .ion-palette-dark .edit-input {
-  color: #ffffff;
+  color: #ffffff !important;
 }
 
 .ion-palette-dark ion-back-button {

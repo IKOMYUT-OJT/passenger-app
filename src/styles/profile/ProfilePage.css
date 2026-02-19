@@ -160,46 +160,7 @@
   --background: transparent;
 }
 
-.ion-page[data-page="profile"] .page-header {
-  --background: #ffffff !important;
-  background: #ffffff !important;
-  font-family: Poppins, sans-serif !important;
-  font-size: 20px !important;
-  font-weight: 550 !important;
-  padding-top: 20px !important;
-  transform: none !important;
-  border: none !important;
-  --border-width: 0 !important;
-  box-shadow: none !important;
-  --box-shadow: none !important;
-}
-
-.ion-page[data-page="profile"] .page-header ion-toolbar {
-  --background: #ffffff !important;
-  background: #ffffff !important;
-  --border-width: 0 !important;
-  border: none !important;
-}
-
-html.ion-palette-dark .ion-page[data-page="profile"] .page-header,
-body.ion-palette-dark .ion-page[data-page="profile"] .page-header,
-.ion-palette-dark .ion-page[data-page="profile"] .page-header {
-  --background: transparent !important;
-  background: transparent !important;
-  --border-width: 0 !important;
-  --box-shadow: none !important;
-  box-shadow: none !important;
-  border: 0 !important;
-  border-bottom: 0 !important;
-  border-top: 0 !important;
-}
-
-.ion-page[data-page="profile"] .page-header::before,
-.ion-page[data-page="profile"] .page-header::after,
-.ion-page[data-page="profile"] .page-header ion-toolbar::before,
-.ion-page[data-page="profile"] .page-header ion-toolbar::after {
-  display: none !important;
-  height: 0 !important;
+/* Header styles now consolidated in common.css */
   width: 0 !important;
   visibility: hidden !important;
 }

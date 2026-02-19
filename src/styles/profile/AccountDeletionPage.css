@@ -1,50 +1,4 @@
-.ion-page[data-page="accountdeletion"] .page-header,
-.deletion-header {
-  padding-top: 20px;
-  transform: none;
-  box-shadow: none !important;
-  --background: #ffffff;
-  background: #ffffff !important;
-  --border-width: 0 !important;
-  border: none !important;
-}
-
-.ion-page[data-page="accountdeletion"] ion-header {
-  --background: #ffffff;
-  background: #ffffff !important;
-  --border-width: 0 !important;
-  border: none !important;
-  box-shadow: none !important;
-}
-.ion-page[data-page="accountdeletion"] .page-header::before,
-.ion-page[data-page="accountdeletion"] ion-header::after,
-.ion-page[data-page="accountdeletion"] ion-header::before,
-.deletion-header::after,
-.deletion-header::before {
-  display: none !important;
-}
-
-.ion-page[data-page="accountdeletion"] .page-toolbar,
-.deletion-header ion-toolbar {
-  --box-shadow: none !important;
-  box-shadow: none !important;
-  --border-width: 0 !important;
-  border: none !important;
-  --background: #ffffff;
-  background: #ffffff !important;
-}
-
-.ion-page[data-page="accountdeletion"] .page-toolbar::after,
-.ion-page[data-page="accountdeletion"] .page-toolbar::before,
-.deletion-header ion-toolbar::after,
-.deletion-header ion-toolbar::before {
-  display: none !important;
-}
-
-.deletion-toolbar {
-  --background: #ffffff;
-  background: #ffffff !important;
-}
+/* Header styles now consolidated in common.css */
 
 .ion-page[data-page="accountdeletion"] .page-title,
 .deletion-title {
@@ -250,168 +204,41 @@ ion-modal.deletion-modal::part(content) {
 
 .ion-palette-dark .deletion-info,
 .ion-palette-dark .deletion-alternative {
-  background: #2c2c2c !important;
+  background: var(--ion-item-background) !important;
   border-left-color: #ffc107 !important;
 }
 
 .ion-palette-dark .deletion-info h3,
 .ion-palette-dark .deletion-alternative h3 {
-  color: #ffffff !important;
+  color: var(--ion-text-color) !important;
 }
 
 .ion-palette-dark .deletion-info li {
-  color: #e0e0e0 !important;
+  color: var(--app-text-medium) !important;
 }
 
 .ion-palette-dark .deletion-alternative p {
-  color: #e0e0e0 !important;
+  color: var(--app-text-medium) !important;
 }
 
-html.ion-palette-dark .deletion-container,
-body.ion-palette-dark .deletion-container,
-.ion-palette-dark .deletion-container {
-  color: var(--ion-text-color) !important;
-}
-
-html.ion-palette-dark .deletion-container h2,
-html.ion-palette-dark .deletion-container h3,
-html.ion-palette-dark .deletion-container p,
-html.ion-palette-dark .deletion-container li,
-body.ion-palette-dark .deletion-container h2,
-body.ion-palette-dark .deletion-container h3,
-body.ion-palette-dark .deletion-container p,
-body.ion-palette-dark .deletion-container li,
-.ion-palette-dark .deletion-container h2,
-.ion-palette-dark .deletion-container h3,
-.ion-palette-dark .deletion-container p,
-.ion-palette-dark .deletion-container li {
-  color: var(--ion-text-color) !important;
-}
-
-html.ion-palette-dark .deletion-subtitle,
-body.ion-palette-dark .deletion-subtitle,
-.ion-palette-dark .deletion-subtitle {
-  color: var(--ion-secondary-text-color) !important;
-}
-
-html.ion-palette-dark ion-modal.deletion-modal,
-body.ion-palette-dark ion-modal.deletion-modal,
-.ion-palette-dark ion-modal.deletion-modal,
-html.ion-palette-dark .deletion-modal,
-body.ion-palette-dark .deletion-modal,
+/* Modal styles (keep light theme for modals) */
 .ion-palette-dark .deletion-modal {
-  --background: #1e1e1e !important;
-  --ion-background-color: #1e1e1e !important;
+  --background: #ffffff !important;
 }
 
-html.ion-palette-dark ion-modal.deletion-modal::part(content),
-body.ion-palette-dark ion-modal.deletion-modal::part(content),
-.ion-palette-dark ion-modal.deletion-modal::part(content),
-html.ion-palette-dark .deletion-modal::part(content),
-body.ion-palette-dark .deletion-modal::part(content),
-.ion-palette-dark .deletion-modal::part(content) {
-  background: #1e1e1e !important;
-  background-color: #1e1e1e !important;
-}
-
-html.ion-palette-dark .deletion-modal-content,
-body.ion-palette-dark .deletion-modal-content,
 .ion-palette-dark .deletion-modal-content {
-  background: #1e1e1e !important;
-  background-color: #1e1e1e !important;
-  color: #ffffff !important;
+  background: #ffffff !important;
 }
-
-html.ion-palette-dark .deletion-modal-content h2,
-body.ion-palette-dark .deletion-modal-content h2,
-.ion-palette-dark .deletion-modal-content h2 {
-  color: #ffffff !important;
-}
-
-html.ion-palette-dark .deletion-modal-content p,
-body.ion-palette-dark .deletion-modal-content p,
+.ion-palette-dark .deletion-modal-content h2,
 .ion-palette-dark .deletion-modal-content p {
-  color: #b0b0b0 !important;
+  color: #000000 !important;
 }
 
 .ion-palette-dark .deletion-modal-icon ion-icon {
   color: #ff6b6b !important;
 }
 
-html.ion-palette-dark .deletion-modal-buttons ion-button,
-body.ion-palette-dark .deletion-modal-buttons ion-button,
-.ion-palette-dark .deletion-modal-buttons ion-button {
-  color: inherit !important;
-}
-
-html.ion-palette-dark .deletion-modal-buttons ion-button[color="danger"],
-body.ion-palette-dark .deletion-modal-buttons ion-button[color="danger"],
-.ion-palette-dark .deletion-modal-buttons ion-button[color="danger"] {
-  --color: #ffffff !important;
-  color: #ffffff !important;
-}
-
-html.ion-palette-dark .deletion-modal-buttons ion-button[color="danger"]::part(native),
-body.ion-palette-dark .deletion-modal-buttons ion-button[color="danger"]::part(native),
-.ion-palette-dark .deletion-modal-buttons ion-button[color="danger"]::part(native) {
-  color: #ffffff !important;
-}
-
-html.ion-palette-dark .deletion-button,
-body.ion-palette-dark .deletion-button,
 .ion-palette-dark .deletion-button {
-  --color: #ffffff !important;
-  color: #ffffff !important;
-}
-
-html.ion-palette-dark .deletion-button::part(native),
-body.ion-palette-dark .deletion-button::part(native),
-.ion-palette-dark .deletion-button::part(native) {
-  color: #ffffff !important;
-}
-
-.ion-palette-dark ion-back-button {
-  --color: #ffffff !important;
-  color: #ffffff !important;
-}
-
-html.ion-palette-dark .ion-page[data-page="accountdeletion"] ion-header,
-body.ion-palette-dark .ion-page[data-page="accountdeletion"] ion-header,
-.ion-palette-dark .ion-page[data-page="accountdeletion"] ion-header,
-.ion-palette-dark .deletion-header {
-  --background: #000000 !important;
-  background: #000000 !important;
-  --border-width: 0 !important;
-  border: 0 !important;
-  --box-shadow: none !important;
-  box-shadow: none !important;
-  margin: 0 !important;
-}
-
-.ion-palette-dark .ion-page[data-page="accountdeletion"] ion-toolbar,
-.ion-palette-dark .deletion-toolbar {
-  --background: #000000 !important;
-  background: #000000 !important;
-  --border-width: 0 !important;
-  border: 0 !important;
-}
-
-.ion-palette-dark .ion-page[data-page="accountdeletion"] ion-header::before,
-.ion-palette-dark .ion-page[data-page="accountdeletion"] ion-header::after,
-.ion-palette-dark .ion-page[data-page="accountdeletion"] ion-toolbar::before,
-.ion-palette-dark .ion-page[data-page="accountdeletion"] ion-toolbar::after {
-  display: none !important;
-  opacity: 0 !important;
-  background: transparent !important;
-}
-
-.ion-palette-dark .ion-page[data-page="accountdeletion"] ion-header::after {
-  display: none !important;
-  content: none !important;
-  height: 0 !important;
-}
-
-.ion-palette-dark .ion-page[data-page="accountdeletion"] ion-content {
-  --background: #121212 !important;
-  background: #121212 !important;
+  --color: var(--ion-text-color) !important;
+  color: var(--ion-text-color) !important;
 }

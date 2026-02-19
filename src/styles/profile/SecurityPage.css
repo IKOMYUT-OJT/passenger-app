@@ -1,52 +1,4 @@
-.ion-page[data-page="security"] .page-header,
-.security-header {
-  padding-top: 20px;
-  transform: none;
-  box-shadow: none !important;
-  --background: #ffffff;
-  background: #ffffff !important;
-  --border-width: 0 !important;
-  border: none !important;
-}
-
-.ion-page[data-page="security"] ion-header {
-  --background: #ffffff;
-  background: #ffffff !important;
-  --border-width: 0 !important;
-  border: none !important;
-  box-shadow: none !important;
-}
-
-.ion-page[data-page="security"] .page-header::after,
-.ion-page[data-page="security"] .page-header::before,
-.ion-page[data-page="security"] ion-header::after,
-.ion-page[data-page="security"] ion-header::before,
-.security-header::after,
-.security-header::before {
-  display: none !important;
-}
-
-.ion-page[data-page="security"] .page-toolbar,
-.security-header ion-toolbar {
-  --box-shadow: none !important;
-  box-shadow: none !important;
-  --border-width: 0 !important;
-  border: none !important;
-  --background: #ffffff;
-  background: #ffffff !important;
-}
-
-.ion-page[data-page="security"] .page-toolbar::after,
-.ion-page[data-page="security"] .page-toolbar::before,
-.security-header ion-toolbar::after,
-.security-header ion-toolbar::before {
-  display: none !important;
-}
-
-.security-toolbar {
-  --background: #ffffff;
-  background: #ffffff !important;
-}
+/* Header styles now handled by common.css */
 
 .ion-page[data-page="security"] .page-title,
 .security-title {
@@ -157,32 +109,14 @@
 }
 
 /* ==================== DARK MODE ==================== */
-.ion-palette-dark .security-header {
-  --background: #000000 !important;
-  background: #000000 !important;
-}
-
-.ion-palette-dark .security-header ion-toolbar {
-  --background: #000000 !important;
-  background: #000000 !important;
-}
-
-.ion-palette-dark .security-toolbar {
-  --background: #000000 !important;
-  background: #000000 !important;
-}
-
-.ion-palette-dark .security-title {
-  color: #ffffff !important;
-}
-
+/* Page-specific dark mode styles - headers and content use global styles */
 .ion-palette-dark .security-content {
-  --background: #121212 !important;
-  background: #121212 !important;
+  --background: var(--ion-background-color) !important;
+  background: var(--ion-background-color) !important;
 }
 
 .ion-palette-dark .security-section-label {
-  color: #ffffff !important;
+  color: var(--ion-text-color) !important;
 }
 
 .ion-palette-dark .security-list {
@@ -190,136 +124,29 @@
 }
 
 .ion-palette-dark .security-item {
-  --background: #1e1e1e !important;
-  background: #1e1e1e !important;
-  --border-color: rgba(255, 255, 255, 0.08) !important;
-}
-
-.ion-palette-dark .security-icon {
-  color: #ffffff !important;
-}
-
-.ion-palette-dark .security-label {
-  color: #ffffff !important;
-}
-
-.ion-palette-dark .security-label-title {
-  color: #ffffff !important;
+  --background: var(--ion-item-background) !important;
+  background: var(--ion-item-background) !important;
+  --border-color: var(--ion-border-color) !important;
 }
 
 .ion-palette-dark .security-label-desc {
-  color: #b0b0b0 !important;
+  color: var(--app-text-light) !important;
 }
 
 .ion-palette-dark .security-info {
-  background: #1e1e1e !important;
+  background: var(--ion-item-background) !important;
 }
 
 .ion-palette-dark .security-info h3 {
-  color: #ffffff !important;
+  color: var(--ion-text-color) !important;
 }
 
 .ion-palette-dark .security-info li {
-  color: #e0e0e0 !important;
+  color: var(--app-text-medium) !important;
 }
 
-.ion-palette-dark ion-back-button {
-  --color: #ffffff !important;
-  color: #ffffff !important;
-}
-
-html.ion-palette-dark .ion-page[data-page="security"] ion-header,
-body.ion-palette-dark .ion-page[data-page="security"] ion-header,
-.ion-palette-dark .ion-page[data-page="security"] ion-header,
-.ion-palette-dark .security-header {
-  --background: #121212 !important;
-  background: #121212 !important;
-  background-color: #121212 !important;
-  --border-width: 0 !important;
-  border: 0 !important;
-  border-width: 0 !important;
-  --box-shadow: none !important;
-  box-shadow: none !important;
-  margin: 0 !important;
-  padding-bottom: 0 !important;
-}
-
-.ion-palette-dark .ion-page[data-page="security"] ion-toolbar,
-.ion-palette-dark .security-toolbar {
-  --background: #000000 !important;
-  background: #000000 !important;
-  background-color: #000000 !important;
-  --border-width: 0 !important;
-  border: 0 !important;
-  border-width: 0 !important;
-  --box-shadow: none !important;
-  box-shadow: none !important;
-}
-
-.ion-palette-dark .ion-page[data-page="security"] ion-header::before,
-.ion-palette-dark .ion-page[data-page="security"] ion-header::after,
-.ion-palette-dark .ion-page[data-page="security"] ion-toolbar::before,
-.ion-palette-dark .ion-page[data-page="security"] ion-toolbar::after,
-.ion-palette-dark .security-header::before,
-.ion-palette-dark .security-header::after,
-.ion-palette-dark .security-toolbar::before,
-.ion-palette-dark .security-toolbar::after {
-  display: none !important;
-  visibility: hidden !important;
-  opacity: 0 !important;
-  background: transparent !important;
-  content: none !important;
-  height: 0 !important;
-  width: 0 !important;
-}
-
-.ion-palette-dark .ion-page[data-page="security"] ion-header::after {
-  display: none !important;
-  content: none !important;
-  height: 0 !important;
-}
-
+/* Removed duplicate global header/toolbar styles - using theme defaults */
 .ion-palette-dark .ion-page[data-page="security"] ion-content {
-  --background: #121212 !important;
-  background: #121212 !important;
-}
-html.ion-palette-dark .ion-page[data-page="security"] ion-header,
-body.ion-palette-dark .ion-page[data-page="security"] ion-header,
-.ion-palette-dark .ion-page[data-page="security"] ion-header,
-.ion-palette-dark .security-header {
-  --background: #000000 !important;
-  background: #000000 !important;
-  --border-width: 0 !important;
-  border: 0 !important;
-  --box-shadow: none !important;
-  box-shadow: none !important;
-  margin: 0 !important;
-}
-
-.ion-palette-dark .ion-page[data-page="security"] ion-toolbar,
-.ion-palette-dark .security-toolbar {
-  --background: #000000 !important;
-  background: #000000 !important;
-  --border-width: 0 !important;
-  border: 0 !important;
-}
-
-.ion-palette-dark .ion-page[data-page="security"] ion-header::before,
-.ion-palette-dark .ion-page[data-page="security"] ion-header::after,
-.ion-palette-dark .ion-page[data-page="security"] ion-toolbar::before,
-.ion-palette-dark .ion-page[data-page="security"] ion-toolbar::after {
-  display: none !important;
-  opacity: 0 !important;
-  background: transparent !important;
-}
-
-.ion-palette-dark .ion-page[data-page="security"] ion-header::after {
-  display: none !important;
-  content: none !important;
-  height: 0 !important;
-}
-
-.ion-palette-dark .ion-page[data-page="security"] ion-content {
-  --background: #121212 !important;
-  background: #121212 !important;
+  --background: var(--ion-background-color) !important;
+  background: var(--ion-background-color) !important;
 }

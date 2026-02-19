@@ -17,50 +17,7 @@ body.ion-palette-dark ion-button[color="danger"] {
   --color: #fff !important;
   color: #fff !important;
 }
-/* Discount page header styling */
-.ion-page[data-page="discount"] .page-header,
-.discount-header {
-  transform: none;
-  box-shadow: none !important;
-  --background: #ffffff;
-  background: #ffffff !important;
-  --border-width: 0 !important;
-  border: none !important;
-}
-
-.ion-page[data-page="discount"] ion-header {
-  --background: #ffffff;
-  background: #ffffff !important;
-  --border-width: 0 !important;
-  border: none !important;
-  box-shadow: none !important;
-}
-
-.ion-page[data-page="discount"] .page-header::after,
-.ion-page[data-page="discount"] .page-header::before,
-.ion-page[data-page="discount"] ion-header::after,
-.ion-page[data-page="discount"] ion-header::before,
-.discount-header::after,
-.discount-header::before {
-  display: none !important;
-}
-
-.ion-page[data-page="discount"] .page-toolbar,
-.discount-header ion-toolbar {
-  --box-shadow: none !important;
-  box-shadow: none !important;
-  --border-width: 0 !important;
-  border: none !important;
-  --background: #ffffff;
-  background: #ffffff !important;
-}
-
-.ion-page[data-page="discount"] .page-toolbar::after,
-.ion-page[data-page="discount"] .page-toolbar::before,
-.discount-header ion-toolbar::after,
-.discount-header ion-toolbar::before {
-  display: none !important;
-}
+/* Header styles now consolidated in common.css */
 
 .ion-page[data-page="discount"] .page-title,
 .discount-title {
@@ -428,47 +385,7 @@ ion-toolbar ion-title {
 html.ion-palette-dark .ion-page[data-page="discount"] ion-header,
 body.ion-palette-dark .ion-page[data-page="discount"] ion-header,
 .ion-palette-dark .ion-page[data-page="discount"] ion-header,
-.ion-palette-dark .ion-page[data-page="discount"] .page-header,
-.ion-palette-dark .discount-header {
-  --background: #000000 !important;
-  background: #000000 !important;
-  --border-width: 0 !important;
-  border: 0 !important;
-  --box-shadow: none !important;
-  box-shadow: none !important;
-  margin: 0 !important;
-}
-
-.ion-palette-dark .ion-page[data-page="discount"] ion-toolbar,
-.ion-palette-dark .discount-header ion-toolbar {
-  --background: #000000 !important;
-  background: #000000 !important;
-  --border-width: 0 !important;
-  border: 0 !important;
-}
-
-.ion-palette-dark .ion-page[data-page="discount"] ion-header::before,
-.ion-palette-dark .ion-page[data-page="discount"] ion-header::after,
-.ion-palette-dark .ion-page[data-page="discount"] ion-toolbar::before,
-.ion-palette-dark .ion-page[data-page="discount"] ion-toolbar::after {
-  display: none !important;
-  opacity: 0 !important;
-  background: transparent !important;
-}
-
-.ion-palette-dark .ion-page[data-page="discount"] ion-header::after {
-  content: "" !important;
-  position: absolute !important;
-  bottom: -5px !important;
-  left: 0 !important;
-  right: 0 !important;
-  height: 10px !important;
-  background: #121212 !important;
-  z-index: 10 !important;
-  display: block !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-}
+/* Dark mode header styles now consolidated in common.css */
 
 .ion-palette-dark .ion-page[data-page="discount"] ion-content {
   --background: #121212 !important;

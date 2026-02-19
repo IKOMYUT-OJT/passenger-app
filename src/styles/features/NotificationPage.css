@@ -314,10 +314,7 @@ div.notification-card:active {
   background: #000000 !important;
 }
 
-.ion-palette-dark .notification-title,
-.ion-palette-dark .ion-page[data-page="notification"] .page-title {
-  color: #ffffff !important;
-}
+/* Dark mode text colors now handled by unified system in common.css */
 
 .ion-palette-dark .section-title {
   color: #ffffff !important;
