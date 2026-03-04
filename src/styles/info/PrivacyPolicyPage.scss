@@ -1,3 +1,5 @@
+@use '../mixins' as *;
+
 /* Header styles now consolidated in common.css */
 
 .ion-page[data-page="privacy"] .page-title,
@@ -156,3 +158,4 @@ body.ion-palette-dark .ion-page[data-page="privacy"] ion-header,
   --background: #121212 !important;
   background: #121212 !important;
 }
+

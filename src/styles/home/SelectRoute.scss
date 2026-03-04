@@ -1,0 +1,152 @@
+.select-route-card {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+}
+
+.select-route-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 16px 12px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.select-route-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #1a1a1a;
+}
+
+.select-route-chevron {
+  display: flex;
+  align-items: center;
+}
+
+.select-route-search {
+  display: flex;
+  align-items: center;
+  margin: 10px 12px 6px;
+  background: #f5f5f5;
+  border-radius: 10px;
+  padding: 8px 12px;
+  gap: 8px;
+}
+
+.search-icon {
+  flex-shrink: 0;
+}
+
+.select-route-input {
+  border: none;
+  background: transparent;
+  outline: none;
+  font-size: 14px;
+  color: #333;
+  width: 100%;
+
+  &::placeholder {
+    color: #aaa;
+  }
+}
+
+.select-route-list {
+  padding: 4px 0 8px;
+
+  &.scrollable {
+    max-height: 320px;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+.select-route-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  cursor: pointer;
+  transition: background 0.15s;
+
+  &:active {
+    background: #f0faf0;
+  }
+
+  &:not(:last-child) {
+    border-bottom: 1px solid #f5f5f5;
+  }
+}
+
+.route-item-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+}
+
+.route-from,
+.route-to {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.route-arrow {
+  font-size: 14px;
+  color: #888;
+  font-weight: 500;
+}
+
+.route-bus-emoji {
+  font-size: 22px;
+  margin-left: 8px;
+}
+
+.select-route-empty {
+  text-align: center;
+  padding: 20px;
+  font-size: 14px;
+  color: #aaa;
+}
+
+// Dark mode
+.ion-palette-dark {
+  .select-route-card {
+    background: #1e1e1e;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  }
+
+  .select-route-header {
+    border-bottom-color: #2c2c2c;
+  }
+
+  .select-route-title {
+    color: #f0f0f0;
+  }
+
+  .select-route-search {
+    background: #2a2a2a;
+  }
+
+  .select-route-input {
+    color: #f0f0f0;
+
+    &::placeholder {
+      color: #666;
+    }
+  }
+
+  .select-route-item {
+    border-bottom-color: #2a2a2a;
+
+    &:active {
+      background: #1a2e1a;
+    }
+  }
+
+  .route-from,
+  .route-to {
+    color: #f0f0f0;
+  }
+}

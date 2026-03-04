@@ -12,6 +12,7 @@ import {
   IonToolbar,
   IonTitle,
   IonContent,
+  useIonToast,
   setupIonicReact,
 } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
@@ -58,13 +59,13 @@ import "@ionic/react/css/normalize.css";
 import "@ionic/react/css/structure.css";
 import "@ionic/react/css/typography.css";
 import "@ionic/react/css/palettes/dark.class.css";
-import "./theme/variables.css";
-import "./styles/common.css";
-import "./styles/base.css";
-import "./styles/responsive.css";
-import "./styles/platform.css";
-import "./theme/tabs.css";
-import "./theme/qr-scanner.css";
+import "./theme/variables.scss";
+import "./styles/common.scss";
+import "./styles/base.scss";
+import "./styles/responsive.scss";
+import "./styles/platform.scss";
+import "./theme/tabs.scss";
+import "./theme/qr-scanner.scss";
 
 setupIonicReact({
   mode: 'ios',
@@ -112,6 +113,7 @@ const TabsLayout: React.FC<{
 };
 
 const App: React.FC = () => {
+  const [presentToast] = useIonToast();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [openNearbySheet, setOpenNearbySheet] = useState(false);
   const [openQRSheet, setOpenQRSheet] = useState(false);
@@ -150,13 +152,13 @@ const App: React.FC = () => {
 
   const startQrScan = async () => {
     if (!Capacitor.isNativePlatform()) {
-      alert("QR scanning works only on a real device");
+      presentToast({ message: "QR scanning works only on a real device.", duration: 2500, color: "warning", position: "top" });
       return;
     }
 
     const permission = await BarcodeScanner.requestPermissions();
     if (permission.camera !== "granted") {
-      alert("Camera permission denied");
+      presentToast({ message: "Camera permission denied.", duration: 2500, color: "danger", position: "top" });
       return;
     }
 
@@ -169,7 +171,7 @@ const App: React.FC = () => {
       stopQrScan();
       setOpenQRSheet(false);
 
-      alert(`Scanned QR:\n${value}`);
+      presentToast({ message: `Scanned QR: ${value}`, duration: 3000, color: "success", position: "top" });
     }
   };
 

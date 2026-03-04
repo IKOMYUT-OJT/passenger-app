@@ -1,10 +1,10 @@
-/* Header styles now handled by common.css */
+@use '../mixins' as *;
 
 .ion-page[data-page="settings"] .page-title,
 .settings-title {
   text-align: left;
   font-family: var(--app-font-family);
-  font-weight: 550;
+  font-weight: 600;
   font-size: 20px;
   padding-left: 0;
   color: #000000;
@@ -82,10 +82,12 @@
   font-size: 16px;
 }
 
-.settings-item ion-label {
-  font-weight: 600;
+.settings-item ion-label,
+.settings-label {
+  font-family: var(--app-font-family);
+  font-weight: 700;
   font-size: 15px;
-  color: #000;
+  color: #000000;
 }
 
 .settings-icon {
@@ -205,8 +207,10 @@
   --border-color: rgba(255, 255, 255, 0.08) !important;
 }
 
-.ion-palette-dark .settings-item ion-label {
+.ion-palette-dark .settings-item ion-label,
+.ion-palette-dark .settings-label {
   color: #ffffff !important;
+  font-weight: 700;
 }
 
 .ion-palette-dark .settings-icon {
@@ -226,75 +230,24 @@
   color: #ffffff !important;
 }
 
-.ion-palette-dark .settings-header *,
-.ion-palette-dark .settings-toolbar *,
-html.ion-palette-dark .settings-header *,
-html.ion-palette-dark .settings-toolbar *,
-body.ion-palette-dark .settings-header *,
-body.ion-palette-dark .settings-toolbar * {
-  --border-width: 0 !important;
-  --border-color: transparent !important;
-  --box-shadow: none !important;
-  border: none !important;
-  border-bottom: none !important;
-  border-top: none !important;
-  box-shadow: none !important;
+.ion-palette-dark {
+  .settings-header,
+  .settings-header ion-toolbar,
+  .settings-toolbar {
+    --background: #000000;
+    background: #000000;
+    background-color: #000000;
+  }
 }
 
-.ion-palette-dark .settings-header *::before,
-.ion-palette-dark .settings-header *::after,
-.ion-palette-dark .settings-toolbar *::before,
-.ion-palette-dark .settings-toolbar *::after,
-html.ion-palette-dark .settings-header *::before,
-html.ion-palette-dark .settings-header *::after,
-html.ion-palette-dark .settings-toolbar *::before,
-html.ion-palette-dark .settings-toolbar *::after,
-body.ion-palette-dark .settings-header *::before,
-body.ion-palette-dark .settings-header *::after,
-body.ion-palette-dark .settings-toolbar *::before,
-body.ion-palette-dark .settings-toolbar *::after {
-  display: none !important;
-  visibility: hidden !important;
-  opacity: 0 !important;
-  background: transparent !important;
-  border: none !important;
-  content: none !important;
-  width: 0 !important;
-  height: 0 !important;
-  position: absolute !important;
-  top: -9999px !important;
-  left: -9999px !important;
-}
-
-html.ion-palette-dark .settings-header,
-html.ion-palette-dark .settings-header ion-toolbar,
-html.ion-palette-dark .settings-toolbar,
-body.ion-palette-dark .settings-header,
-body.ion-palette-dark .settings-header ion-toolbar,
-body.ion-palette-dark .settings-toolbar,
-.ion-palette-dark .settings-header,
-.ion-palette-dark .settings-header ion-toolbar,
-.ion-palette-dark .settings-toolbar {
-  --background: #000000 !important;
-  background: #000000 !important;
-  background-color: #000000 !important;
-}
-
-html.ion-palette-dark .ion-page[data-page="settings"] ion-header,
-body.ion-palette-dark .ion-page[data-page="settings"] ion-header,
-.ion-palette-dark .ion-page[data-page="settings"] ion-header,
-/* Header styles now consolidated in common.css (including dark mode overrides) */
-
-.ion-palette-dark .ion-page[data-page="settings"] .page-toolbar,
-html.ion-palette-dark .ion-page[data-page="settings"] .page-toolbar,
-body.ion-palette-dark .ion-page[data-page="settings"] .page-toolbar {
-  --background: #000000 !important;
-  background: #000000 !important;
-  background-color: #000000 !important;
-  border: none !important;
-  --border-width: 0 !important;
-  box-shadow: none !important;
-  --box-shadow: none !important;
+.ion-palette-dark .ion-page[data-page="settings"] .page-toolbar {
+  --background: #000000;
+  background: #000000;
+  background-color: #000000;
+  border: none;
+  --border-width: 0;
+  box-shadow: none;
+  --box-shadow: none;
 }
 
 .ion-palette-dark .ion-page[data-page="settings"] .page-toolbar::after,
@@ -312,8 +265,6 @@ body.ion-palette-dark .ion-page[data-page="settings"] .page-toolbar::before {
   height: 0 !important;
   width: 0 !important;
 }
-
-/* Dark mode text colors now handled by unified system in common.css */
 
 .ion-palette-dark .ion-page[data-page="settings"] {
   background: #121212 !important;

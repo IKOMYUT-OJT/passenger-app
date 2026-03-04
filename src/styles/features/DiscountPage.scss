@@ -1,24 +1,15 @@
-.ion-palette-dark ion-button[color="danger"]::part(native),
-html.ion-palette-dark ion-button[color="danger"]::part(native),
-body.ion-palette-dark ion-button[color="danger"]::part(native) {
-  color: #fff !important;
-}
-.ion-palette-dark ion-button[color="danger"],
-html.ion-palette-dark ion-button[color="danger"],
-body.ion-palette-dark ion-button[color="danger"] {
-  --background: #b71c1c !important;
-  --background-activated: #a31515 !important;
-  --color: #fff !important;
-  color: #fff !important;
-}
-.ion-palette-dark ion-button[color="danger"],
-html.ion-palette-dark ion-button[color="danger"],
-body.ion-palette-dark ion-button[color="danger"] {
-  --color: #fff !important;
-  color: #fff !important;
-}
-/* Header styles now consolidated in common.css */
+@use '../mixins' as *;
 
+.ion-palette-dark ion-button[color="danger"] {
+  --background: #b71c1c;
+  --background-activated: #a31515;
+  --color: #fff;
+  color: #fff;
+
+  &::part(native) {
+    color: #fff;
+  }
+}
 .ion-page[data-page="discount"] .page-title,
 .discount-title {
   text-align: left;
@@ -42,8 +33,7 @@ ion-toolbar ion-title {
 
 .discount-form {
   font-family: var(--app-font-family);
-  display: flex;
-  flex-direction: column;
+  @include flex-col;
   gap: 10px;
   padding: 0 24px;
   margin: 40px auto 0 auto;
@@ -68,23 +58,35 @@ ion-toolbar ion-title {
 
 .discount-select {
   position: relative;
+  cursor: pointer;
+  @include flex-row;
+  padding: 0 16px;
+  gap: 8px;
 }
 
-.discount-select-hint {
-  position: absolute;
-  right: 14px;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 12px;
+.discount-select-type-icon {
+  font-size: 20px;
+  color: #008000;
+  flex-shrink: 0;
+}
+
+.discount-select-text {
+  font-family: var(--app-font-family);
+  flex: 1;
+}
+
+.discount-select-chevron {
+  font-size: 18px;
+  color: #666;
+  margin-left: auto;
+  flex-shrink: 0;
 }
 
 .discount-upload {
   border: 2px dashed #cfcfcf;
   border-radius: 14px;
   height: 56px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  @include flex-center;
   cursor: pointer;
 }
 
@@ -104,8 +106,7 @@ ion-toolbar ion-title {
 }
 
 .discount-terms {
-  display: flex;
-  align-items: center;
+  @include flex-row;
   gap: 10px;
   margin-top: 4px;
   font-size: 13px;
@@ -118,7 +119,14 @@ ion-toolbar ion-title {
 
 .discount-apply-btn {
   --background: #008000;
-  --background-activated: #008000;
+  --background-activated: #006600;
+  --background-hover: #006600;
+  --background-focused: #006600;
+  --ripple-color: #006600;
+  --color: #ffffff;
+  --color-activated: #ffffff;
+  --color-hover: #ffffff;
+  --color-focused: #ffffff;
   margin-top: 14px;
   height: 52px;
   border-radius: 14px;
@@ -127,8 +135,7 @@ ion-toolbar ion-title {
 }
 
 .discount-review-screen {
-  display: flex;
-  flex-direction: column;
+  @include flex-col;
   align-items: center;
   justify-content: center;
   height: calc(100vh - 120px);
@@ -219,8 +226,7 @@ ion-toolbar ion-title {
 
 .discount-approved-screen {
   padding: 24px;
-  display: flex;
-  flex-direction: column;
+  @include flex-col;
   align-items: center;
   min-height: calc(100vh - 120px);
 }
@@ -264,8 +270,7 @@ ion-toolbar ion-title {
 }
 
 .discount-approved-badge {
-  display: flex;
-  flex-direction: column;
+  @include flex-col;
   align-items: center;
   justify-content: center;
   width: 100%;
@@ -294,6 +299,13 @@ ion-toolbar ion-title {
 .discount-done-btn {
   --background: #008000;
   --background-activated: #006600;
+  --background-hover: #006600;
+  --background-focused: #006600;
+  --ripple-color: #006600;
+  --color: #ffffff;
+  --color-activated: #ffffff;
+  --color-hover: #ffffff;
+  --color-focused: #ffffff;
   width: 100%;
   max-width: 360px;
   height: 52px;
@@ -372,6 +384,23 @@ ion-toolbar ion-title {
   background: #008000 !important;
 }
 
+.ion-palette-dark .discount-apply-btn {
+  --background: #008000 !important;
+  --background-activated: #006600 !important;
+  --background-hover: #006600 !important;
+  --background-focused: #006600 !important;
+  --ripple-color: #005500 !important;
+  --color: #ffffff !important;
+  --color-activated: #ffffff !important;
+  --color-hover: #ffffff !important;
+  --color-focused: #ffffff !important;
+}
+
+.ion-palette-dark .discount-apply-btn::part(native) {
+  background: #008000 !important;
+  color: #ffffff !important;
+}
+
 .ion-palette-dark ion-back-button {
   --color: #ffffff !important;
   color: #ffffff !important;
@@ -380,70 +409,127 @@ ion-toolbar ion-title {
 .ion-palette-dark ion-select {
   color: #ffffff !important;
   --placeholder-color: #999999 !important;
+  --highlight-color-focused: #008000 !important;
+  --highlight-color-valid: #008000 !important;
+  --highlight-color: #008000 !important;
 }
 
-html.ion-palette-dark .ion-page[data-page="discount"] ion-header,
-body.ion-palette-dark .ion-page[data-page="discount"] ion-header,
-.ion-palette-dark .ion-page[data-page="discount"] ion-header,
-/* Dark mode header styles now consolidated in common.css */
+.ion-palette-dark .discount-done-btn {
+  --background: #008000 !important;
+  --background-activated: #006600 !important;
+  --background-hover: #006600 !important;
+  --background-focused: #006600 !important;
+  --ripple-color: #005500 !important;
+  --color: #ffffff !important;
+  --color-activated: #ffffff !important;
+  --color-hover: #ffffff !important;
+  --color-focused: #ffffff !important;
+}
+
+.ion-palette-dark .discount-done-btn::part(native) {
+  background: #008000 !important;
+  color: #ffffff !important;
+}
 
 .ion-palette-dark .ion-page[data-page="discount"] ion-content {
   --background: #121212 !important;
   background: #121212 !important;
 }
 
-html.ion-palette-dark ion-modal.discount-type-modal,
-body.ion-palette-dark ion-modal.discount-type-modal,
 .ion-palette-dark ion-modal.discount-type-modal {
-  --background: #1e1e1e !important;
+  --background: transparent;
+  --backdrop-opacity: 0.5;
 }
 
-html.ion-palette-dark ion-modal.discount-type-modal::part(content),
-body.ion-palette-dark ion-modal.discount-type-modal::part(content),
-.ion-palette-dark ion-modal.discount-type-modal::part(content) {
-  background: #1e1e1e !important;
+ion-modal.discount-type-modal {
+  --background: transparent;
+  --backdrop-opacity: 0.5;
 }
 
-html.ion-palette-dark .discount-type-modal::part(content),
-body.ion-palette-dark .discount-type-modal::part(content),
-.ion-palette-dark .discount-type-modal::part(content) {
-  background: #1e1e1e !important;
+.discount-type-modal-content {
+  background: white;
+  border-radius: 20px;
+  padding: 24px;
+  max-width: 340px;
+  width: 90%;
+  margin: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+
+  .modal-heading {
+    font-family: var(--app-font-family);
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0 0 4px 0;
+    text-align: left;
+    color: #000;
+  }
+
+  .modal-subtext {
+    font-family: var(--app-font-family);
+    font-size: 13px;
+    color: #666;
+    margin: 0 0 24px 0;
+    text-align: left;
+  }
+
+  .modal-options-list {
+    @include flex-col;
+  }
+
+  .modal-option-row {
+    @include flex-row;
+    padding: 14px 0;
+    cursor: pointer;
+    transition: opacity 0.2s;
+
+    &:active {
+      opacity: 0.6;
+    }
+
+    ion-icon {
+      font-size: 22px;
+      color: #000;
+      margin-right: 12px;
+      flex-shrink: 0;
+    }
+
+    span {
+      font-family: var(--app-font-family);
+      font-size: 15px;
+      color: #000;
+    }
+  }
+
+  .modal-cancel-btn {
+    margin-top: 20px;
+    font-family: var(--app-font-family);
+    font-weight: 500;
+    font-size: 15px;
+    --color: #666;
+    border: 1px solid #d0d0d0;
+    border-radius: 12px;
+    height: 44px;
+  }
 }
 
-html.ion-palette-dark ion-modal.discount-type-modal div,
-body.ion-palette-dark ion-modal.discount-type-modal div,
-.ion-palette-dark ion-modal.discount-type-modal div {
-  background: #1e1e1e !important;
+.ion-palette-dark .discount-type-modal-content {
+  background: #1e1e1e;
+
+  .modal-heading { color: #ffffff; }
+  .modal-subtext { color: #b0b0b0; }
+
+  .modal-option-row {
+    ion-icon { color: #ffffff; }
+    span { color: #ffffff; }
+  }
+
+  .modal-cancel-btn {
+    --color: #b0b0b0;
+    border-color: #444444;
+  }
 }
 
-html.ion-palette-dark ion-modal.discount-type-modal h2,
-body.ion-palette-dark ion-modal.discount-type-modal h2,
-.ion-palette-dark ion-modal.discount-type-modal h2 {
-  color: #ffffff !important;
-}
-
-html.ion-palette-dark ion-modal.discount-type-modal p,
-body.ion-palette-dark ion-modal.discount-type-modal p,
-.ion-palette-dark ion-modal.discount-type-modal p {
-  color: #b0b0b0 !important;
-}
-
-html.ion-palette-dark ion-modal.discount-type-modal ion-icon,
-body.ion-palette-dark ion-modal.discount-type-modal ion-icon,
-.ion-palette-dark ion-modal.discount-type-modal ion-icon {
-  color: #ffffff !important;
-}
-
-html.ion-palette-dark ion-modal.discount-type-modal span,
-body.ion-palette-dark ion-modal.discount-type-modal span,
-.ion-palette-dark ion-modal.discount-type-modal span {
-  color: #ffffff !important;
-}
-
-html.ion-palette-dark ion-modal.discount-type-modal ion-button,
-body.ion-palette-dark ion-modal.discount-type-modal ion-button,
-.ion-palette-dark ion-modal.discount-type-modal ion-button {
-  --color: #b0b0b0 !important;
-  color: #b0b0b0 !important;
-  border-color: #444444 !important;
-}

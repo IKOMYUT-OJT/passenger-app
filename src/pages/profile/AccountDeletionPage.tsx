@@ -1,20 +1,16 @@
 import { useState } from "react";
 import {
   IonPage,
-  IonHeader,
-  IonToolbar,
-  IonTitle,
-  IonButtons,
-  IonBackButton,
   IonContent,
   IonButton,
   IonModal,
   IonIcon,
+  useIonRouter,
 } from "@ionic/react";
 import { warningOutline } from "ionicons/icons";
-import { useIonRouter } from "@ionic/react";
+import { PageHeader } from "../../components/common";
 import { ROUTES } from "../../constants";
-import "../../styles/profile/AccountDeletionPage.css";
+import "../../styles/profile/AccountDeletionPage.scss";
 
 const AccountDeletionPage: React.FC = () => {
   const ionRouter = useIonRouter();
@@ -27,14 +23,7 @@ const AccountDeletionPage: React.FC = () => {
 
   return (
     <IonPage data-page="accountdeletion">
-      <IonHeader className="deletion-header">
-        <IonToolbar className="deletion-toolbar">
-          <IonButtons slot="start">
-            <IonBackButton text="" defaultHref={ROUTES.SETTINGS} />
-          </IonButtons>
-          <IonTitle className="deletion-title">Account Deletion</IonTitle>
-        </IonToolbar>
-      </IonHeader>
+      <PageHeader title="Account Deletion" defaultHref={ROUTES.SETTINGS} />
 
       <IonContent className="deletion-content">
         <div className="deletion-container">

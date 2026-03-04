@@ -7,32 +7,34 @@ import {
   IonRow,
   IonCol,
   IonText,
+  useIonToast,
 } from "@ionic/react";
 import { lockClosedOutline } from "ionicons/icons";
 import { PageHeader, FloatingLabelInput } from "../../components/common";
 import { ROUTES } from "../../constants";
-import "../../styles/profile/ChangePasswordPage.css";
+import "../../styles/profile/ChangePasswordPage.scss";
 
 const ChangePasswordPage: React.FC = () => {
+  const [presentToast] = useIonToast();
   const [currentPassword, setCurrentPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
   const handleSave = () => {
     if (!currentPassword || !newPassword || !confirmPassword) {
-      alert("Please fill in all fields");
+      presentToast({ message: "Please fill in all fields.", duration: 2500, color: "danger", position: "top" });
       return;
     }
     if (newPassword.length < 6) {
-      alert("New password must be at least 6 characters");
+      presentToast({ message: "New password must be at least 6 characters.", duration: 2500, color: "danger", position: "top" });
       return;
     }
     if (newPassword !== confirmPassword) {
-      alert("New passwords do not match");
+      presentToast({ message: "New passwords do not match.", duration: 2500, color: "danger", position: "top" });
       return;
     }
 
-    alert("Password changed successfully!");
+    presentToast({ message: "Password changed successfully!", duration: 2500, color: "success", position: "top" });
     setCurrentPassword("");
     setNewPassword("");
     setConfirmPassword("");

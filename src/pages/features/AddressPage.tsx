@@ -7,12 +7,10 @@ import {
   IonModal,
   IonInput,
   IonItem,
-  IonLabel,
   IonHeader,
   IonToolbar,
   IonButtons,
   IonTitle,
-  useIonRouter,
 } from "@ionic/react";
 import {
   locationOutline,
@@ -23,10 +21,9 @@ import {
 import { PageHeader } from "../../components/common";
 import { ROUTES } from "../../constants";
 import type { SavedPlace } from "../../types";
-import "../../styles/features/AddressPage.css";
+import "../../styles/features/AddressPage.scss";
 
-const Addresspage: React.FC = () => {
-  const ionRouter = useIonRouter();
+const AddressPage: React.FC = () => {
   const [showMapModal, setShowMapModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
   const [editingPlace, setEditingPlace] = useState<SavedPlace | null>(null);
@@ -259,4 +256,4 @@ const Addresspage: React.FC = () => {
   );
 };
 
-export default Addresspage;
+export default AddressPage;

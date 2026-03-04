@@ -20,7 +20,11 @@ export const LoadingProvider: React.FC<{ children: React.ReactNode }> = ({ child
   const location = useLocation();
 
   useEffect(() => {
-    if (location.pathname === "/welcome" || location.pathname === "/") {
+    if (
+      location.pathname === "/welcome" ||
+      location.pathname === "/" ||
+      location.pathname === "/login"
+    ) {
       return;
     }
 

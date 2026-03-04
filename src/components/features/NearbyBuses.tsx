@@ -1,5 +1,5 @@
 import React from "react";
-import "../../styles/home/NearbyBuses.css";
+import "../../styles/home/NearbyBuses.scss";
 import { IoBus, IoChevronUp, IoChevronDown, IoTrash, IoGrid } from "react-icons/io5";
 
 export interface NearbyBus {

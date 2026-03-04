@@ -23,7 +23,7 @@ import type {
   RechargeMethod,
   WithdrawMethod,
 } from "../../types";
-import "../../styles/features/WalletPage.css";
+import "../../styles/features/WalletPage.scss";
 
 function formatDateNow() {
   const d = new Date();

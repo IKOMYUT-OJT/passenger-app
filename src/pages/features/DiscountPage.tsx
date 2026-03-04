@@ -4,24 +4,22 @@ import {
   IonContent,
   IonItem,
   IonInput,
-  IonSelect,
-  IonSelectOption,
   IonButton,
   IonText,
   IonModal,
   IonIcon,
+  useIonToast,
+  useIonRouter,
 } from "@ionic/react";
-import { closeOutline, schoolOutline, accessibilityOutline, peopleOutline, chevronDownOutline } from "ionicons/icons";
-import { useIonRouter } from "@ionic/react";
+import { schoolOutline, accessibilityOutline, peopleOutline, chevronDownOutline } from "ionicons/icons";
 import { PageHeader } from "../../components/common";
-import { useDarkMode } from "../../contexts/DarkModeContext";
 import { ROUTES } from "../../constants";
-import "../../styles/features/DiscountPage.css";
+import "../../styles/features/DiscountPage.scss";
 
 const DiscountPage: React.FC = () => {
   const fileRef = useRef<HTMLInputElement | null>(null);
   const ionRouter = useIonRouter();
-  const { darkMode } = useDarkMode();
+  const [presentToast] = useIonToast();
 
   const [fullName, setFullName] = useState("");
   const [idNumber, setIdNumber] = useState("");
@@ -56,15 +54,15 @@ const DiscountPage: React.FC = () => {
 
   const handleApply = () => {
     if (!fullName || !idNumber || !idType) {
-      alert("Please complete all fields.");
+      presentToast({ message: "Please complete all fields.", duration: 2500, color: "danger", position: "top" });
       return;
     }
     if (!selectedFileName) {
-      alert("Please upload your ID.");
+      presentToast({ message: "Please upload your ID.", duration: 2500, color: "danger", position: "top" });
       return;
     }
     if (!agree) {
-      alert("Please agree to the terms of service policy.");
+      presentToast({ message: "Please agree to the terms of service policy.", duration: 2500, color: "danger", position: "top" });
       return;
     }
 
@@ -155,30 +153,22 @@ const DiscountPage: React.FC = () => {
             />
           </IonItem>
 
-          <div 
-            className="discount-input discount-select" 
+          <div
+            className="discount-input discount-select"
             onClick={() => setShowModal(true)}
-            style={{ 
-              cursor: "pointer", 
-              display: "flex", 
-              alignItems: "center",
-              justifyContent: "center",
-              padding: "0 16px",
-              gap: "8px"
-            }}
           >
             {idType && getIdTypeIcon() && (
-              <IonIcon 
-                icon={getIdTypeIcon()!} 
-                style={{ fontSize: "20px", color: "#008000" }}
+              <IonIcon
+                icon={getIdTypeIcon()!}
+                className="discount-select-type-icon"
               />
             )}
-            <IonText color={idType ? "dark" : "medium"} style={{ fontFamily: "Poppins, sans-serif" }}>
+            <IonText color={idType ? "dark" : "medium"} className="discount-select-text">
               {idType || "Select ID Type"}
             </IonText>
-            <IonIcon 
-              icon={chevronDownOutline} 
-              style={{ fontSize: "18px", color: "#666", marginLeft: "auto" }}
+            <IonIcon
+              icon={chevronDownOutline}
+              className="discount-select-chevron"
             />
           </div>
 
@@ -217,128 +207,35 @@ const DiscountPage: React.FC = () => {
         <IonModal
           isOpen={showModal}
           onDidDismiss={() => setShowModal(false)}
-          className="centered-modal"
+          className="discount-type-modal"
           backdropDismiss={true}
-          style={{
-            "--background": "rgba(0, 0, 0, 0.5)",
-            "--backdrop-opacity": "0.5"
-          }}
         >
-          <div style={{
-            background: darkMode ? "#1e1e1e" : "white",
-            borderRadius: "20px",
-            padding: "24px",
-            maxWidth: "340px",
-            width: "90%",
-            margin: "auto",
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-            boxShadow: "0 10px 40px rgba(0, 0, 0, 0.15)"
-          }}>
-            <h2 style={{ 
-              fontFamily: "Poppins, sans-serif", 
-              fontSize: "18px", 
-              fontWeight: "600", 
-              margin: "0 0 4px 0",
-              textAlign: "left",
-              color: darkMode ? "#ffffff" : "#000"
-            }}>
-              Choose ID Type
-            </h2>
-            <p style={{ 
-              fontFamily: "Poppins, sans-serif", 
-              fontSize: "13px", 
-              color: darkMode ? "#b0b0b0" : "#666",
-              margin: "0 0 24px 0",
-              textAlign: "left"
-            }}>
-              Select one to apply your discount
-            </p>
+          <div className="discount-type-modal-content">
+            <h2 className="modal-heading">Choose ID Type</h2>
+            <p className="modal-subtext">Select one to apply your discount</p>
 
-            <div style={{ display: "flex", flexDirection: "column", gap: "0" }}>
-              <div 
-                onClick={() => handleIdTypeSelect("Student")}
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  padding: "14px 0",
-                  cursor: "pointer",
-                  transition: "opacity 0.2s"
-                }}
-                onMouseDown={(e) => e.currentTarget.style.opacity = "0.6"}
-                onMouseUp={(e) => e.currentTarget.style.opacity = "1"}
-                onMouseLeave={(e) => e.currentTarget.style.opacity = "1"}
-              >
-                <IonIcon 
-                  icon={schoolOutline} 
-                  style={{ fontSize: "22px", color: darkMode ? "#ffffff" : "#000", marginRight: "12px" }}
-                />
-                <span style={{ fontFamily: "Poppins, sans-serif", fontSize: "15px", color: darkMode ? "#ffffff" : "#000" }}>
-                  Student
-                </span>
+            <div className="modal-options-list">
+              <div className="modal-option-row" onClick={() => handleIdTypeSelect("Student")}>
+                <IonIcon icon={schoolOutline} />
+                <span>Student</span>
               </div>
 
-              <div 
-                onClick={() => handleIdTypeSelect("Senior Citizen")}
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  padding: "14px 0",
-                  cursor: "pointer",
-                  transition: "opacity 0.2s"
-                }}
-                onMouseDown={(e) => e.currentTarget.style.opacity = "0.6"}
-                onMouseUp={(e) => e.currentTarget.style.opacity = "1"}
-                onMouseLeave={(e) => e.currentTarget.style.opacity = "1"}
-              >
-                <IonIcon 
-                  icon={peopleOutline} 
-                  style={{ fontSize: "22px", color: darkMode ? "#ffffff" : "#000", marginRight: "12px" }}
-                />
-                <span style={{ fontFamily: "Poppins, sans-serif", fontSize: "15px", color: darkMode ? "#ffffff" : "#000" }}>
-                  Senior Citizen
-                </span>
+              <div className="modal-option-row" onClick={() => handleIdTypeSelect("Senior Citizen")}>
+                <IonIcon icon={peopleOutline} />
+                <span>Senior Citizen</span>
               </div>
 
-              <div 
-                onClick={() => handleIdTypeSelect("PWD")}
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  padding: "14px 0",
-                  cursor: "pointer",
-                  transition: "opacity 0.2s"
-                }}
-                onMouseDown={(e) => e.currentTarget.style.opacity = "0.6"}
-                onMouseUp={(e) => e.currentTarget.style.opacity = "1"}
-                onMouseLeave={(e) => e.currentTarget.style.opacity = "1"}
-              >
-                <IonIcon 
-                  icon={accessibilityOutline} 
-                  style={{ fontSize: "22px", color: darkMode ? "#ffffff" : "#000", marginRight: "12px" }}
-                />
-                <span style={{ fontFamily: "Poppins, sans-serif", fontSize: "15px", color: darkMode ? "#ffffff" : "#000" }}>
-                  PWD
-                </span>
+              <div className="modal-option-row" onClick={() => handleIdTypeSelect("PWD")}>
+                <IonIcon icon={accessibilityOutline} />
+                <span>PWD</span>
               </div>
             </div>
 
             <IonButton
               expand="block"
               fill="clear"
+              className="modal-cancel-btn"
               onClick={() => setShowModal(false)}
-              style={{ 
-                marginTop: "20px",
-                fontFamily: "Poppins, sans-serif",
-                fontWeight: "500",
-                fontSize: "15px",
-                "--color": darkMode ? "#b0b0b0" : "#666",
-                border: darkMode ? "1px solid #444444" : "1px solid #d0d0d0",
-                borderRadius: "12px",
-                height: "44px"
-              }}
             >
               Cancel
             </IonButton>

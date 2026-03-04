@@ -1,65 +1,4 @@
-.ion-page[data-page="wallet"] .page-header,
-.wallet-header {
-  transform: none;
-  box-shadow: none !important;
-  --background: #ffffff;
-  background: #ffffff !important;
-  --border-width: 0 !important;
-  border: none !important;
-}
-
-.ion-page[data-page="wallet"] ion-header {
-  --background: #ffffff;
-  background: #ffffff !important;
-  --border-width: 0 !important;
-  border: none !important;
-  box-shadow: none !important;
-}
-
-.ion-page[data-page="wallet"] .page-header::after,
-.ion-page[data-page="wallet"] .page-header::before,
-.ion-page[data-page="wallet"] ion-header::after,
-.ion-page[data-page="wallet"] ion-header::before,
-.wallet-header::after,
-.wallet-header::before {
-  display: none !important;
-}
-
-.ion-page[data-page="wallet"] .page-toolbar,
-.wallet-header ion-toolbar {
-  --box-shadow: none !important;
-  box-shadow: none !important;
-  --border-width: 0 !important;
-  border: none !important;
-  --background: #ffffff;
-  background: #ffffff !important;
-}
-
-.ion-page[data-page="wallet"] .page-toolbar::after,
-.ion-page[data-page="wallet"] .page-toolbar::before,
-.wallet-header ion-toolbar::after,
-.wallet-header ion-toolbar::before {
-  display: none !important;
-}
-
-.wallet-toolbar {
-  --background: #ffffff;
-  background: #ffffff !important;
-  --ion-toolbar-background: #ffffff !important;
-  --border-width: 0 !important;
-  --border-color: transparent !important;
-  --box-shadow: none;
-}
-
-.wallet-toolbar::after {
-  display: none !important;
-}
-
-ion-header,
-ion-toolbar {
-  --background: #ffffff !important;
-  background: #ffffff !important;
-}
+@use '../mixins' as *;
 
 .ion-page[data-page="wallet"] .page-title,
 .wallet-title {
@@ -106,8 +45,7 @@ ion-toolbar {
 }
 
 .balance-left {
-  display: flex;
-  flex-direction: column;
+  @include flex-col;
   justify-content: flex-start;
   padding-top: 6px;
 }
@@ -139,9 +77,7 @@ ion-toolbar {
 }
 
 .th-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  @include flex-between;
   margin-top: 16px;
   margin-bottom: 20px;
 }
@@ -199,8 +135,7 @@ ion-toolbar {
 }
 
 .tx-left {
-  display: flex;
-  flex-direction: column;
+  @include flex-col;
 }
 
 .tx-date {
@@ -247,8 +182,7 @@ ion-toolbar {
 }
 
 .recharge-topbar {
-  display: flex;
-  align-items: center;
+  @include flex-row;
   gap: 10px;
   margin-bottom: 12px;
 }
@@ -278,9 +212,7 @@ ion-toolbar {
   border: none;
   border-radius: 10px;
   padding: 10px 12px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  @include flex-between;
   background: #f1f3f5;
   cursor: pointer;
 }
@@ -306,8 +238,7 @@ ion-toolbar {
   font-size: 12px;
 }
 .method-left {
-  display: flex;
-  align-items: center;
+  @include flex-row;
   gap: 8px;
 }
 
@@ -328,8 +259,7 @@ ion-toolbar {
   border: none;
   border-radius: 12px;
   padding: 12px 14px;
-  display: flex;
-  align-items: center;
+  @include flex-row;
   gap: 10px;
   color: #fff;
   cursor: pointer;
@@ -409,8 +339,7 @@ ion-toolbar {
 
   height: 100%;
   padding: 18px 18px 22px;
-  display: flex;
-  flex-direction: column;
+  @include flex-col;
   align-items: center;
   justify-content: center;
 }
@@ -587,8 +516,7 @@ ion-toolbar {
   border-radius: 10px;
   padding: 12px 10px;
   color: #000000;
-  display: flex;
-  flex-direction: column;
+  @include flex-col;
   align-items: center;
   justify-content: center;
   gap: 6px;
@@ -619,10 +547,7 @@ ion-toolbar {
   background: #121212 !important;
 }
 
-.ion-palette-dark ion-header,
-.ion-palette-dark ion-toolbar {
-  background: #121212 !important;
-}
+
 
 .ion-palette-dark .wallet-title {
   color: #ffffff !important;
@@ -720,13 +645,6 @@ ion-toolbar {
   color: #ffffff !important;
 }
 
-.ion-palette-dark .balance-label {
-  color: #ffffff !important;
-}
-
-.ion-palette-dark .balance-amount {
-  color: #ffffff !important;
-}
 
 .ion-palette-dark ion-back-button {
   --color: #ffffff !important;
@@ -782,4 +700,5 @@ body.ion-palette-dark .ion-page[data-page="wallet"] ion-header,
   --background: #121212 !important;
   background: #121212 !important;
 }
+
 

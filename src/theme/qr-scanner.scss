@@ -2,16 +2,79 @@
   --background: #000;
 }
 
+.qr-scanner-modal ion-header {
+  background: #ffffff !important;
+  padding-top: 0 !important;
+}
+
+.qr-scanner-modal ion-header::after,
+.qr-scanner-modal ion-header::before {
+  display: none !important;
+}
+
+.qr-scanner-modal ion-toolbar {
+  --background: #ffffff !important;
+  --color: #111111 !important;
+  --border-width: 0 !important;
+  --box-shadow: none !important;
+  --min-height: 44px;
+  --padding-top: 4px;
+  --padding-bottom: 4px;
+  border: none !important;
+  box-shadow: none !important;
+}
+
 .qr-scanner-modal ion-title {
+  --color: #111111 !important;
+  color: #111111 !important;
   width: 100%;
   text-align: center;
-  margin: 0 auto;
-  left: 0;
   position: absolute;
+  left: 0;
   right: 0;
+  margin: 0 auto;
   font-weight: 600;
-  font-size: 18px;
+  font-size: 16px;
   z-index: 1;
+}
+
+.qr-scanner-modal ion-title .toolbar-title {
+  color: #111111 !important;
+}
+
+.qr-scanner-modal ion-button {
+  --color: #111111 !important;
+}
+
+.qr-scanner-modal ion-icon {
+  color: #111111 !important;
+}
+
+/* Dark mode */
+.ion-palette-dark .qr-scanner-modal ion-header {
+  background: #1e1e1e !important;
+}
+
+.ion-palette-dark .qr-scanner-modal ion-toolbar {
+  --background: #1e1e1e !important;
+  --color: #ffffff !important;
+}
+
+.ion-palette-dark .qr-scanner-modal ion-title {
+  --color: #ffffff !important;
+  color: #ffffff !important;
+}
+
+.ion-palette-dark .qr-scanner-modal ion-title .toolbar-title {
+  color: #ffffff !important;
+}
+
+.ion-palette-dark .qr-scanner-modal ion-button {
+  --color: #ffffff !important;
+}
+
+.ion-palette-dark .qr-scanner-modal ion-icon {
+  color: #ffffff !important;
 }
 
 .qr-scanner-content {

@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import { useEffect, useContext } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 import { ROUTES } from "../../constants";
-import "../../styles/auth/WelcomePage.css";
+import "../../styles/auth/WelcomePage.scss";
 
 const WelcomePage: React.FC = () => {
   const history = useHistory();

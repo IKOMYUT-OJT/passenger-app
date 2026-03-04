@@ -1,4 +1,4 @@
-import { IonButton, IonIcon, IonInput, IonItem, IonText, IonAlert } from "@ionic/react";
+import { IonButton, IonIcon, IonInput, IonItem, IonText, IonAlert, useIonToast } from "@ionic/react";
 import { useState, useMemo, useEffect, useContext } from "react";
 import { useIonRouter } from "@ionic/react";
 import { useHistory } from "react-router-dom";
@@ -6,12 +6,13 @@ import { callOutline, arrowBack, person, mail, home, lockClosed } from "ionicons
 import { AuthContext } from "../../contexts/AuthContext";
 import { AuthPageLayout, AuthHeader, FloatingLabelInput, LoadingSpinner } from "../../components/common";
 import { ROUTES } from "../../constants";
-import "../../styles/auth/SignupPage.css";
+import "../../styles/auth/SignupPage.scss";
 
 const MobileSignupPage: React.FC = () => {
   const ionRouter = useIonRouter();
   const history = useHistory();
   const { setIsLoggedIn } = useContext(AuthContext);
+  const [presentToast] = useIonToast();
   
   const [step, setStep] = useState(1);
   const [mobile, setMobile] = useState("");
@@ -41,11 +42,11 @@ const MobileSignupPage: React.FC = () => {
   const handleMobileSubmit = () => {
     const clean = (mobile ?? "").replace(/\s+/g, "");
     if (!clean) {
-      alert("Please enter your mobile number.");
+      presentToast({ message: "Please enter your mobile number.", duration: 2500, color: "danger", position: "top" });
       return;
     }
     if (clean.length < 10) {
-      alert("Please enter a valid mobile number.");
+      presentToast({ message: "Please enter a valid mobile number.", duration: 2500, color: "danger", position: "top" });
       return;
     }
     setLoading(true);
@@ -70,7 +71,7 @@ const MobileSignupPage: React.FC = () => {
 
   const handleVerify = () => {
     if (otpValue.length !== 6) {
-      alert("Please enter the 6-digit code.");
+      presentToast({ message: "Please enter the 6-digit code.", duration: 2500, color: "danger", position: "top" });
       return;
     }
     setLoading(true);

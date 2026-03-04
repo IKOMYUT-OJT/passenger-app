@@ -1,3 +1,5 @@
+@use './mixins' as *;
+
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
 
 
@@ -27,8 +29,7 @@
   border: 1.5px solid #000000;
   border-radius: 15px;
   padding: 14px 16px;
-  display: flex;
-  align-items: center;
+  @include flex-row;
   font-family: var(--app-font-family);
   transition: border-color 0.3s, box-shadow 0.3s;
   height: 56px;
@@ -143,8 +144,7 @@
 
 
 .auth-page-content {
-  display: flex;
-  flex-direction: column;
+  @include flex-col;
   justify-content: flex-start;
   align-items: center;
   min-height: 100vh;
@@ -164,8 +164,7 @@
 }
 
 .auth-header {
-  display: flex;
-  flex-direction: column;
+  @include flex-col;
   align-items: center;
   margin-top: 30px;
   width: 100%;
@@ -178,8 +177,7 @@
 }
 
 .auth-texts {
-  display: flex;
-  flex-direction: column;
+  @include flex-col;
   align-items: center;
   width: 100%;
   margin-top: -20px;
@@ -203,15 +201,13 @@
 .auth-form {
   width: 100%;
   max-width: 340px;
-  display: flex;
-  flex-direction: column;
+  @include flex-col;
   gap: 12px;
   margin: 50px auto 0 auto;
   
 }
 
 
-/* Unified Header Styles - Consolidates all page-specific header implementations */
 .page-header,
 ion-header.page-header,
 .profile-header,
@@ -241,7 +237,6 @@ ion-header.page-header,
   font-weight: 550 !important;
 }
 
-/* Dark Mode Header Styles */
 .ion-palette-dark .page-header,
 .ion-palette-dark ion-header.page-header,
 .ion-palette-dark .profile-header,
@@ -287,7 +282,6 @@ body.ion-palette-dark .ion-page ion-header {
   border: none !important;
 }
 
-/* Remove Ionic default header bottom borders/lines for all headers */
 .page-header::before,
 .page-header::after,
 ion-header::before,
@@ -330,7 +324,6 @@ body .page-header::after {
   width: 0 !important;
 }
 
-/* Unified toolbar styles */
 .page-header .page-toolbar,
 .page-header ion-toolbar,
 .profile-header ion-toolbar,
@@ -356,7 +349,6 @@ body .page-header .page-toolbar {
   border-top: none !important;
 }
 
-/* Dark Mode Toolbar Styles */
 .ion-palette-dark .page-header .page-toolbar,
 .ion-palette-dark .page-header ion-toolbar,
 .ion-palette-dark .profile-header ion-toolbar,
@@ -400,7 +392,6 @@ body.ion-palette-dark .ion-page ion-toolbar {
   border-top: none !important;
 }
 
-/* Remove toolbar pseudo-elements */
 .page-header .page-toolbar::before,
 .page-header .page-toolbar::after,
 .page-header ion-toolbar::before,
@@ -450,7 +441,6 @@ body .page-header .page-toolbar::after {
   color: var(--app-text-dark);
 }
 
-/* Dark mode text colors for all headers and titles */
 .ion-palette-dark .page-title,
 .ion-palette-dark .page-header .page-title,
 .ion-palette-dark .profile-title,
@@ -521,9 +511,7 @@ body.ion-palette-dark ion-title {
   padding: 6px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
   cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  @include flex-center;
 }
 
 .avatar-camera-button ion-icon {
@@ -611,7 +599,7 @@ body.ion-palette-dark ion-title {
 .profile-list-item ion-label {
   font-family: var(--app-font-family);
   font-size: 1rem;
-  font-weight: 500;
+  font-weight: 700;
 }
 
 
@@ -636,7 +624,6 @@ body.ion-palette-dark ion-title {
 .mb-20 { margin-bottom: 20px; }
 .mb-30 { margin-bottom: 30px; }
 
-/* Core Dark Mode Layout */
 .ion-palette-dark ion-app {
   background: var(--ion-background-color);
 }
@@ -650,7 +637,6 @@ body.ion-palette-dark ion-title {
   background: var(--ion-background-color) !important;
 }
 
-/* Dark Mode Forms and Inputs */
 .ion-palette-dark .auth-page-content {
   background: var(--ion-background-color);
 }
@@ -665,7 +651,16 @@ body.ion-palette-dark ion-title {
 
 .ion-palette-dark .floating-input-item {
   background: transparent;
-  border-color: var(--app-border-color-dark);
+  --background: transparent;
+  --background-hover: transparent;
+  --background-focused: transparent;
+  --background-activated: transparent;
+  --highlight-background: transparent;
+  border-color: #555555;
+}
+
+.ion-palette-dark .floating-input-item:focus-within {
+  border-color: #888888;
 }
 
 .ion-palette-dark .floating-input-item .floating-input-icon {
@@ -673,12 +668,14 @@ body.ion-palette-dark ion-title {
 }
 
 .ion-palette-dark .floating-label {
-  color: var(--app-text-light);
+  color: #aaaaaa;
+  background: transparent;
 }
 
-.ion-palette-dark .floating-input-item.has-value .floating-label {
-  color: var(--ion-text-color);
-  background: transparent;
+.ion-palette-dark .floating-input-item.has-value .floating-label,
+.ion-palette-dark .floating-input-item:focus-within .floating-label {
+  color: #cccccc;
+  background: #121212;
 }
 
 .ion-palette-dark .password-toggle-icon {
@@ -687,6 +684,14 @@ body.ion-palette-dark ion-title {
 
 .ion-palette-dark ion-input {
   color: var(--ion-text-color) !important;
+  --background: transparent !important;
+  --color: #ffffff !important;
+}
+
+.ion-palette-dark .floating-input-item ion-input::part(native) {
+  background: transparent !important;
+  color: #ffffff !important;
+  -webkit-text-fill-color: #ffffff !important;
 }
 
 .ion-palette-dark .form-link {
@@ -697,7 +702,6 @@ body.ion-palette-dark ion-title {
   color: #ff6b6b;
 }
 
-/* Dark Mode Buttons */
 .ion-palette-dark .app-button-primary {
   --color: var(--ion-text-color) !important;
   color: var(--ion-text-color) !important;
@@ -712,7 +716,6 @@ body.ion-palette-dark ion-title {
   color: var(--ion-text-color) !important;
 }
 
-/* Auth Force Light Styles */
 html:has(.auth-force-light-page) {
   background: #ffffff !important;
 }

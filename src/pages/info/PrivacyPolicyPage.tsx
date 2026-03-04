@@ -1,26 +1,15 @@
 import {
   IonPage,
-  IonHeader,
-  IonToolbar,
-  IonTitle,
-  IonButtons,
-  IonBackButton,
   IonContent,
 } from "@ionic/react";
+import { PageHeader } from "../../components/common";
 import { ROUTES } from "../../constants";
-import "../../styles/info/PrivacyPolicyPage.css";
+import "../../styles/info/PrivacyPolicyPage.scss";
 
 const PrivacyPolicyPage: React.FC = () => {
   return (
     <IonPage data-page="privacy">
-      <IonHeader className="privacy-header">
-        <IonToolbar className="privacy-toolbar">
-          <IonButtons slot="start">
-            <IonBackButton text="" defaultHref={ROUTES.SETTINGS} />
-          </IonButtons>
-          <IonTitle className="privacy-title">Privacy Policy</IonTitle>
-        </IonToolbar>
-      </IonHeader>
+      <PageHeader title="Privacy Policy" defaultHref={ROUTES.SETTINGS} />
 
       <IonContent className="privacy-content">
         <div className="privacy-container">

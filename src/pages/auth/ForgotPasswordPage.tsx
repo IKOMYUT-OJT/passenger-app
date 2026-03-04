@@ -1,14 +1,15 @@
-import { IonButton, IonIcon } from "@ionic/react";
+import { IonButton, IonIcon, useIonToast } from "@ionic/react";
 import { useState, useEffect, useMemo } from "react";
 import { useIonRouter } from "@ionic/react";
 import { arrowBack, callOutline, lockClosed } from "ionicons/icons";
 import { AuthPageLayout, AuthHeader, FloatingLabelInput, LoadingSpinner } from "../../components/common";
 import { ROUTES } from "../../constants";
-import "../../styles/auth/SignupPage.css";
-import "../../styles/auth/ForgotPasswordPage.css";
+import "../../styles/auth/SignupPage.scss";
+import "../../styles/auth/ForgotPasswordPage.scss";
 
 const ForgotPasswordPage: React.FC = () => {
   const ionRouter = useIonRouter();
+  const [presentToast] = useIonToast();
   const [step, setStep] = useState(1);
   const [mobileNumber, setMobileNumber] = useState("");
   const [loading, setLoading] = useState(false);
@@ -28,7 +29,7 @@ const ForgotPasswordPage: React.FC = () => {
 
   const handleSend = () => {
     if (!mobileNumber || mobileNumber.length < 11) {
-      alert("Please enter a valid 11-digit mobile number.");
+      presentToast({ message: "Please enter a valid 11-digit mobile number.", duration: 2500, color: "danger", position: "top" });
       return;
     }
     setLoading(true);
@@ -53,7 +54,7 @@ const ForgotPasswordPage: React.FC = () => {
 
   const handleVerify = () => {
     if (otpValue.length !== 6) {
-      alert("Please enter the 6-digit code.");
+      presentToast({ message: "Please enter the 6-digit code.", duration: 2500, color: "danger", position: "top" });
       return;
     }
     setLoading(true);
@@ -71,24 +72,24 @@ const ForgotPasswordPage: React.FC = () => {
 
   const handleResetPassword = () => {
     if (!newPassword || !confirmPassword) {
-      alert("Please fill in all fields.");
+      presentToast({ message: "Please fill in all fields.", duration: 2500, color: "danger", position: "top" });
       return;
     }
     if (newPassword !== confirmPassword) {
-      alert("Passwords do not match.");
+      presentToast({ message: "Passwords do not match.", duration: 2500, color: "danger", position: "top" });
       return;
     }
     if (newPassword.length < 6) {
-      alert("Password must be at least 6 characters.");
+      presentToast({ message: "Password must be at least 6 characters.", duration: 2500, color: "danger", position: "top" });
       return;
     }
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
-      alert("Password reset successful!");
+      presentToast({ message: "Password reset successful!", duration: 2000, color: "success", position: "top" });
       setTimeout(() => {
         window.location.href = ROUTES.LOGIN;
-      }, 100);
+      }, 2100);
     }, 1500);
   };
 

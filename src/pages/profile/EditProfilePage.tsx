@@ -8,11 +8,12 @@ import {
   IonGrid,
   IonRow,
   IonCol,
+  useIonToast,
 } from "@ionic/react";
 import { PageHeader, ProfileAvatar } from "../../components/common";
 import { useProfileImage } from "../../hooks";
 import { ROUTES } from "../../constants";
-import "../../styles/profile/EditProfilePage.css";
+import "../../styles/profile/EditProfilePage.scss";
 
 const EditProfile: React.FC = () => {
   const [fullName, setFullName] = useState("");
@@ -20,6 +21,15 @@ const EditProfile: React.FC = () => {
   const [mobile, setMobile] = useState("");
   const [address, setAddress] = useState("");
   const { profileImage, updateProfileImage } = useProfileImage();
+  const [presentToast] = useIonToast();
+
+  const handleSave = () => {
+    if (!fullName || !email || !mobile || !address) {
+      presentToast({ message: "Please fill in all fields.", duration: 2500, color: "danger", position: "top" });
+      return;
+    }
+    presentToast({ message: "Profile saved successfully!", duration: 2500, color: "success", position: "top" });
+  };
 
   return (
     <IonPage data-page="editprofile">
@@ -77,7 +87,7 @@ const EditProfile: React.FC = () => {
               </IonButton>
             </IonCol>
             <IonCol>
-              <IonButton expand="block" className="app-button-primary">
+              <IonButton expand="block" className="app-button-primary" onClick={handleSave}>
                 Save changes
               </IonButton>
             </IonCol>

@@ -1,9 +1,11 @@
+@use '../mixins' as *;
+
 /* Header styles now consolidated in common.css */
 
 .ion-page[data-page="address"] .page-title,
 .address-title {
   text-align: left;
-  font-family: "Poppins", sans-serif;
+  font-family: var(--app-font-family);
   font-weight: 550;
   font-size: 20px;
   padding-left: 0;
@@ -22,8 +24,7 @@
 }
 
 .section-header {
-  display: flex;
-  align-items: center;
+  @include flex-row;
   gap: 8px;
   margin-bottom: 12px;
 }
@@ -34,7 +35,7 @@
 }
 
 .section-label {
-  font-family: "Poppins", sans-serif;
+  font-family: var(--app-font-family);
   font-size: 16px;
   font-weight: 600;
   color: #000000;
@@ -50,8 +51,7 @@
   background: #ffffff;
   border-radius: 12px;
   padding: 16px;
-  display: flex;
-  align-items: center;
+  @include flex-row;
   gap: 12px;
   cursor: pointer;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
@@ -67,7 +67,7 @@
 }
 
 .current-address-text {
-  font-family: "Poppins", sans-serif;
+  font-family: var(--app-font-family);
   font-size: 14px;
   color: #333333;
   line-height: 1.5;
@@ -89,9 +89,7 @@
   padding: 0;
   margin-left: auto;
   cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  @include flex-center;
 }
 
 .add-place-btn ion-icon {
@@ -100,8 +98,7 @@
 }
 
 .saved-places-list {
-  display: flex;
-  flex-direction: column;
+  @include flex-col;
   gap: 12px;
 }
 
@@ -120,7 +117,7 @@
 }
 
 .empty-text {
-  font-family: "Poppins", sans-serif;
+  font-family: var(--app-font-family);
   font-size: 16px;
   font-weight: 600;
   color: #666666;
@@ -128,7 +125,7 @@
 }
 
 .empty-subtext {
-  font-family: "Poppins", sans-serif;
+  font-family: var(--app-font-family);
   font-size: 13px;
   color: #999999;
   margin: 0;
@@ -138,8 +135,7 @@
   background: #ffffff;
   border-radius: 12px;
   padding: 16px;
-  display: flex;
-  align-items: center;
+  @include flex-row;
   gap: 12px;
   cursor: pointer;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
@@ -155,9 +151,7 @@
   height: 40px;
   border-radius: 10px;
   background: #e8f5e9;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  @include flex-center;
   flex-shrink: 0;
 }
 
@@ -172,7 +166,7 @@
 }
 
 .saved-place-title {
-  font-family: "Poppins", sans-serif;
+  font-family: var(--app-font-family);
   font-size: 15px;
   font-weight: 600;
   color: #000000;
@@ -180,7 +174,7 @@
 }
 
 .saved-place-address {
-  font-family: "Poppins", sans-serif;
+  font-family: var(--app-font-family);
   font-size: 13px;
   color: #666666;
   margin-bottom: 2px;
@@ -190,7 +184,7 @@
 }
 
 .saved-place-notes {
-  font-family: "Poppins", sans-serif;
+  font-family: var(--app-font-family);
   font-size: 12px;
   color: #999999;
   overflow: hidden;
@@ -213,7 +207,7 @@
 }
 
 .map-title {
-  font-family: "Poppins", sans-serif;
+  font-family: var(--app-font-family);
   font-weight: 600;
   font-size: 18px;
   color: #000000;
@@ -229,9 +223,7 @@
   height: calc(100% - 140px);
   background: #e0e0e0;
   position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  @include flex-center;
 }
 
 .map-marker {
@@ -255,8 +247,7 @@
   background: #ffffff;
   border-radius: 12px;
   padding: 12px 16px;
-  display: flex;
-  align-items: center;
+  @include flex-row;
   gap: 12px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
@@ -268,7 +259,7 @@
 }
 
 .map-address-text {
-  font-family: "Poppins", sans-serif;
+  font-family: var(--app-font-family);
   font-size: 13px;
   color: #000000;
   flex: 1;
@@ -283,7 +274,7 @@
   --background-activated: #006600;
   --border-radius: 12px;
   height: 50px;
-  font-family: "Poppins", sans-serif;
+  font-family: var(--app-font-family);
   font-size: 16px;
   font-weight: 600;
   text-transform: none;
@@ -305,7 +296,7 @@
 }
 
 .edit-title {
-  font-family: "Poppins", sans-serif;
+  font-family: var(--app-font-family);
   font-weight: 600;
   font-size: 18px;
   color: #000000;
@@ -320,8 +311,7 @@
 }
 
 .edit-form {
-  display: flex;
-  flex-direction: column;
+  @include flex-col;
   gap: 16px;
 }
 
@@ -341,7 +331,7 @@
   --padding-end: 16px;
   --padding-top: 14px;
   --padding-bottom: 14px;
-  font-family: "Poppins", sans-serif;
+  font-family: var(--app-font-family);
   font-size: 14px;
 }
 
@@ -350,7 +340,7 @@
   --background-activated: #006600;
   --border-radius: 12px;
   height: 50px;
-  font-family: "Poppins", sans-serif;
+  font-family: var(--app-font-family);
   font-size: 16px;
   font-weight: 600;
   text-transform: none;
@@ -358,108 +348,82 @@
 }
 
 
-html.ion-palette-dark .ion-page[data-page="address"],
-body.ion-palette-dark .ion-page[data-page="address"],
 .ion-palette-dark .ion-page[data-page="address"] {
-  --background: #121212 !important;
-  background: #121212 !important;
+  --background: #121212;
+  background: #121212;
+
+  ion-header,
+  .page-header {
+    --background: #121212;
+    background: #121212;
+    --border-width: 0;
+    border: 0;
+    --box-shadow: none;
+    box-shadow: none;
+    margin: 0;
+    padding-bottom: 0;
+
+    &::before,
+    &::after {
+      display: none;
+      visibility: hidden;
+      opacity: 0;
+      background: transparent;
+      content: none;
+      height: 0;
+      width: 0;
+      box-shadow: none;
+      border: 0;
+      position: absolute;
+    }
+  }
+
+  ion-toolbar,
+  .page-toolbar {
+    --background: #121212;
+    background: #121212;
+    --border-width: 0;
+    border: 0;
+    --box-shadow: none;
+    box-shadow: none;
+
+    &::before,
+    &::after {
+      display: none;
+      visibility: hidden;
+      opacity: 0;
+      background: transparent;
+      content: none;
+      height: 0;
+      width: 0;
+      box-shadow: none;
+      border: 0;
+      position: absolute;
+    }
+  }
 }
 
-html.ion-palette-dark .ion-page[data-page="address"] ion-header,
-body.ion-palette-dark .ion-page[data-page="address"] ion-header,
-.ion-palette-dark .ion-page[data-page="address"] ion-header,
-html.ion-palette-dark .ion-page[data-page="address"] .page-header,
-body.ion-palette-dark .ion-page[data-page="address"] .page-header,
-.ion-palette-dark .ion-page[data-page="address"] .page-header,
-.ion-palette-dark .address-header {
-  --background: #121212 !important;
-  background: #121212 !important;
-  background-color: #121212 !important;
-  --border-width: 0 !important;
-  --border-color: transparent !important;
-  --border-style: none !important;
-  border: 0 !important;
-  border-width: 0 !important;
-  border-color: transparent !important;
-  border-style: none !important;
-  border-top: 0 !important;
-  border-bottom: 0 !important;
-  --box-shadow: none !important;
-  box-shadow: none !important;
-  --min-height: auto !important;
-  outline: none !important;
-  margin: 0 !important;
-  padding-bottom: 0 !important;
-}
+.ion-palette-dark .address-header,
+.ion-palette-dark .address-header ion-toolbar,
+.ion-palette-dark .address-toolbar {
+  --background: #121212;
+  background: #121212;
+  --border-width: 0;
+  border: 0;
+  --box-shadow: none;
+  box-shadow: none;
 
-html.ion-palette-dark .ion-page[data-page="address"] ion-toolbar,
-body.ion-palette-dark .ion-page[data-page="address"] ion-toolbar,
-.ion-palette-dark .ion-page[data-page="address"] ion-toolbar,
-html.ion-palette-dark .ion-page[data-page="address"] .page-toolbar,
-body.ion-palette-dark .ion-page[data-page="address"] .page-toolbar,
-.ion-palette-dark .ion-page[data-page="address"] .page-toolbar,
-.ion-palette-dark .address-toolbar,
-.ion-palette-dark .address-header ion-toolbar {
-  --background: #121212 !important;
-  background: #121212 !important;
-  background-color: #121212 !important;
-  --border-width: 0 !important;
-  --border-color: transparent !important;
-  --border-style: none !important;
-  border: 0 !important;
-  border-width: 0 !important;
-  border-color: transparent !important;
-  border-style: none !important;
-  border-top: 0 !important;
-  border-bottom: 0 !important;
-  --box-shadow: none !important;
-  box-shadow: none !important;
-  outline: none !important;
-  --padding-top: 0 !important;
-  --padding-bottom: 0 !important;
-}
-
-html.ion-palette-dark .ion-page[data-page="address"] ion-header::before,
-html.ion-palette-dark .ion-page[data-page="address"] ion-header::after,
-body.ion-palette-dark .ion-page[data-page="address"] ion-header::before,
-body.ion-palette-dark .ion-page[data-page="address"] ion-header::after,
-.ion-palette-dark .ion-page[data-page="address"] ion-header::before,
-.ion-palette-dark .ion-page[data-page="address"] ion-header::after,
-html.ion-palette-dark .ion-page[data-page="address"] .page-header::before,
-html.ion-palette-dark .ion-page[data-page="address"] .page-header::after,
-body.ion-palette-dark .ion-page[data-page="address"] .page-header::before,
-body.ion-palette-dark .ion-page[data-page="address"] .page-header::after,
-.ion-palette-dark .ion-page[data-page="address"] .page-header::before,
-.ion-palette-dark .ion-page[data-page="address"] .page-header::after,
-html.ion-palette-dark .ion-page[data-page="address"] ion-toolbar::before,
-html.ion-palette-dark .ion-page[data-page="address"] ion-toolbar::after,
-body.ion-palette-dark .ion-page[data-page="address"] ion-toolbar::before,
-body.ion-palette-dark .ion-page[data-page="address"] ion-toolbar::after,
-.ion-palette-dark .ion-page[data-page="address"] ion-toolbar::before,
-.ion-palette-dark .ion-page[data-page="address"] ion-toolbar::after,
-html.ion-palette-dark .ion-page[data-page="address"] .page-toolbar::before,
-html.ion-palette-dark .ion-page[data-page="address"] .page-toolbar::after,
-body.ion-palette-dark .ion-page[data-page="address"] .page-toolbar::before,
-body.ion-palette-dark .ion-page[data-page="address"] .page-toolbar::after,
-.ion-palette-dark .ion-page[data-page="address"] .page-toolbar::before,
-.ion-palette-dark .ion-page[data-page="address"] .page-toolbar::after,
-.ion-palette-dark .address-header::after,
-.ion-palette-dark .address-header::before,
-.ion-palette-dark .address-header ion-toolbar::after,
-.ion-palette-dark .address-header ion-toolbar::before {
-  display: none !important;
-  visibility: hidden !important;
-  opacity: 0 !important;
-  background: transparent !important;
-  background-color: transparent !important;
-  border: 0 !important;
-  border-width: 0 !important;
-  border-color: transparent !important;
-  content: none !important;
-  height: 0 !important;
-  width: 0 !important;
-  box-shadow: none !important;
-  position: absolute !important;
+  &::before,
+  &::after {
+    display: none;
+    visibility: hidden;
+    opacity: 0;
+    background: transparent;
+    content: none;
+    height: 0;
+    width: 0;
+    position: absolute;
+  }
 }
 
 .ion-palette-dark .ion-page[data-page="address"] ion-header::part(native),
@@ -472,43 +436,28 @@ body.ion-palette-dark .ion-page[data-page="address"] .page-toolbar::after,
 .ion-palette-dark .ion-page[data-page="address"] ion-header .header-md::after,
 .ion-palette-dark .ion-page[data-page="address"] ion-header .header-ios::after,
 .ion-palette-dark .ion-page[data-page="address"] ion-toolbar .toolbar-md::after,
-.ion-palette-dark .ion-page[data-page="address"] ion-toolbar .toolbar-ios::after {\n  display: none !important;\n  opacity: 0 !important;\n  height: 0 !important;\n  background: transparent !important;\n}
-
-.ion-palette-dark .ion-page[data-page="address"] .header-md::after,
-.ion-palette-dark .ion-page[data-page="address"] .header-ios::after,
-.ion-palette-dark .ion-page[data-page="address"] .toolbar-md::after,
-.ion-palette-dark .ion-page[data-page="address"] .toolbar-ios::after,
-.ion-palette-dark .ion-page[data-page="address"] .ion-ios ion-header::after,
-.ion-palette-dark .ion-page[data-page="address"] .ion-md ion-header::after {
+.ion-palette-dark .ion-page[data-page="address"] ion-toolbar .toolbar-ios::after {
   display: none !important;
-  content: none !important;
+  opacity: 0 !important;
   height: 0 !important;
-  background-image: none !important;
-  background-color: transparent !important;
-  border: none !important;
+  background: transparent !important;
 }
+
 
 /* Dark mode text colors now handled by unified system in common.css */
 
-.ion-palette-dark .ion-page[data-page="address"] ion-back-button {
-  --color: #ffffff !important;
-  color: #ffffff !important;
-}
+.ion-palette-dark .ion-page[data-page="address"] {
+  ion-back-button {
+    --color: #ffffff;
+    color: #ffffff;
+  }
 
-.ion-palette-dark .ion-page[data-page="address"] ion-header,
-.ion-palette-dark .ion-page[data-page="address"] ion-toolbar,
-.ion-palette-dark .ion-page[data-page="address"] ion-content {
-  --background: #121212 !important;
-  background: #121212 !important;
-  background-color: #121212 !important;
-  --border-width: 0 !important;
-  --border-color: transparent !important;
-  border: 0 !important;
-  border-width: 0 !important;
-  border-color: transparent !important;
-  border-top: 0 !important;
-  border-bottom: 0 !important;
-  box-shadow: none !important;
+  ion-header,
+  ion-toolbar,
+  ion-content {
+    --background: #121212;
+    background: #121212;
+  }
 }
 
 .ion-palette-dark .ion-page[data-page="address"]::before {
@@ -543,20 +492,6 @@ body.ion-palette-dark .ion-page[data-page="address"] .page-toolbar::after,
   background: transparent !important;
 }
 
-.ion-palette-dark .ion-page[data-page="address"] ion-header::after {
-  content: "" !important;
-  position: absolute !important;
-  bottom: -5px !important;
-  left: 0 !important;
-  right: 0 !important;
-  height: 10px !important;
-  background: #121212 !important;
-  z-index: 10 !important;
-  display: block !important;
-  visibility: visible !important;
-  opacity: 1 !important;
-  pointer-events: none !important;
-}
 
 .ion-palette-dark .section-label {
   color: #ffffff !important;
@@ -677,3 +612,4 @@ body.ion-palette-dark .ion-page[data-page="address"] .page-toolbar::after,
   --color: #ffffff !important;
   color: #ffffff !important;
 }
+

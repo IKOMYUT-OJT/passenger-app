@@ -1,3 +1,5 @@
+@use '../mixins' as *;
+
 .nearby-toggle-green-btn {
   width: 93%;
   background: #008000;
@@ -6,9 +8,7 @@
   border-radius: 15px;
   padding: 14px 20px;
   margin: 0 auto -5px auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  @include flex-center;
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;
@@ -29,8 +29,7 @@
 }
 .nearby-toggle-icon {
   font-size: 18px;
-  display: flex;
-  align-items: center;
+  @include flex-row;
   color: #fff !important;
   width: 18px;
   height: 18px;
@@ -65,17 +64,14 @@
 }
 
 .nearby-buses-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  @include flex-between;
   font-weight: 700;
   font-size: 1.2rem;
   margin-bottom: 16px;
 }
 
 .nearby-buses-title {
-  display: flex;
-  align-items: center;
+  @include flex-row;
   gap: 8px;
 }
 
@@ -85,23 +81,18 @@
   border-radius: 50%;
   width: 24px;
   height: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  @include flex-center;
   font-size: 12px;
   font-weight: 600;
 }
 
 .nearby-buses-actions {
-  display: flex;
-  align-items: center;
+  @include flex-row;
   gap: 12px;
 }
 
 .nearby-action-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  @include flex-center;
   cursor: pointer;
   padding: 4px;
   border-radius: 4px;
@@ -114,13 +105,11 @@
 
 .nearby-buses-chevron {
   color: #666;
-  display: flex;
-  align-items: center;
+  @include flex-row;
 }
 
 .nearby-buses-list {
-  display: flex;
-  flex-direction: column;
+  @include flex-col;
   gap: 16px;
 }
 
@@ -162,23 +151,18 @@
 }
 
 .nearby-bus-icon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  @include flex-center;
   margin-top: 2px;
 }
 
 .nearby-bus-content {
   flex: 1;
-  display: flex;
-  flex-direction: column;
+  @include flex-col;
   gap: 6px;
 }
 
 .nearby-bus-header-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  @include flex-between;
 }
 
 .nearby-bus-number {
@@ -213,9 +197,7 @@
 }
 
 .nearby-bus-details {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  @include flex-between;
   margin-top: 2px;
 }
 
@@ -223,3 +205,4 @@
   font-size: 0.85rem;
   color: #888;
 }
+

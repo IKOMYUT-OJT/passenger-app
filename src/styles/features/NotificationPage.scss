@@ -1,54 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap');
-
-.ion-page[data-page="notification"] .page-header,
-.notification-header {
-  padding-top: 20px;
-  transform: none;
-  box-shadow: none !important;
-  --background: #ffffff;
-  background: #ffffff !important;
-  --border-width: 0 !important;
-  border: none !important;
-}
-
-.ion-page[data-page="notification"] ion-header {
-  --background: #ffffff;
-  background: #ffffff !important;
-  --border-width: 0 !important;
-  border: none !important;
-  box-shadow: none !important;
-}
-
-.ion-page[data-page="notification"] .page-header::after,
-.ion-page[data-page="notification"] .page-header::before,
-.ion-page[data-page="notification"] ion-header::after,
-.ion-page[data-page="notification"] ion-header::before,
-.notification-header::after,
-.notification-header::before {
-  display: none !important;
-}
-
-.ion-page[data-page="notification"] .page-toolbar,
-.notification-header ion-toolbar {
-  --box-shadow: none !important;
-  box-shadow: none !important;
-  --border-width: 0 !important;
-  border: none !important;
-  --background: #ffffff;
-  background: #ffffff !important;
-}
-
-.ion-page[data-page="notification"] .page-toolbar::after,
-.ion-page[data-page="notification"] .page-toolbar::before,
-.notification-header ion-toolbar::after,
-.notification-header ion-toolbar::before {
-  display: none !important;
-}
-
-.notification-toolbar {
-  --background: #ffffff;
-  background: #ffffff !important;
-}
+@use '../mixins' as *;
 
 .ion-page[data-page="notification"] .page-title,
 .notification-title {
@@ -71,82 +21,54 @@
 }
 
 .notification-header-section {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  @include flex-between;
   margin-bottom: 16px;
 }
 
 .section-title {
-  font-family: 'Poppins', sans-serif;
+  font-family: var(--app-font-family);
   font-size: 16px;
   font-weight: 600;
   color: #000000;
   margin: 0;
 }
 
-.mark-all-read,
-.mark-all-read:visited,
-button.mark-all-read,
-.notification-container .mark-all-read {
-  background: transparent !important;
-  border: none !important;
-  font-family: 'Poppins', sans-serif;
+.mark-all-read {
+  background: transparent;
+  border: none;
+  font-family: var(--app-font-family);
   font-size: 13px;
   font-weight: 500;
-  color: #008000 !important;
+  color: #008000;
   cursor: pointer;
   padding: 4px 8px;
   transition: all 0.2s ease;
   border-radius: 4px;
-  text-decoration: none !important;
-  outline: none !important;
-  box-shadow: none !important;
-}
+  text-decoration: none;
+  outline: none;
 
-.mark-all-read:hover,
-.mark-all-read:focus-visible,
-button.mark-all-read:hover,
-.notification-container .mark-all-read:hover {
-  background: rgba(0, 128, 0, 0.15) !important;
-  color: #008000 !important;
-  text-decoration: none !important;
-  outline: none !important;
-  box-shadow: none !important;
-}
+  &:hover {
+    background: rgba(0, 128, 0, 0.15);
+  }
 
-.mark-all-read:focus,
-button.mark-all-read:focus,
-.notification-container .mark-all-read:focus {
-  background: rgba(0, 128, 0, 0.2) !important;
-  color: #008000 !important;
-  outline: none !important;
-  text-decoration: none !important;
-  box-shadow: none !important;
-}
+  &:focus {
+    background: rgba(0, 128, 0, 0.2);
+    outline: none;
+  }
 
-.mark-all-read:active,
-.mark-all-read:active:hover,
-button.mark-all-read:active,
-.notification-container .mark-all-read:active {
-  background: rgba(0, 128, 0, 0.3) !important;
-  color: #008000 !important;
-  transform: scale(0.95);
-  text-decoration: none !important;
-  outline: none !important;
-  box-shadow: none !important;
+  &:active {
+    background: rgba(0, 128, 0, 0.3);
+    transform: scale(0.95);
+  }
 }
 
 .notifications-wrapper {
-  display: flex;
-  flex-direction: column;
+  @include flex-col;
   gap: 12px;
 }
 
-.notification-card,
-.notifications-wrapper .notification-card,
-div.notification-card {
-  background: #ffffff !important;
+.notification-card {
+  background: #ffffff;
   border-radius: 12px;
   padding: 16px;
   display: flex;
@@ -155,33 +77,26 @@ div.notification-card {
   transition: all 0.2s ease;
   cursor: pointer;
   position: relative;
-  border: 2px solid transparent !important;
-}
+  border: 2px solid transparent;
 
-.notification-card:hover,
-.notifications-wrapper .notification-card:hover,
-div.notification-card:hover {
-  background: rgba(0, 128, 0, 0.08) !important;
-  box-shadow: 0 4px 12px rgba(0, 128, 0, 0.2) !important;
-  border-color: rgba(0, 128, 0, 0.2) !important;
-}
+  &:hover {
+    background: rgba(0, 128, 0, 0.08);
+    box-shadow: 0 4px 12px rgba(0, 128, 0, 0.2);
+    border-color: rgba(0, 128, 0, 0.2);
+  }
 
-.notification-card:focus,
-.notifications-wrapper .notification-card:focus,
-div.notification-card:focus {
-  background: rgba(0, 128, 0, 0.1) !important;
-  box-shadow: 0 4px 16px rgba(0, 128, 0, 0.3) !important;
-  border-color: #008000 !important;
-  outline: none !important;
-}
+  &:focus {
+    background: rgba(0, 128, 0, 0.1);
+    box-shadow: 0 4px 16px rgba(0, 128, 0, 0.3);
+    border-color: #008000;
+    outline: none;
+  }
 
-.notification-card:active,
-.notification-card:active:hover,
-.notifications-wrapper .notification-card:active,
-div.notification-card:active {
-  transform: scale(0.98);
-  background: rgba(0, 128, 0, 0.15) !important;
-  border-color: #008000 !important;
+  &:active {
+    transform: scale(0.98);
+    background: rgba(0, 128, 0, 0.15);
+    border-color: #008000;
+  }
 }
 
 .notification-unread {
@@ -207,9 +122,7 @@ div.notification-card:active {
   width: 48px;
   height: 48px;
   border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  @include flex-center;
 }
 
 .notification-icon-circle ion-icon {
@@ -246,14 +159,13 @@ div.notification-card:active {
 }
 
 .notification-top-row {
-  display: flex;
-  align-items: center;
+  @include flex-row;
   gap: 8px;
   margin-bottom: 4px;
 }
 
 .notification-title {
-  font-family: 'Poppins', sans-serif;
+  font-family: var(--app-font-family);
   font-size: 15px;
   font-weight: 600;
   color: #000000;
@@ -270,7 +182,7 @@ div.notification-card:active {
 }
 
 .notification-text {
-  font-family: 'Poppins', sans-serif;
+  font-family: var(--app-font-family);
   font-size: 13px;
   color: #666666;
   line-height: 1.5;
@@ -278,8 +190,7 @@ div.notification-card:active {
 }
 
 .notification-footer {
-  display: flex;
-  align-items: center;
+  @include flex-row;
   gap: 4px;
 }
 
@@ -289,7 +200,7 @@ div.notification-card:active {
 }
 
 .notification-time-text {
-  font-family: 'Poppins', sans-serif;
+  font-family: var(--app-font-family);
   font-size: 12px;
   color: #999999;
 }
@@ -320,47 +231,35 @@ div.notification-card:active {
   color: #ffffff !important;
 }
 
-.ion-palette-dark .mark-all-read,
-.ion-palette-dark button.mark-all-read,
-.ion-palette-dark .notification-container .mark-all-read {
-  color: #4ade80 !important;
+.ion-palette-dark .mark-all-read {
+  color: #4ade80;
+
+  &:hover {
+    background: rgba(74, 222, 128, 0.15);
+    color: #4ade80;
+  }
+
+  &:active {
+    background: rgba(74, 222, 128, 0.25);
+    color: #4ade80;
+  }
 }
 
-.ion-palette-dark .mark-all-read:hover,
-.ion-palette-dark button.mark-all-read:hover,
-.ion-palette-dark .notification-container .mark-all-read:hover {
-  background: rgba(74, 222, 128, 0.15) !important;
-  color: #4ade80 !important;
-}
-
-.ion-palette-dark .mark-all-read:active,
-.ion-palette-dark button.mark-all-read:active,
-.ion-palette-dark .notification-container .mark-all-read:active {
-  background: rgba(74, 222, 128, 0.25) !important;
-  color: #4ade80 !important;
-}
-
-.ion-palette-dark .notification-card,
-.ion-palette-dark .notifications-wrapper .notification-card,
-.ion-palette-dark div.notification-card {
-  background: #1e1e1e !important;
+.ion-palette-dark .notification-card {
+  background: #1e1e1e;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-  border-color: transparent !important;
-}
+  border-color: transparent;
 
-.ion-palette-dark .notification-card:hover,
-.ion-palette-dark .notifications-wrapper .notification-card:hover,
-.ion-palette-dark div.notification-card:hover {
-  background: rgba(74, 222, 128, 0.1) !important;
-  border-color: rgba(74, 222, 128, 0.3) !important;
-  box-shadow: 0 4px 12px rgba(74, 222, 128, 0.2) !important;
-}
+  &:hover {
+    background: rgba(74, 222, 128, 0.1);
+    border-color: rgba(74, 222, 128, 0.3);
+    box-shadow: 0 4px 12px rgba(74, 222, 128, 0.2);
+  }
 
-.ion-palette-dark .notification-card:active,
-.ion-palette-dark .notifications-wrapper .notification-card:active,
-.ion-palette-dark div.notification-card:active {
-  background: rgba(74, 222, 128, 0.15) !important;
-  border-color: #4ade80 !important;
+  &:active {
+    background: rgba(74, 222, 128, 0.15);
+    border-color: #4ade80;
+  }
 }
 
 .ion-palette-dark .notification-unread {

@@ -1,3 +1,5 @@
+@use '../mixins' as *;
+
 /* Header styles now handled by common.css */
 
 .ion-page[data-page="security"] .page-title,
@@ -150,3 +152,4 @@
   --background: var(--ion-background-color) !important;
   background: var(--ion-background-color) !important;
 }
+

@@ -1,17 +1,18 @@
-import { IonButton, IonText } from "@ionic/react";
+import { IonButton } from "@ionic/react";
+import { useIonToast } from "@ionic/react";
 import { lockClosed, callOutline } from "ionicons/icons";
 import { useState, useContext, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthContext";
 import { AuthPageLayout, AuthHeader, FloatingLabelInput, LoadingSpinner } from "../../components/common";
 import { ROUTES } from "../../constants";
-import "../../styles/auth/LoginPage.css";
+import "../../styles/auth/LoginPage.scss";
 
 const LoginPage: React.FC = () => {
   const [mobileNumber, setMobileNumber] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [presentToast] = useIonToast();
 
   const history = useHistory();
   const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
@@ -24,11 +25,10 @@ const LoginPage: React.FC = () => {
 
   const handleLogin = () => {
     if (!mobileNumber || !password) {
-      setError("Please enter both mobile number and password.");
+      presentToast({ message: "Please enter both mobile number and password.", duration: 2500, color: "danger", position: "top" });
       return;
     }
 
-    setError("");
     setLoading(true);
     setTimeout(() => {
       setIsLoggedIn(true);
@@ -75,12 +75,6 @@ const LoginPage: React.FC = () => {
         <div className="forgot-password" onClick={handleForgotPassword}>
           Forgot Password?
         </div>
-
-        {error && (
-          <IonText color="danger" className="form-error">
-            {error}
-          </IonText> 
-        )}
 
         <IonButton expand="block" className="app-button-primary mt-20" onClick={handleLogin}>
           Sign In

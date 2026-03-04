@@ -10,27 +10,25 @@ import {
   IonModal,
   IonText,
   IonButton,
+  useIonRouter,
 } from "@ionic/react";
 import {
   personOutline,
-  lockClosedOutline,
   settingsOutline,
   walletOutline,
   logOutOutline,
-  chevronForwardOutline,
   pricetagOutline,
   notificationsOutline,
   locationOutline,
 } from "ionicons/icons";
-import { useIonRouter } from "@ionic/react";
 import { AuthContext } from "../../contexts/AuthContext";
 import { PageHeader, ProfileAvatar } from "../../components/common";
 import { useProfileImage } from "../../hooks";
 import { useDarkMode } from "../../contexts/DarkModeContext";
 import { ROUTES } from "../../constants";
-import "../../styles/profile/ProfilePage.css";
+import "../../styles/profile/ProfilePage.scss";
 
-const Profilepage: React.FC = () => {
+const ProfilePage: React.FC = () => {
   const [showLogoutModal, setShowLogoutModal] = useState(false);
   const { profileImage, updateProfileImage } = useProfileImage();
   const ionRouter = useIonRouter();
@@ -184,4 +182,4 @@ const Profilepage: React.FC = () => {
   );
 };
 
-export default Profilepage;
+export default ProfilePage;

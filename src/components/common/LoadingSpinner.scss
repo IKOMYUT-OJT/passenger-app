@@ -1,0 +1,158 @@
+.loading-modal {
+  --width: 100%;
+  --height: 100%;
+  --background: #ffffff;
+}
+
+.loading-modal::part(backdrop) {
+  background: #ffffff;
+  opacity: 1;
+}
+
+.loading-modal::part(content) {
+  background: #ffffff;
+  box-shadow: none;
+}
+
+.loading-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  animation: contentFadeIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.loading-circle {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.progress-ring {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform-origin: 50% 50%;
+  animation: ringRotate 1.4s linear infinite;
+}
+
+.ring-bg {
+  fill: none;
+  stroke: #e8e8e8;
+  stroke-width: 10;
+}
+
+.ring-progress {
+  fill: none;
+  stroke-width: 10;
+  stroke-linecap: round;
+  stroke-dasharray: 80 234;
+  stroke-dashoffset: 0;
+  animation: ringDash 1.4s ease-in-out infinite;
+  filter: drop-shadow(0 0 4px rgba(0, 160, 63, 0.4));
+}
+
+.logo-wrap {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: pinBounce 1.4s ease-in-out infinite;
+}
+
+.map-pin {
+  position: relative;
+  width: 52px;
+  height: 66px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.map-pin-head {
+  width: 52px;
+  height: 52px;
+  background: #1a8a1a;
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(-45deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.22);
+}
+
+.map-pin-tail {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 10px;
+  height: 14px;
+  background: #1a8a1a;
+  clip-path: polygon(50% 100%, 0% 0%, 100% 0%);
+}
+
+.map-pin-circle {
+  width: 34px;
+  height: 34px;
+  background: #c0392b;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: rotate(45deg);
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.2);
+}
+
+.bus-icon {
+  color: #ffffff;
+  font-size: 20px;
+}
+
+@keyframes contentFadeIn {
+  0%   { opacity: 0; transform: scale(0.85); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+@keyframes ringRotate {
+  0%   { transform: rotate(-90deg); }
+  100% { transform: rotate(270deg); }
+}
+
+@keyframes ringDash {
+  0%   { stroke-dasharray: 10 304; stroke-dashoffset: 0; }
+  50%  { stroke-dasharray: 140 174; stroke-dashoffset: -60; }
+  100% { stroke-dasharray: 10 304; stroke-dashoffset: -314; }
+}
+
+@keyframes pinBounce {
+  0%, 100% { transform: translateY(0px);    }
+  30%       { transform: translateY(-8px);   }
+  50%       { transform: translateY(-4px);   }
+  70%       { transform: translateY(-9px);   }
+}
+
+.ion-palette-dark .loading-modal {
+  --background: #121212;
+}
+
+.ion-palette-dark .loading-modal::part(backdrop) {
+  background: #121212;
+  opacity: 1;
+}
+
+.ion-palette-dark .loading-modal::part(content) {
+  background: #121212;
+}
+
+.ion-palette-dark .ring-bg {
+  stroke: #333333;
+}

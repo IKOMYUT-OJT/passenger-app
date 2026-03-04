@@ -1,10 +1,5 @@
 import {
   IonPage,
-  IonHeader,
-  IonToolbar,
-  IonTitle,
-  IonButtons,
-  IonBackButton,
   IonContent,
   IonList,
   IonItem,
@@ -19,20 +14,14 @@ import {
   mailOutline,
   chatbubbleEllipsesOutline,
 } from "ionicons/icons";
+import { PageHeader } from "../../components/common";
 import { ROUTES } from "../../constants";
-import "../../styles/info/HelpPage.css";
+import "../../styles/info/HelpPage.scss";
 
 const HelpPage: React.FC = () => {
   return (
     <IonPage data-page="help">
-      <IonHeader className="help-header">
-        <IonToolbar className="help-toolbar">
-          <IonButtons slot="start">
-            <IonBackButton text="" defaultHref={ROUTES.SETTINGS} />
-          </IonButtons>
-          <IonTitle className="help-title">Help</IonTitle>
-        </IonToolbar>
-      </IonHeader>
+      <PageHeader title="Help" defaultHref={ROUTES.SETTINGS} />
 
       <IonContent className="help-content">
         <div className="help-section-label">Frequently Asked Questions</div>

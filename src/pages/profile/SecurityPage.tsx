@@ -1,10 +1,5 @@
 import {
   IonPage,
-  IonHeader,
-  IonToolbar,
-  IonTitle,
-  IonButtons,
-  IonBackButton,
   IonContent,
   IonList,
   IonItem,
@@ -18,20 +13,14 @@ import {
   keyOutline,
   shieldCheckmarkOutline,
 } from "ionicons/icons";
+import { PageHeader } from "../../components/common";
 import { ROUTES } from "../../constants";
-import "../../styles/profile/SecurityPage.css";
+import "../../styles/profile/SecurityPage.scss";
 
 const SecurityPage: React.FC = () => {
   return (
     <IonPage data-page="security">
-      <IonHeader className="security-header">
-        <IonToolbar className="security-toolbar">
-          <IonButtons slot="start">
-            <IonBackButton text="" defaultHref={ROUTES.SETTINGS} />
-          </IonButtons>
-          <IonTitle className="security-title">Security</IonTitle>
-        </IonToolbar>
-      </IonHeader>
+      <PageHeader title="Security" defaultHref={ROUTES.SETTINGS} />
 
       <IonContent className="security-content">
         <div className="security-section-label">Security Settings</div>

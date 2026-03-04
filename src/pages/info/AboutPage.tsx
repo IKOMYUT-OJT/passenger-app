@@ -1,26 +1,15 @@
 import {
   IonPage,
-  IonHeader,
-  IonToolbar,
-  IonTitle,
-  IonButtons,
-  IonBackButton,
   IonContent,
 } from "@ionic/react";
+import { PageHeader } from "../../components/common";
 import { ROUTES } from "../../constants";
-import "../../styles/info/AboutPage.css";
+import "../../styles/info/AboutPage.scss";
 
 const AboutPage: React.FC = () => {
   return (
     <IonPage data-page="about">
-      <IonHeader className="about-header">
-        <IonToolbar className="about-toolbar">
-          <IonButtons slot="start">
-            <IonBackButton text="" defaultHref={ROUTES.SETTINGS} />
-          </IonButtons>
-          <IonTitle className="about-title">About</IonTitle>
-        </IonToolbar>
-      </IonHeader>
+      <PageHeader title="About" defaultHref={ROUTES.SETTINGS} />
 
       <IonContent className="about-content">
         <div className="about-container">

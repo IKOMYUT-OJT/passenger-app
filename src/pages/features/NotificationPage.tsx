@@ -1,11 +1,7 @@
 import {
   IonPage,
   IonContent,
-  IonList,
-  IonItem,
-  IonLabel,
   IonIcon,
-  IonBadge,
 } from "@ionic/react";
 import {
   checkmarkCircle,
@@ -16,7 +12,7 @@ import {
 import { PageHeader } from "../../components/common";
 import { ROUTES } from "../../constants";
 import type { Notification } from "../../types";
-import "../../styles/features/NotificationPage.css";
+import "../../styles/features/NotificationPage.scss";
 
 const NotificationPage: React.FC = () => {
   const notifications: Notification[] = [
@@ -70,17 +66,6 @@ const NotificationPage: React.FC = () => {
         return warning;
       default:
         return informationCircle;
-    }
-  };
-
-  const getIconColor = (type: string) => {
-    switch (type) {
-      case "success":
-        return "notification-icon-success";
-      case "warning":
-        return "notification-icon-warning";
-      default:
-        return "notification-icon-info";
     }
   };
 

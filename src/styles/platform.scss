@@ -1,3 +1,5 @@
+@use './mixins' as *;
+
 
 .platform-ios {
   -webkit-overflow-scrolling: touch;
@@ -41,7 +43,7 @@
 }
 
 .platform-android {
-  overflow-scrolling: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .platform-android ion-toolbar {
@@ -198,3 +200,4 @@
     font-size: 16px;
   }
 }
+

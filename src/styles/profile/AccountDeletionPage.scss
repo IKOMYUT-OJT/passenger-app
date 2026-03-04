@@ -1,3 +1,5 @@
+@use '../mixins' as *;
+
 /* Header styles now consolidated in common.css */
 
 .ion-page[data-page="accountdeletion"] .page-title,
@@ -147,8 +149,7 @@ ion-modal.deletion-modal::part(content) {
 }
 
 .deletion-modal-buttons {
-  display: flex;
-  flex-direction: column;
+  @include flex-col;
   gap: 12px;
 }
 
@@ -242,3 +243,4 @@ ion-modal.deletion-modal::part(content) {
   --color: var(--ion-text-color) !important;
   color: var(--ion-text-color) !important;
 }
+

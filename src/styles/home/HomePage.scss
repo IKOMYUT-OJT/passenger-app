@@ -1,0 +1,261 @@
+@use '../mixins' as *;
+
+.home-content {
+  --background: #ffffff;
+  position: relative;
+}
+
+.map-wrap {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.leaflet-map {
+  width: 100%;
+  height: 100vh; 
+
+}
+
+.leaflet-control-container {
+  display: none;
+}
+
+.status-bar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: calc(80px + env(safe-area-inset-top));
+  background: transparent;
+  z-index: 40;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.status-bar-overlay.transparent {
+  opacity: 0;
+}
+
+.logo-fab {
+  z-index: 50;
+}
+
+.logo-fab-btn {
+  width: 60px;
+  height: 60px;
+  @include flex-center;
+}
+
+.top-logo {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+}
+
+.top-fab {
+  z-index: 50;
+}
+
+.top-fab-btn {
+  --background: #008000;
+  --background-activated: #006600;
+  --background-focused: #006600;
+  --background-hover: #006600;
+  --ripple-color: #005500;
+  --color: #ffffff;
+  --color-activated: #ffffff;
+  --color-hover: #ffffff;
+  --color-focused: #ffffff;
+  --box-shadow: 0 6px 14px rgba(0, 0, 0, 0.18);
+  width: 48px;
+  height: 48px;
+}
+
+.top-fab-btn:hover {
+  --background: #006600;
+}
+
+.top-fab-btn:active,
+.top-fab-btn.activated {
+  --background: #008000 !important;
+}
+
+.nearby-wrap {
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  bottom: calc(90px + env(safe-area-inset-bottom));
+  z-index: 30;
+
+}
+
+.nearby-btn {
+  --background: #008000;
+  --background-activated: #008000;
+  --background-focused: #008000;
+  --color: #fff;
+  --border-radius: 14px;
+  height: 52px;
+  font-weight: 600;
+  box-shadow: 0 10px 18px rgba(0, 0, 0, 0.22);
+ 
+}
+
+.nearby-btn:hover {
+  --background: #036e03;
+}
+
+.nearby-btn:active,
+.nearby-btn.activated {
+  --background: #008000 !important;
+}
+
+
+.user-location-pin {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 40px;
+  height: 52px;
+  filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.35));
+}
+
+.user-location-pin-head {
+  width: 36px;
+  height: 36px;
+  background: #008000;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.user-location-pin-tail {
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-top: 14px solid #008000;
+  margin-top: -1px;
+}
+
+.map-controls-right {
+  position: fixed;
+  right: 16px;
+  top: calc(env(safe-area-inset-top) + 76px);
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.map-ctrl-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: none;
+  background: #ffffff;
+  color: #444444;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.22);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.18s, color 0.18s, box-shadow 0.18s;
+  font-size: 20px;
+  padding: 0;
+
+  ion-icon {
+    font-size: 20px;
+    pointer-events: none;
+  }
+
+  &:hover {
+    background: #f0f0f0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.28);
+  }
+
+  &:active {
+    background: #e0e0e0;
+  }
+
+  &.active {
+    background: #008000;
+    color: #ffffff;
+    box-shadow: 0 4px 12px rgba(0, 128, 0, 0.35);
+  }
+}
+
+.ion-palette-dark .map-ctrl-btn {
+  background: #2a2a2a;
+  color: #eeeeee;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+
+  &:hover {
+    background: #3a3a3a;
+  }
+
+  &:active {
+    background: #222222;
+  }
+
+  &.active {
+    background: #008000;
+    color: #ffffff;
+  }
+}
+
+.ion-palette-dark .home-content {
+  --background: #121212;
+}
+
+.ion-palette-dark .status-bar-overlay {
+  background: transparent;
+}
+
+.ion-palette-dark .top-fab-btn {
+  --background: #008000 !important;
+  --background-activated: #006600 !important;
+  --background-focused: #006600 !important;
+  --background-hover: #006600 !important;
+  --ripple-color: #005500 !important;
+  --color: #ffffff !important;
+  --color-activated: #ffffff !important;
+  --color-hover: #ffffff !important;
+  --color-focused: #ffffff !important;
+}
+
+.ion-palette-dark .top-fab-btn:hover {
+  --background: #006600 !important;
+}
+
+.ion-palette-dark .top-fab-btn::part(native) {
+  background: #008000 !important;
+  color: #ffffff !important;
+}
+
+.ion-palette-dark .top-fab-btn ion-icon {
+  color: #ffffff;
+}
+
+.ion-palette-dark .nearby-btn {
+  --background: #008000 !important;
+  --background-activated: #006600 !important;
+  --background-focused: #006600 !important;
+  --background-hover: #006600 !important;
+  --ripple-color: #005500 !important;
+  --color: #ffffff !important;
+}
+
+.ion-palette-dark .nearby-btn::part(native) {
+  background: #008000 !important;
+  color: #ffffff !important;
+}
+

@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import {
   IonPage,
   IonContent,
@@ -27,7 +26,7 @@ import { PageHeader } from "../../components/common";
 import { useProfileImage } from "../../hooks";
 import { useDarkMode } from "../../contexts/DarkModeContext";
 import { ROUTES } from "../../constants";
-import "../../styles/profile/SettingsPage.css";
+import "../../styles/profile/SettingsPage.scss";
 
 const SettingsPage: React.FC = () => {
   const ionRouter = useIonRouter();
