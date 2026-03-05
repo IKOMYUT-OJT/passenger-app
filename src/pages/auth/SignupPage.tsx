@@ -1,7 +1,6 @@
-﻿import { IonButton, IonIcon, IonText, IonAlert, useIonToast } from "@ionic/react";
+﻿import { IonButton, IonIcon, IonText, IonAlert, useIonToast, useIonRouter } from "@ionic/react";
 import { useState, useMemo, useEffect } from "react";
-import { useIonRouter } from "@ionic/react";
-import { arrowBack, person, mail, home, lockClosed, callOutline } from "ionicons/icons";
+import { arrowBack, person, mail, atOutline, lockClosed, callOutline } from "ionicons/icons";
 import { AuthPageLayout, AuthHeader, FloatingLabelInput, LoadingSpinner } from "../../components/common";
 import { ROUTES } from "../../constants";
 import "../../styles/auth/SignupPage.scss";
@@ -10,20 +9,17 @@ const SignupPage: React.FC = () => {
   const ionRouter = useIonRouter();
   const [presentToast] = useIonToast();
 
-  // step 1 = registration form, step 2 = OTP verification
   const [step, setStep] = useState(1);
 
-  // Form fields
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [mobile, setMobile] = useState("");
-  const [address, setAddress] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [agreed, setAgreed] = useState(false);
   const [error, setError] = useState("");
 
-  // OTP fields
   const [code, setCode] = useState<string[]>(["", "", "", "", "", ""]);
   const [seconds, setSeconds] = useState(30);
   const otpValue = useMemo(() => code.join(""), [code]);
@@ -31,17 +27,15 @@ const SignupPage: React.FC = () => {
   const [showAlert, setShowAlert] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  // Countdown timer for OTP resend (only active on step 2)
   useEffect(() => {
     if (step !== 2 || seconds <= 0) return;
     const t = setTimeout(() => setSeconds((s) => s - 1), 1000);
     return () => clearTimeout(t);
   }, [seconds, step]);
 
-  // Step 1: Validate & submit registration form
   const handleRegister = () => {
     setError("");
-    if (!fullName || !email || !mobile || !address || !password || !confirmPassword) {
+    if (!fullName || !email || !mobile || !username || !password || !confirmPassword) {
       setError("All fields are required.");
       return;
     }
@@ -67,7 +61,6 @@ const SignupPage: React.FC = () => {
       setError("You must agree to the Terms of Service & Privacy Policy.");
       return;
     }
-    // Simulate sending OTP to mobile number
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
@@ -77,7 +70,6 @@ const SignupPage: React.FC = () => {
     }, 1200);
   };
 
-  // Step 2: OTP helpers
   const setDigit = (idx: number, val: string) => {
     const v = (val ?? "").replace(/\D/g, "").slice(-1);
     setCode((prev) => {
@@ -94,6 +86,16 @@ const SignupPage: React.FC = () => {
     if (e.key === "Backspace" && !code[idx] && idx > 0) {
       (document.getElementById(`signup-otp-${idx - 1}`) as HTMLInputElement | null)?.focus();
     }
+  };
+
+  const handlePaste = (e: React.ClipboardEvent<HTMLInputElement>) => {
+    e.preventDefault();
+    const digits = e.clipboardData.getData("text").replace(/\D/g, "").slice(0, 6).split("");
+    if (digits.length === 0) return;
+    const next = Array(6).fill("").map((_: string, i: number) => digits[i] ?? "");
+    setCode(next);
+    const lastFilled = Math.min(digits.length, 5);
+    (document.getElementById(`signup-otp-${lastFilled}`) as HTMLInputElement | null)?.focus();
   };
 
   const handleVerifyOtp = () => {
@@ -125,11 +127,8 @@ const SignupPage: React.FC = () => {
 
   const handleGoLogin = () => ionRouter.push(ROUTES.LOGIN, "back");
 
-  const openTerms = () => window.open("/terms", "_blank");
-
   return (
     <AuthPageLayout scrollY={false} className="signup-layout">
-      {/* STEP 1: Registration Form */}
       {step === 1 && (
         <>
           <AuthHeader
@@ -138,6 +137,7 @@ const SignupPage: React.FC = () => {
           />
           <form
             className="signup-form"
+            autoComplete="off"
             onSubmit={(e) => { e.preventDefault(); handleRegister(); }}
           >
             <FloatingLabelInput
@@ -146,6 +146,7 @@ const SignupPage: React.FC = () => {
               onValueChange={setFullName}
               icon={person}
               placeholder="Juan Dela Cruz"
+              autocomplete="off"
             />
             <FloatingLabelInput
               label="Mobile Number"
@@ -156,6 +157,7 @@ const SignupPage: React.FC = () => {
               icon={callOutline}
               maxlength={11}
               placeholder="09123456789"
+              autocomplete="off"
             />
             <FloatingLabelInput
               label="Email"
@@ -165,12 +167,14 @@ const SignupPage: React.FC = () => {
               inputMode="email"
               icon={mail}
               placeholder="you@example.com"
+              autocomplete="off"
             />
             <FloatingLabelInput
-              label="Address"
-              value={address}
-              onValueChange={setAddress}
-              icon={home}
+              label="Username"
+              value={username}
+              onValueChange={setUsername}
+              icon={atOutline}
+              autocomplete="off"
             />
             <FloatingLabelInput
               label="Password"
@@ -178,6 +182,7 @@ const SignupPage: React.FC = () => {
               onValueChange={setPassword}
               type="password"
               icon={lockClosed}
+              autocomplete="new-password"
             />
             <FloatingLabelInput
               label="Confirm Password"
@@ -185,6 +190,7 @@ const SignupPage: React.FC = () => {
               onValueChange={setConfirmPassword}
               type="password"
               icon={lockClosed}
+              autocomplete="new-password"
             />
             <div className="terms-checkbox">
               <input
@@ -206,7 +212,6 @@ const SignupPage: React.FC = () => {
               expand="block"
               type="submit"
               className="signup-button"
-              onClick={handleRegister}
             >
               Sign Up
             </IonButton>
@@ -218,17 +223,12 @@ const SignupPage: React.FC = () => {
         </>
       )}
 
-      {/* STEP 2: OTP Verification */}
       {step === 2 && (
         <>
-          <div className="otp-logo">
-            <img src="/flogo1.png" alt="Logo" />
-          </div>
-          <h2 className="otp-title">Verify Your Mobile Number</h2>
-          <p className="otp-subtitle">
-            We sent a 6-digit verification code to <strong>{mobile}</strong>.
-            Enter it below to complete your registration.
-          </p>
+          <AuthHeader
+            title="Verification"
+            subtitle="Enter the 6-digit verification code we just sent to your mobile number to continue your signup."
+          />
           <div className="otp-row">
             {code.map((d, i) => (
               <input
@@ -238,6 +238,7 @@ const SignupPage: React.FC = () => {
                 value={d}
                 onChange={(e) => setDigit(i, e.target.value)}
                 onKeyDown={(e) => handleKeyDown(i, e)}
+                onPaste={handlePaste}
                 inputMode="numeric"
                 maxLength={1}
                 autoFocus={i === 0}
@@ -245,11 +246,11 @@ const SignupPage: React.FC = () => {
             ))}
           </div>
           <IonButton expand="block" className="otp-btn" onClick={handleVerifyOtp}>
-            Verify &amp; Continue
+            Verify
           </IonButton>
           <div className="otp-resend">
             {seconds > 0 ? (
-              <span className="muted">Resend code in {seconds}s</span>
+              <span className="muted">{seconds}s Resend Confirmation Code</span>
             ) : (
               <>
                 Didn't receive a code?{" "}
@@ -261,7 +262,7 @@ const SignupPage: React.FC = () => {
           </div>
           <div className="back-to-signin" onClick={() => setStep(1)}>
             <IonIcon icon={arrowBack} className="back-icon" />
-            <span>Back to Registration</span>
+            <span>back to Sign Up</span>
           </div>
         </>
       )}

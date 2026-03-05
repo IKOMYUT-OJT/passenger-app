@@ -64,6 +64,12 @@
   letter-spacing: 0.5px;
 }
 
+.platform-android .otp-btn {
+  --border-radius: 15px !important;
+  text-transform: none !important;
+  letter-spacing: normal !important;
+}
+
 .platform-android ion-modal {
   --border-radius: 4px;
 }

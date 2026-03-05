@@ -1,7 +1,6 @@
-import { IonButton, IonIcon, useIonToast } from "@ionic/react";
+import { IonButton, IonIcon, useIonToast, useIonRouter } from "@ionic/react";
 import { useState, useEffect, useMemo } from "react";
-import { useIonRouter } from "@ionic/react";
-import { arrowBack, callOutline, lockClosed } from "ionicons/icons";
+import { arrowBack, mailOutline, lockClosed } from "ionicons/icons";
 import { AuthPageLayout, AuthHeader, FloatingLabelInput, LoadingSpinner } from "../../components/common";
 import { ROUTES } from "../../constants";
 import "../../styles/auth/SignupPage.scss";
@@ -11,7 +10,7 @@ const ForgotPasswordPage: React.FC = () => {
   const ionRouter = useIonRouter();
   const [presentToast] = useIonToast();
   const [step, setStep] = useState(1);
-  const [mobileNumber, setMobileNumber] = useState("");
+  const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
   const [code, setCode] = useState<string[]>(["", "", "", "", "", ""]);
   const [seconds, setSeconds] = useState(20);
@@ -20,16 +19,15 @@ const ForgotPasswordPage: React.FC = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
 
   useEffect(() => {
-    if (step === 2 && seconds <= 0) return;
-    if (step === 2) {
-      const t = setTimeout(() => setSeconds((s) => s - 1), 1000);
-      return () => clearTimeout(t);
-    }
+    if (step !== 2 || seconds <= 0) return;
+    const t = setTimeout(() => setSeconds((s) => s - 1), 1000);
+    return () => clearTimeout(t);
   }, [seconds, step]);
 
   const handleSend = () => {
-    if (!mobileNumber || mobileNumber.length < 11) {
-      presentToast({ message: "Please enter a valid 11-digit mobile number.", duration: 2500, color: "danger", position: "top" });
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!email || !emailRegex.test(email)) {
+      presentToast({ message: "Please enter a valid email address.", duration: 2500, color: "danger", position: "top" });
       return;
     }
     setLoading(true);
@@ -50,6 +48,22 @@ const ForgotPasswordPage: React.FC = () => {
     if (v && idx < 5) {
       (document.getElementById(`reset-otp-${idx + 1}`) as HTMLInputElement | null)?.focus();
     }
+  };
+
+  const handleKeyDown = (idx: number, e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Backspace" && !code[idx] && idx > 0) {
+      (document.getElementById(`reset-otp-${idx - 1}`) as HTMLInputElement | null)?.focus();
+    }
+  };
+
+  const handlePaste = (e: React.ClipboardEvent<HTMLInputElement>) => {
+    e.preventDefault();
+    const digits = e.clipboardData.getData("text").replace(/\D/g, "").slice(0, 6).split("");
+    if (digits.length === 0) return;
+    const next = Array(6).fill("").map((_: string, i: number) => digits[i] ?? "");
+    setCode(next);
+    const lastFilled = Math.min(digits.length, 5);
+    (document.getElementById(`reset-otp-${lastFilled}`) as HTMLInputElement | null)?.focus();
   };
 
   const handleVerify = () => {
@@ -94,24 +108,23 @@ const ForgotPasswordPage: React.FC = () => {
   };
 
   return (
-    <AuthPageLayout>
+    <AuthPageLayout scrollY={step !== 2} className={step === 2 ? "signup-layout" : ""}>
       {step === 1 && (
         <>
           <AuthHeader
             title="Forgot Password"
-            subtitle="Enter your mobile number to receive a verification code"
+            subtitle="Enter your email to receive a verification code"
           />
           <div className="auth-form">
             <FloatingLabelInput
-              label="Mobile Number"
-              value={mobileNumber}
-              onValueChange={setMobileNumber}
-              type="tel"
-              inputMode="numeric"
-              icon={callOutline}
-              maxlength={11}
+              label="Email"
+              value={email}
+              onValueChange={setEmail}
+              type="email"
+              inputMode="email"
+              icon={mailOutline}
             />
-            <IonButton expand="block" className="app-button-primary mt-20" onClick={handleSend}>
+            <IonButton expand="block" className="otp-btn mt-20" onClick={handleSend}>
               Send
             </IonButton>
             <div className="back-to-signin" onClick={() => ionRouter.push(ROUTES.LOGIN, "back")}>
@@ -124,13 +137,10 @@ const ForgotPasswordPage: React.FC = () => {
 
       {step === 2 && (
         <>
-          <div className="otp-logo">
-            <img src="/flogo1.png" alt="Logo" />
-          </div>
-          <h2 className="otp-title">Verify Your Mobile Number</h2>
-          <p className="otp-subtitle">
-            Enter the 6-digit verification code we just sent to your mobile number.
-          </p>
+          <AuthHeader
+            title="Verification"
+            subtitle="Enter the 6-digit verification code we just sent to your email to continue."
+          />
           <div className="otp-row">
             {code.map((d, i) => (
               <input
@@ -139,27 +149,32 @@ const ForgotPasswordPage: React.FC = () => {
                 className="otp-box"
                 value={d}
                 onChange={(e) => setDigit(i, e.target.value)}
+                onKeyDown={(e) => handleKeyDown(i, e)}
+                onPaste={handlePaste}
                 inputMode="numeric"
                 maxLength={1}
+                autoFocus={i === 0}
               />
             ))}
           </div>
           <IonButton expand="block" className="otp-btn" onClick={handleVerify}>
             Verify
           </IonButton>
-          {seconds > 0 ? (
-            <div className="otp-resend muted">{seconds}s Resend Confirmation Code</div>
-          ) : (
-            <div className="otp-resend">
-              Didn't you receive any code?{" "}
-              <span className="ms-link" onClick={handleResend}>
-                Resend Code
-              </span>
-            </div>
-          )}
+          <div className="otp-resend">
+            {seconds > 0 ? (
+              <span className="muted">{seconds}s Resend Confirmation Code</span>
+            ) : (
+              <>
+                Didn't receive a code?{" "}
+                <span className="ms-link" onClick={handleResend}>
+                  Resend Code
+                </span>
+              </>
+            )}
+          </div>
           <div className="back-to-signin" onClick={() => setStep(1)}>
             <IonIcon icon={arrowBack} className="back-icon" />
-            <span>Back</span>
+            <span>back to Forgot Password</span>
           </div>
         </>
       )}
@@ -185,7 +200,7 @@ const ForgotPasswordPage: React.FC = () => {
               type="password"
               icon={lockClosed}
             />
-            <IonButton expand="block" className="reset-password-btn" onClick={handleResetPassword}>
+            <IonButton expand="block" className="otp-btn" onClick={handleResetPassword}>
               Reset Password
             </IonButton>
             <div className="back-to-signin" onClick={() => ionRouter.push(ROUTES.LOGIN, "back")}>

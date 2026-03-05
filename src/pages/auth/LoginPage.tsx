@@ -1,6 +1,5 @@
-import { IonButton } from "@ionic/react";
-import { useIonToast } from "@ionic/react";
-import { lockClosed, callOutline } from "ionicons/icons";
+import { IonButton, useIonToast } from "@ionic/react";
+import { lockClosed, mailOutline } from "ionicons/icons";
 import { useState, useContext, useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthContext";
@@ -9,7 +8,7 @@ import { ROUTES } from "../../constants";
 import "../../styles/auth/LoginPage.scss";
 
 const LoginPage: React.FC = () => {
-  const [mobileNumber, setMobileNumber] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [presentToast] = useIonToast();
@@ -24,8 +23,13 @@ const LoginPage: React.FC = () => {
   }, [isLoggedIn, history]);
 
   const handleLogin = () => {
-    if (!mobileNumber || !password) {
-      presentToast({ message: "Please enter both mobile number and password.", duration: 2500, color: "danger", position: "top" });
+    if (!email || !password) {
+      presentToast({ message: "Please enter both email and password.", duration: 2500, color: "danger", position: "top" });
+      return;
+    }
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      presentToast({ message: "Please enter a valid email address.", duration: 2500, color: "danger", position: "top" });
       return;
     }
 
@@ -54,14 +58,12 @@ const LoginPage: React.FC = () => {
 
       <div className="auth-form">
         <FloatingLabelInput
-          label="Mobile Number"
-          value={mobileNumber}
-          onValueChange={setMobileNumber}
-          type="tel"
-          inputMode="numeric"
-          icon={callOutline}
-          maxlength={11}
-          placeholder="09xxxxxxxxx"
+          label="Email"
+          value={email}
+          onValueChange={setEmail}
+          type="email"
+          inputMode="email"
+          icon={mailOutline}
         />
 
         <FloatingLabelInput
@@ -76,7 +78,7 @@ const LoginPage: React.FC = () => {
           Forgot Password?
         </div>
 
-        <IonButton expand="block" className="app-button-primary mt-20" onClick={handleLogin}>
+        <IonButton expand="block" className="otp-btn mt-20" onClick={handleLogin}>
           Sign In
         </IonButton>
 

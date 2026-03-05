@@ -13,6 +13,7 @@ interface FloatingLabelInputProps {
   inputMode?: "text" | "numeric" | "email" | "tel";
   className?: string;
   placeholder?: string;
+  autocomplete?: string;
 }
 
 const FloatingLabelInput: React.FC<FloatingLabelInputProps> = ({
@@ -26,6 +27,7 @@ const FloatingLabelInput: React.FC<FloatingLabelInputProps> = ({
   inputMode = "text",
   className = "",
   placeholder,
+  autocomplete,
 }) => {
   const [isFocused, setIsFocused] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
@@ -78,6 +80,7 @@ const FloatingLabelInput: React.FC<FloatingLabelInputProps> = ({
         maxlength={maxlength}
         readonly={readonly}
         placeholder={showPlaceholder ? placeholder : ""}
+        autocomplete={autocomplete as any}
       />
       {isPassword && (
         <IonIcon
