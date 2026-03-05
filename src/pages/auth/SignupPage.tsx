@@ -1,99 +1,62 @@
-import { IonButton, IonIcon, IonInput, IonItem, IonText, IonAlert, useIonToast } from "@ionic/react";
-import { useState, useMemo, useEffect, useContext } from "react";
+﻿import { IonButton, IonIcon, IonText, IonAlert, useIonToast } from "@ionic/react";
+import { useState, useMemo, useEffect } from "react";
 import { useIonRouter } from "@ionic/react";
-import { useHistory } from "react-router-dom";
-import { callOutline, arrowBack, person, mail, home, lockClosed } from "ionicons/icons";
-import { AuthContext } from "../../contexts/AuthContext";
+import { arrowBack, person, mail, home, lockClosed, callOutline } from "ionicons/icons";
 import { AuthPageLayout, AuthHeader, FloatingLabelInput, LoadingSpinner } from "../../components/common";
 import { ROUTES } from "../../constants";
 import "../../styles/auth/SignupPage.scss";
 
-const MobileSignupPage: React.FC = () => {
+const SignupPage: React.FC = () => {
   const ionRouter = useIonRouter();
-  const history = useHistory();
-  const { setIsLoggedIn } = useContext(AuthContext);
   const [presentToast] = useIonToast();
-  
+
+  // step 1 = registration form, step 2 = OTP verification
   const [step, setStep] = useState(1);
-  const [mobile, setMobile] = useState("");
-  const [code, setCode] = useState<string[]>(["", "", "", "", "", ""]);
-  const [seconds, setSeconds] = useState(20);
-  const otpValue = useMemo(() => code.join(""), [code]);
-  
+
+  // Form fields
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
+  const [mobile, setMobile] = useState("");
   const [address, setAddress] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [error, setError] = useState("");
-  const [showAlert, setShowAlert] = useState(false);
   const [agreed, setAgreed] = useState(false);
-  const [isNavigating, setIsNavigating] = useState(false);
+  const [error, setError] = useState("");
+
+  // OTP fields
+  const [code, setCode] = useState<string[]>(["", "", "", "", "", ""]);
+  const [seconds, setSeconds] = useState(30);
+  const otpValue = useMemo(() => code.join(""), [code]);
+
+  const [showAlert, setShowAlert] = useState(false);
   const [loading, setLoading] = useState(false);
 
+  // Countdown timer for OTP resend (only active on step 2)
   useEffect(() => {
-    if (step === 2 && seconds <= 0) return;
-    if (step === 2) {
-      const t = setTimeout(() => setSeconds((s) => s - 1), 1000);
-      return () => clearTimeout(t);
-    }
+    if (step !== 2 || seconds <= 0) return;
+    const t = setTimeout(() => setSeconds((s) => s - 1), 1000);
+    return () => clearTimeout(t);
   }, [seconds, step]);
 
-  const handleMobileSubmit = () => {
-    const clean = (mobile ?? "").replace(/\s+/g, "");
-    if (!clean) {
-      presentToast({ message: "Please enter your mobile number.", duration: 2500, color: "danger", position: "top" });
-      return;
-    }
-    if (clean.length < 10) {
-      presentToast({ message: "Please enter a valid mobile number.", duration: 2500, color: "danger", position: "top" });
-      return;
-    }
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-      setStep(2);
-      setSeconds(20);
-    }, 1000);
-  };
-
-  const setDigit = (idx: number, val: string) => {
-    const v = (val ?? "").replace(/\D/g, "").slice(-1);
-    setCode((prev) => {
-      const next = [...prev];
-      next[idx] = v;
-      return next;
-    });
-    if (v && idx < 5) {
-      (document.getElementById(`otp-${idx + 1}`) as HTMLInputElement | null)?.focus();
-    }
-  };
-
-  const handleVerify = () => {
-    if (otpValue.length !== 6) {
-      presentToast({ message: "Please enter the 6-digit code.", duration: 2500, color: "danger", position: "top" });
-      return;
-    }
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-      setStep(3);
-    }, 1000);
-  };
-
-  const handleResend = () => {
-    setSeconds(20);
-    setCode(["", "", "", "", "", ""]);
-    (document.getElementById("otp-0") as HTMLInputElement | null)?.focus();
-  };
-
-  const handleSignUp = () => {
+  // Step 1: Validate & submit registration form
+  const handleRegister = () => {
+    setError("");
     if (!fullName || !email || !mobile || !address || !password || !confirmPassword) {
       setError("All fields are required.");
       return;
     }
-    if (!email.endsWith("@gmail.com")) {
-      setError("Email must end with @gmail.com");
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      setError("Please enter a valid email address.");
+      return;
+    }
+    const mobileClean = mobile.replace(/\s+/g, "");
+    if (mobileClean.length < 11) {
+      setError("Please enter a valid 11-digit mobile number.");
+      return;
+    }
+    if (password.length < 6) {
+      setError("Password must be at least 6 characters.");
       return;
     }
     if (password !== confirmPassword) {
@@ -104,42 +67,86 @@ const MobileSignupPage: React.FC = () => {
       setError("You must agree to the Terms of Service & Privacy Policy.");
       return;
     }
-    setError("");
+    // Simulate sending OTP to mobile number
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      setCode(["", "", "", "", "", ""]);
+      setSeconds(30);
+      setStep(2);
+    }, 1200);
+  };
+
+  // Step 2: OTP helpers
+  const setDigit = (idx: number, val: string) => {
+    const v = (val ?? "").replace(/\D/g, "").slice(-1);
+    setCode((prev) => {
+      const next = [...prev];
+      next[idx] = v;
+      return next;
+    });
+    if (v && idx < 5) {
+      (document.getElementById(`signup-otp-${idx + 1}`) as HTMLInputElement | null)?.focus();
+    }
+  };
+
+  const handleKeyDown = (idx: number, e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Backspace" && !code[idx] && idx > 0) {
+      (document.getElementById(`signup-otp-${idx - 1}`) as HTMLInputElement | null)?.focus();
+    }
+  };
+
+  const handleVerifyOtp = () => {
+    if (otpValue.length !== 6) {
+      presentToast({ message: "Please enter the complete 6-digit code.", duration: 2500, color: "danger", position: "top" });
+      return;
+    }
     setLoading(true);
     setTimeout(() => {
       setLoading(false);
       setShowAlert(true);
-    }, 1500);
+    }, 1200);
+  };
+
+  const handleResend = () => {
+    setSeconds(30);
+    setCode(["", "", "", "", "", ""]);
+    setTimeout(() => {
+      (document.getElementById("signup-otp-0") as HTMLInputElement | null)?.focus();
+    }, 100);
+    presentToast({ message: "A new code has been sent to your mobile number.", duration: 2500, color: "success", position: "top" });
   };
 
   const handleAlertDismiss = () => {
     setShowAlert(false);
-    setIsNavigating(true);
-    localStorage.removeItem("verifiedMobile");
-    localStorage.removeItem("pendingMobile");
     localStorage.removeItem("isLoggedIn");
-    setTimeout(() => {
-      window.location.href = ROUTES.LOGIN;
-    }, 100);
-  };
-
-  const handleGoLogin = () => {
-    localStorage.removeItem("pendingMobile");
-    localStorage.removeItem("verifiedMobile");
     ionRouter.push(ROUTES.LOGIN, "back");
   };
+
+  const handleGoLogin = () => ionRouter.push(ROUTES.LOGIN, "back");
 
   const openTerms = () => window.open("/terms", "_blank");
 
   return (
-    <AuthPageLayout>
+    <AuthPageLayout scrollY={false} className="signup-layout">
+      {/* STEP 1: Registration Form */}
       {step === 1 && (
         <>
           <AuthHeader
             title="Hello!"
-            subtitle="Create Your Account with Your Mobile Number"
+            subtitle="Fill out the form to create your account"
           />
-          <div className="auth-form">
+          <form
+            className="signup-form"
+            onSubmit={(e) => { e.preventDefault(); handleRegister(); }}
+          >
+            <FloatingLabelInput
+              label="Full Name"
+              value={fullName}
+              onValueChange={setFullName}
+              icon={person}
+              placeholder="Juan Dela Cruz"
+            />
             <FloatingLabelInput
               label="Mobile Number"
               value={mobile}
@@ -148,91 +155,16 @@ const MobileSignupPage: React.FC = () => {
               inputMode="numeric"
               icon={callOutline}
               maxlength={11}
-              placeholder="09xxxxxxxxx"
+              placeholder="09123456789"
             />
-            <IonButton type="button" expand="block" className="app-button-primary mt-20" onClick={handleMobileSubmit}>
-              Submit
-            </IonButton>
-            <div className="ms-footer">
-              Already have an account?{" "}
-              <span className="form-link" onClick={handleGoLogin}>
-                SIGN IN
-              </span>
-            </div>
-          </div>
-        </>
-      )}
-
-      {step === 2 && (
-        <>
-          <div className="otp-logo">
-            <img src="/flogo1.png" alt="Logo" />
-          </div>
-          <h2 className="otp-title">Verify Your Mobile Number</h2>
-          <p className="otp-subtitle">
-            Enter the 6-digit verification code we just sent to your mobile number to continue your signup.
-          </p>
-          <div className="otp-row">
-            {code.map((d, i) => (
-              <input
-                key={i}
-                id={`otp-${i}`}
-                className="otp-box"
-                value={d}
-                onChange={(e) => setDigit(i, e.target.value)}
-                inputMode="numeric"
-                maxLength={1}
-              />
-            ))}
-          </div>
-          <IonButton expand="block" className="otp-btn" onClick={handleVerify}>
-            Verify
-          </IonButton>
-          {seconds > 0 ? (
-            <div className="otp-resend muted">{seconds}s Resend Confirmation Code</div>
-          ) : (
-            <div className="otp-resend">
-              Didn't you receive any code?{" "}
-              <span className="ms-link" onClick={handleResend}>
-                Resend Code
-              </span>
-            </div>
-          )}
-          <div className="back-to-signin" onClick={() => setStep(1)}>
-            <IonIcon icon={arrowBack} className="back-icon" />
-            <span>Back</span>
-          </div>
-        </>
-      )}
-
-      {step === 3 && (
-        <>
-          <AuthHeader
-            title="Create Account"
-            subtitle="Fill out the form to create your account"
-          />
-          <form className="signup-form">
-            <FloatingLabelInput
-              label="Full Name"
-              value={fullName}
-              onValueChange={setFullName}
-              icon={person}
-            />
-            <IonItem lines="none" className="signup-item">
-              <IonIcon icon={callOutline} slot="start" />
-              <IonInput
-                placeholder="09xxxxxxxxx"
-                type="tel"
-                value={mobile}
-                readonly
-              />
-            </IonItem>
             <FloatingLabelInput
               label="Email"
               value={email}
               onValueChange={setEmail}
               type="email"
+              inputMode="email"
               icon={mail}
+              placeholder="you@example.com"
             />
             <FloatingLabelInput
               label="Address"
@@ -262,9 +194,7 @@ const MobileSignupPage: React.FC = () => {
                 onChange={(e) => setAgreed(e.target.checked)}
               />
               <label htmlFor="terms">
-                <span className="link-text" onClick={openTerms}>
-                  I agree to the Terms of Service & Privacy Policy
-                </span>
+                I agree to terms of service policy
               </label>
             </div>
             {error && (
@@ -274,9 +204,9 @@ const MobileSignupPage: React.FC = () => {
             )}
             <IonButton
               expand="block"
+              type="submit"
               className="signup-button"
-              disabled={showAlert}
-              onClick={handleSignUp}
+              onClick={handleRegister}
             >
               Sign Up
             </IonButton>
@@ -285,18 +215,68 @@ const MobileSignupPage: React.FC = () => {
               <span>Back to Sign In</span>
             </div>
           </form>
-          <IonAlert
-            isOpen={showAlert}
-            onDidDismiss={handleAlertDismiss}
-            header="Success!"
-            message="Registered Successfully!"
-            buttons={["OK"]}
-          />
         </>
       )}
+
+      {/* STEP 2: OTP Verification */}
+      {step === 2 && (
+        <>
+          <div className="otp-logo">
+            <img src="/flogo1.png" alt="Logo" />
+          </div>
+          <h2 className="otp-title">Verify Your Mobile Number</h2>
+          <p className="otp-subtitle">
+            We sent a 6-digit verification code to <strong>{mobile}</strong>.
+            Enter it below to complete your registration.
+          </p>
+          <div className="otp-row">
+            {code.map((d, i) => (
+              <input
+                key={i}
+                id={`signup-otp-${i}`}
+                className="otp-box"
+                value={d}
+                onChange={(e) => setDigit(i, e.target.value)}
+                onKeyDown={(e) => handleKeyDown(i, e)}
+                inputMode="numeric"
+                maxLength={1}
+                autoFocus={i === 0}
+              />
+            ))}
+          </div>
+          <IonButton expand="block" className="otp-btn" onClick={handleVerifyOtp}>
+            Verify &amp; Continue
+          </IonButton>
+          <div className="otp-resend">
+            {seconds > 0 ? (
+              <span className="muted">Resend code in {seconds}s</span>
+            ) : (
+              <>
+                Didn't receive a code?{" "}
+                <span className="ms-link" onClick={handleResend}>
+                  Resend Code
+                </span>
+              </>
+            )}
+          </div>
+          <div className="back-to-signin" onClick={() => setStep(1)}>
+            <IonIcon icon={arrowBack} className="back-icon" />
+            <span>Back to Registration</span>
+          </div>
+        </>
+      )}
+
+      <IonAlert
+        isOpen={showAlert}
+        onDidDismiss={handleAlertDismiss}
+        header="Registration Successful!"
+        message={`Your account has been created. Please log in using your email: ${email}`}
+        buttons={[{ text: "Go to Login", handler: handleAlertDismiss }]}
+      />
+
       <LoadingSpinner isOpen={loading} message="Processing..." />
     </AuthPageLayout>
   );
 };
 
-export default MobileSignupPage;
+export default SignupPage;

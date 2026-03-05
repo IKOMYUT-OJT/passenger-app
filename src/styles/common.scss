@@ -147,14 +147,22 @@
   @include flex-col;
   justify-content: flex-start;
   align-items: center;
-  min-height: 100vh;
+  min-height: 100%;
   background: var(--app-background);
   font-family: var(--app-font-family);
-  padding: 2rem 1rem;
+  padding: 1.25rem 1rem;
   box-sizing: border-box;
   text-align: center;
-  overflow-y: auto;
   overflow-x: hidden;
+}
+
+/* Hide scrollbar on all auth pages — content still scrollable, bar invisible */
+.auth-page-content::part(scroll) {
+  scrollbar-width: none;       /* Firefox */
+  -ms-overflow-style: none;    /* IE/Edge */
+}
+.auth-page-content::part(scroll)::-webkit-scrollbar {
+  display: none;               /* Chrome/Safari/WebView */
 }
 
 .auth-page-container {
